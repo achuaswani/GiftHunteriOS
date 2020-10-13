@@ -8,13 +8,30 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var session: FirebaseSession
+    
     var body: some View {
-        Text("Hello, world!").padding()
+        Group {
+            if session.isLoggedIn {
+                DashboardView()
+            } else {
+                LoginView()
+            }
+        }
+        .navigationBarHidden(true)
+        .onAppear(perform: getUser)
+    }
+    
+    func getUser() {
+        session.listen()
     }
 }
 
+#if DEBUG
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(FirebaseSession())
     }
 }
+#endif
