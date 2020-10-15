@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RegisterView: View {
     @State private var email = ""
-    @State private var password = ""
+    @State private var passwordKey = ""
     @State private var confirmPassword = ""
     @State private var showErrorMessage = false
     @State private var showPassword = false
@@ -58,7 +58,7 @@ struct RegisterView: View {
     
     var passwordTextFields: some View {
         VStack {
-            showPasswordTextFields(hintText: "Password", textValue: self.$password)
+            showPasswordTextFields(hintText: "Password", textValue: self.$passwordKey)
                 .padding([.top, .bottom], 10)
             showPasswordTextFields(hintText: "Confirm password", textValue: self.$confirmPassword)
                 .padding([.top, .bottom], 10)
@@ -85,7 +85,7 @@ struct RegisterView: View {
     
     //MARK: Functions
     func register() {
-        session.register(email: email, password: password) { (result, error) in
+        session.register(email: email, password: passwordKey) { (result, error) in
             if error != nil {
                 self.showErrorMessage = true
                 self.errorMessage = error?.localizedDescription ?? "Error"

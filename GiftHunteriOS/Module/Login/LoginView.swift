@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     @State private var email = ""
-    @State private var password = ""
+    @State private var passwordKey = ""
     @State private var showPassword = false
     @State private var isNavigationBarHidden = true
     @State var showErrorMessage = false
@@ -74,9 +74,9 @@ struct LoginView: View {
     var passwordTextField: some View {
         HStack {
             if showPassword {
-                TextField("Password", text: self.$password)
+                TextField("Password", text: self.$passwordKey)
             } else {
-                SecureField("Password", text: self.$password)
+                SecureField("Password", text: self.$passwordKey)
             }
             Button(action: { self.showPassword.toggle()} ) {
                 if self.showPassword {
@@ -133,7 +133,7 @@ struct LoginView: View {
     
     //MARK: Functions
     func signin() {
-        session.login(email: email, password: password) { (result, error) in
+        session.login(email: email, password: passwordKey) { (result, error) in
             if error != nil {
                 self.showErrorMessage = true
                 self.errorMessage = error?.localizedDescription ?? "Error"
