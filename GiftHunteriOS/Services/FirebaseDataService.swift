@@ -15,7 +15,7 @@ class FirebaseDataService : ObservableObject {
     @Published var quizSet: [Quiz] = [Quiz.default]
 
     func retrieveData() {
-        let currentUser = Auth.auth().currentUser!
+        guard let currentUser = Auth.auth().currentUser else { return }
         let currentUserRef = Database.database().reference().child("Profile").child(currentUser.uid)
         
         currentUserRef.observeSingleEvent(of: .value, with: { [weak self] snapshot in
@@ -29,7 +29,7 @@ class FirebaseDataService : ObservableObject {
     }
         
     func updateProfile(userValue: Profile, handler: @escaping (Error?) -> Void) {
-        let currentUser = Auth.auth().currentUser!
+        guard let currentUser = Auth.auth().currentUser else { return }
         let db = Database.database().reference().child("Profile").child(currentUser.uid)
         let data = try! FirebaseEncoder().encode(userValue)
         db.setValue(data) { error, _ in
@@ -39,7 +39,7 @@ class FirebaseDataService : ObservableObject {
     }
     
     func updateDisplayPicture(filePath: URL, profileData: Profile) {
-        let currentUser = Auth.auth().currentUser!
+        guard let currentUser = Auth.auth().currentUser else { return }
         let storage = Storage.storage()
         let refernce = storage.reference().child("Profile").child(currentUser.uid).child("profile.jpg")
         let uploadTask = refernce.putFile(from: filePath, metadata: nil) { metadata, error in
@@ -63,6 +63,10 @@ class FirebaseDataService : ObservableObject {
           }
         }
         
+    }
+    
+    func getTotalLevels(grade: String, handler: @escaping (Int?) -> Void) {
+        Database.database().reference().child("QA").child(grade)
     }
     
     func fetchQuiz(grade: String, level: String, handler: @escaping (Error?) -> Void) {
