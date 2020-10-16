@@ -15,7 +15,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         webView = WKWebView()
         webView.navigationDelegate = self
         view = webView
-        let myURL = URL(string: "http://localhost:3000")
+        let myURL = URL(string: webViewTestURL)
         let myRequest = URLRequest(url: myURL!)
         webView.load(myRequest)
         webView.allowsBackForwardNavigationGestures = true

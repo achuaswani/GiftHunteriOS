@@ -48,6 +48,7 @@
 		60E245DF2557E7598322AF88 /* Pods_GiftHunteriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33C2339FE8CFB451CC92791B /* Pods_GiftHunteriOS.framework */; };
 		BB6739F2AA2D07D73C81826C /* Pods_GiftHunteriOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8D304EA7EEF9E12B3A490C1 /* Pods_GiftHunteriOSTests.framework */; };
 		DABF304F2538E33300E3DF28 /* CredentialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABF304E2538E33300E3DF28 /* CredentialsView.swift */; };
+		DABF30852539F14F00E3DF28 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABF30842539F14F00E3DF28 /* Constants.swift */; };
 		DCBF51A475948DA481806F3E /* Pods_GiftHunteriOS_GiftHunteriOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70A5F3B1F90CABA41EA3628 /* Pods_GiftHunteriOS_GiftHunteriOSUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -121,6 +122,7 @@
 		B8D304EA7EEF9E12B3A490C1 /* Pods_GiftHunteriOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiftHunteriOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDEC04C88803D62CE193FF1E /* Pods-GiftHunteriOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiftHunteriOS.debug.xcconfig"; path = "Target Support Files/Pods-GiftHunteriOS/Pods-GiftHunteriOS.debug.xcconfig"; sourceTree = "<group>"; };
 		DABF304E2538E33300E3DF28 /* CredentialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsView.swift; sourceTree = "<group>"; };
+		DABF30842539F14F00E3DF28 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		DADF2C2D2538B0DF00DB536F /* GiftHunteriOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GiftHunteriOS.entitlements; sourceTree = "<group>"; };
 		EF364CA004C988A40D173A05 /* Pods-GiftHunteriOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiftHunteriOSTests.debug.xcconfig"; path = "Target Support Files/Pods-GiftHunteriOSTests/Pods-GiftHunteriOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F1EFD8FEEEE4DD41F63F54D3 /* Pods-GiftHunteriOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiftHunteriOS.release.xcconfig"; path = "Target Support Files/Pods-GiftHunteriOS/Pods-GiftHunteriOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 				5B1408D924DC9BFA003626EE /* Localizations.swift */,
 				5B1408E924DC9EEE003626EE /* Window+Extension.swift */,
 				5B14090124DDE922003626EE /* String+Validation.swift */,
+				DABF30842539F14F00E3DF28 /* Constants.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -652,6 +655,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B1408E224DC9C55003626EE /* RegisterView.swift in Sources */,
+				DABF30852539F14F00E3DF28 /* Constants.swift in Sources */,
 				5BE4D1E124E0BD5400C18A8E /* DisplayPicture.swift in Sources */,
 				5B1408E824DC9D57003626EE /* DashboardView.swift in Sources */,
 				5B1408FC24DD204C003626EE /* AccountSettingsView.swift in Sources */,

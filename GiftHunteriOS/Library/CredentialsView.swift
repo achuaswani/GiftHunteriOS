@@ -116,7 +116,9 @@ struct CredentialsView: View {
                 } else {
                    SecureField(hintText, text: textValue)
                 }
-                Button(action: { self.showPassword.toggle() }) {
+                Button(action: {
+                    self.showPassword.toggle()
+                }) {
                     if self.showPassword {
                         Image(systemName: "eye")
                     } else {

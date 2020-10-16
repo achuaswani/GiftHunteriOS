@@ -27,7 +27,7 @@ struct QuizView: View {
         }
         .onDisappear {
             dataService.updateProfile(userValue: dataService.profile!) {_ in
-                //To DO
+                // TODO: show error if there is any
             }
         }
         .alert(isPresented: $showingAlert) {
@@ -46,7 +46,9 @@ struct QuizView: View {
                         .font(.system(size: 25, weight: .bold))
                     Spacer()
                     VStack {
-                        Button(action: { nextLevelAction() }) {
+                        Button(action: {
+                            nextLevelAction()
+                        }) {
                             Text("Next")
                                 .font(.headline)
                                 .foregroundColor(.white)
@@ -86,7 +88,9 @@ struct QuizView: View {
                 .foregroundColor(.white)
                 .padding()
             ForEach(0..<4) { index in
-                Button(action: { submitAnswer(index) }) {
+                Button(action: {
+                    submitAnswer(index)
+                }) {
                     Text(dataService.quizSet[questionNumber].options[index])
                         .font(.headline)
                         .foregroundColor(.black)

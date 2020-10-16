@@ -28,7 +28,6 @@ struct Toast<Presenting>: View where Presenting: View {
         return GeometryReader { geometry in
             ZStack(alignment: .center) {
                 self.presenting()
-
                 VStack {
                     self.text
                 }

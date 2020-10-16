@@ -15,7 +15,7 @@ extension UIWindow {
             let alertView = UIAlertController(title: "Tools", message: nil, preferredStyle: .actionSheet)
             let mockCrashAction = UIAlertAction(title: "Mock Crash", style: .default, handler: { _ in
                 Crashlytics.crashlytics().setUserID("user_id")
-                fatalError()
+                fatalError("Force crash for testing crashlytics")
             })
             let openWebKit = UIAlertAction(title: "Web Kit Test", style: .default, handler: { _ in
                 self.rootViewController?.present(WebViewController(), animated: true)
@@ -34,10 +34,6 @@ extension UIWindow {
                 )
             })
         }
-    }
-    
-    @objc private func mockCrash() {
-        
     }
     
     @objc private func dismissOnTapOutside() {
