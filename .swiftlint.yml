@@ -1,11 +1,25 @@
+excluded: # paths to ignore during linting.
+  - Pods
+  - Carthage
 disabled_rules: # rule identifiers turned on by default to exclude from running
-  - trailing_whitespace
+  - closure_parameter_position
   - force_cast
-  - identifier_name
   - file_length
   - line_length
-  - type_name
   - todo
-  - private_over_fileprivate
   - cyclomatic_complexity
   - multiple_closures_with_trailing_closure
+trailing_whitespace:
+  ignores_empty_lines: true
+  ignores_comments: true
+analyzer_rules:
+  - unsed_import
+identifier_name:
+  allowed_symbols: '_'
+  validates_start_with_lowercase: false
+  min_length:
+    warning: 1
+  max_length:
+    warning: 100
+vertical_whitespace:
+  max_empty_lines: 2
