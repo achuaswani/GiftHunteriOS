@@ -23,4 +23,3 @@ struct CloseButton_Previews: PreviewProvider {
         CloseButton()
     }
 }
-

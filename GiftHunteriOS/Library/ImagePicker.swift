@@ -16,9 +16,7 @@ struct ImagePicker: UIViewControllerRepresentable {
     @Binding var image: Image?
     @Binding var profile: Profile
 
-
     class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-
         @Binding var presentationMode: PresentationMode
         @Binding var image: Image?
         @Binding var profile: Profile
@@ -33,7 +31,8 @@ struct ImagePicker: UIViewControllerRepresentable {
         }
 
         func imagePickerController(_ picker: UIImagePickerController,
-                                   didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+                                   didFinishPickingMediaWithInfo
+                                    info: [UIImagePickerController.InfoKey: Any]) {
             let imageURL = info[UIImagePickerController.InfoKey.imageURL] as? URL
             let uiImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
             self.image = Image(uiImage: uiImage)
@@ -65,6 +64,4 @@ struct ImagePicker: UIViewControllerRepresentable {
                                 context: UIViewControllerRepresentableContext<ImagePicker>) {
 
     }
-
 }
-

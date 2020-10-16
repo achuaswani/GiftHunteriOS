@@ -16,4 +16,3 @@ extension String {
         NSPredicate(format: "SELF MATCHES %@", "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*()\\-_=+{}|?>.<,:;~`’]{8,}$").evaluate(with: self)
     }
 }
-

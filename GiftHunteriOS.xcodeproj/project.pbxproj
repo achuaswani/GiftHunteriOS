@@ -404,6 +404,7 @@
 				5B14089A24DC9A1B003626EE /* Frameworks */,
 				5B14089B24DC9A1B003626EE /* Resources */,
 				CBB6CC85E79972F45EFD848B /* [CP] Embed Pods Frameworks */,
+				DABF30532539516300E3DF28 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -624,6 +625,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GiftHunteriOS/Pods-GiftHunteriOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		DABF30532539516300E3DF28 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint > /dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftGen not installed, download it from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

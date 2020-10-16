@@ -17,10 +17,10 @@ extension View {
     }
     
     func toast(isPresented: Binding<Bool>, text: Text) -> some View {
-            Toast(isPresented: isPresented,
-                  presenting: { self },
-                  text: text)
-        }
+        Toast(isPresented: isPresented,
+              presenting: { self },
+              text: text)
+    }
 }
 
 extension Color {

@@ -21,7 +21,6 @@ struct LoginView: View {
                                 loginView: true)
                 forgotPasswrod
                 registerAccount
-                
             }
             .font(.system(size: 16, weight: .light, design: .rounded))
         }
@@ -51,7 +50,6 @@ struct LoginView: View {
                             RegisterView()) {
                 Text("Register")
                     .foregroundColor(.blue)
-                
             }
         }
         .padding(.top, 50)

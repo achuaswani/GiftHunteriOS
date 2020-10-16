@@ -29,9 +29,8 @@ struct DisplayPicture: View {
             .aspectRatio(contentMode: .fit)
             .sheet(isPresented: $isShowPicker) {
                 ImagePicker(image: self.$image, profile: $profile)
-                        
-                    }
-            .onTapGesture{
+            }
+            .onTapGesture {
                 isShowPicker = true
             }
         )

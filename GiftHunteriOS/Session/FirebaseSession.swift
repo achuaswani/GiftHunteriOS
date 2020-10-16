@@ -13,12 +13,13 @@ import FirebaseCrashlytics
 
 class FirebaseSession: ObservableObject {
     
-    //MARK: Properties
+    // MARK: Properties
     @Published var user: User?
     @Published var isLoggedIn: Bool = false
-    //MARK: Functions
+    
+    // MARK: Functions
     func listen() {
-        _ = Auth.auth().addStateDidChangeListener { (auth, user) in
+        _ = Auth.auth().addStateDidChangeListener { (_, user) in
             if let user = user {
                 self.user = User(uid: user.uid, email: user.email)
                 self.isLoggedIn = true
@@ -35,9 +36,13 @@ class FirebaseSession: ObservableObject {
     }
     
     func logout() {
-        try! Auth.auth().signOut()
-        self.isLoggedIn = false
-        self.user = nil
+        do {
+            try Auth.auth().signOut()
+            self.isLoggedIn = false
+            self.user = nil
+        } catch {
+            print("cannot signout")
+        }
     }
     
     func register(email: String, password: String, handler: @escaping AuthDataResultCallback) {
@@ -73,5 +78,4 @@ class FirebaseSession: ObservableObject {
     func setUserIdToCrashlytics(_ userId: String) {
         Crashlytics.crashlytics().setUserID(userId)
     }
-    
 }

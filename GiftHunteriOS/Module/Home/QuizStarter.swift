@@ -11,7 +11,7 @@ struct QuizStarter: View {
     @ObservedObject var dataService: FirebaseDataService
     
     var body: some View {
-        VStack{
+        VStack {
             Spacer()
             HStack {
                 Text("Level: \(dataService.profile!.level)")
@@ -19,7 +19,6 @@ struct QuizStarter: View {
                 Text("Point: \(dataService.profile!.points)")
                     .font(.headline)
             }
-        
             Spacer()
             VStack {
                 NavigationLink(destination: QuizView(dataService: dataService)) {

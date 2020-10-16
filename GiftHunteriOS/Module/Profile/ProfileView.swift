@@ -28,10 +28,9 @@ struct ProfileView: View {
         }
         .toast(isPresented: $showToast, text: Text(toastMessage))
     }
-    
     var navigationProfileView: some View {
         VStack(alignment: .leading, spacing: 15) {
-            TextField("Full Name", text:  $profile.displayName)
+            TextField("Full Name", text: $profile.displayName)
                 .padding()
                 .background(Color.normalTextField)
                 .cornerRadius(20.0)
@@ -42,14 +41,12 @@ struct ProfileView: View {
                 .background(Color.normalTextField)
                 .cornerRadius(20.0)
                 .shadow(radius: 5.0, x: 5, y: 5)
-                            
             TextEditor(text: $profile.about)
                 .padding()
                 .cornerRadius(20.0)
                 .shadow(radius: 5.0, x: 5, y: 5)
             pickerView
             buttonView
-            
         }
         .padding([.top, .bottom], 50)
         .padding([.leading, .trailing], 27.5)
@@ -62,13 +59,13 @@ struct ProfileView: View {
                         Text($0)
                     }
             }
-          }
+        }
     }
     
     var buttonView: some View {
         HStack {
             Spacer()
-            Button(action: saveProfile){
+            Button(action: saveProfile) {
                 Text("Save")
                     .font(.headline)
                     .foregroundColor(.white)
@@ -90,7 +87,6 @@ struct ProfileView: View {
                 toastMessage = "toast.message.success.title".localized()
             }
         }
-        
     }
 }
 #if DEBUG

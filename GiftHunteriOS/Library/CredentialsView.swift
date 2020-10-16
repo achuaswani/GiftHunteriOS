@@ -88,11 +88,11 @@ struct CredentialsView: View {
     
     func buttonAction() {
         if loginView {
-            session.login(email: email, password: password) { (result, error) in
+            session.login(email: email, password: password) { (_, error) in
                 displayErrorMessage(error: error)
             }
         } else {
-            session.register(email: email, password: password) { (result, error) in
+            session.register(email: email, password: password) { (_, error) in
                 displayErrorMessage(error: error)
             }
         }
@@ -116,7 +116,7 @@ struct CredentialsView: View {
                 } else {
                    SecureField(hintText, text: textValue)
                 }
-                Button(action: { self.showPassword.toggle()} ) {
+                Button(action: { self.showPassword.toggle() }) {
                     if self.showPassword {
                         Image(systemName: "eye")
                     } else {

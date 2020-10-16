@@ -15,11 +15,11 @@ struct Sidebar: View {
                 .navigationTitle("Quiz")
             #else
             content
-                .frame(minWidth:200, idealWidth: 250, maxWidth: 300)
+                .frame(minWidth: 200, idealWidth: 250, maxWidth: 300)
             #endif
-            
         }
     }
+    
     var content: some View {
         List {
             NavigationLink(destination: HomeView()) {
@@ -33,7 +33,6 @@ struct Sidebar: View {
         .navigationTitle("Dashbaord")
     }
 }
-
 
 struct Sidebar_Previews: PreviewProvider {
     static var previews: some View {

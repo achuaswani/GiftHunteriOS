@@ -16,9 +16,7 @@ struct AsyncImage<Placeholder: View>: View {
     
     init(urlString: String, placeholder: Placeholder? = nil) {
         self.placeholder = placeholder
-
         loader = ImageLoader(urlString: urlString)
-    
     }
     
     var body: some View {

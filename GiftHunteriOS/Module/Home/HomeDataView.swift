@@ -41,9 +41,7 @@ struct HomeDataView: View {
         .background(Color.accentColor)
         .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
         .shadow(color: Color.blue, radius: 20, x: 0, y: 10)
-                
     }
-    
 }
 
 struct HomeDataView_Previews: PreviewProvider {

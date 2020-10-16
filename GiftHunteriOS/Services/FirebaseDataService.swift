@@ -10,14 +10,13 @@ import FirebaseAuth
 import CodableFirebase
 import FirebaseStorage
 
-class FirebaseDataService : ObservableObject {
+class FirebaseDataService: ObservableObject {
     @Published var profile: Profile?
     @Published var quizSet: [Quiz] = [Quiz.default]
 
     func retrieveData() {
         guard let currentUser = Auth.auth().currentUser else { return }
         let currentUserRef = Database.database().reference().child("Profile").child(currentUser.uid)
-        
         currentUserRef.observeSingleEvent(of: .value, with: { [weak self] snapshot in
             guard let value = snapshot.value else { return }
             do {
@@ -30,11 +29,15 @@ class FirebaseDataService : ObservableObject {
         
     func updateProfile(userValue: Profile, handler: @escaping (Error?) -> Void) {
         guard let currentUser = Auth.auth().currentUser else { return }
-        let db = Database.database().reference().child("Profile").child(currentUser.uid)
-        let data = try! FirebaseEncoder().encode(userValue)
-        db.setValue(data) { error, _ in
-            handler(error)
-            self.retrieveData()
+        let databbase = Database.database().reference().child("Profile").child(currentUser.uid)
+        do {
+            let data = try FirebaseEncoder().encode(userValue)
+            databbase.setValue(data) { error, _ in
+                handler(error)
+                self.retrieveData()
+            }
+        } catch {
+            print("Error")
         }
     }
     
@@ -42,13 +45,13 @@ class FirebaseDataService : ObservableObject {
         guard let currentUser = Auth.auth().currentUser else { return }
         let storage = Storage.storage()
         let refernce = storage.reference().child("Profile").child(currentUser.uid).child("profile.jpg")
-        let uploadTask = refernce.putFile(from: filePath, metadata: nil) { metadata, error in
+        _ = refernce.putFile(from: filePath, metadata: nil) { metadata, error in
           guard let metadata = metadata else {
             // Uh-oh, an error occurred!
             return
           }
           // Metadata contains file metadata such as size, content-type.
-          let size = metadata.size
+            _ = metadata.size
           // You can also access to download URL after upload.
           refernce.downloadURL { (url, error) in
                 guard let downloadURL = url else {
@@ -62,7 +65,6 @@ class FirebaseDataService : ObservableObject {
                 }
           }
         }
-        
     }
     
     func getTotalLevels(grade: String, handler: @escaping (Int?) -> Void) {

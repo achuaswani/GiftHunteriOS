@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeNoDataView: View {
     @ObservedObject var dataService: FirebaseDataService
+    
     var body: some View {
         VStack {
             NavigationLink(destination:
@@ -25,8 +26,6 @@ struct HomeNoDataView: View {
             .padding(.all)
         }
     }
-    
-   
 }
 
 struct HomeNoDataView_Previews: PreviewProvider {

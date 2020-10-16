@@ -12,21 +12,26 @@ import FirebaseCrashlytics
 extension UIWindow {
     override open func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
-            let ac = UIAlertController(title: "Tools", message: nil, preferredStyle: .actionSheet)
-            let mockCrashAction = UIAlertAction(title:"Mock Crash", style: .default, handler: { _ in
+            let alertView = UIAlertController(title: "Tools", message: nil, preferredStyle: .actionSheet)
+            let mockCrashAction = UIAlertAction(title: "Mock Crash", style: .default, handler: { _ in
                 Crashlytics.crashlytics().setUserID("user_id")
                 fatalError()
             })
             let openWebKit = UIAlertAction(title: "Web Kit Test", style: .default, handler: { _ in
                 self.rootViewController?.present(WebViewController(), animated: true)
-            } )
+            })
             
-            ac.addAction(mockCrashAction)
-            ac.addAction(openWebKit)
-            rootViewController?.present(ac, animated: true, completion: {
-                guard let rootView = ac.view.superview?.subviews[0] else { return }
+            alertView.addAction(mockCrashAction)
+            alertView.addAction(openWebKit)
+            rootViewController?.present(alertView, animated: true, completion: {
+                guard let rootView = alertView.view.superview?.subviews[0] else { return }
                 rootView.isUserInteractionEnabled = true
-                rootView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.dismissOnTapOutside)))
+                rootView.addGestureRecognizer(
+                    UITapGestureRecognizer(
+                        target: self,
+                        action: #selector(self.dismissOnTapOutside)
+                    )
+                )
             })
         }
     }
@@ -35,10 +40,8 @@ extension UIWindow {
         
     }
     
-    @objc private func dismissOnTapOutside()
-    {
+    @objc private func dismissOnTapOutside() {
         rootViewController?.dismiss(animated: true, completion: nil)
     }
 }
 #endif
-

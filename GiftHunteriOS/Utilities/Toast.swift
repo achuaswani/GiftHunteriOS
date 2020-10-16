@@ -25,24 +25,22 @@ struct Toast<Presenting>: View where Presenting: View {
                 }
             }
         }
-         return GeometryReader { geometry in
-                    ZStack(alignment: .center) {
-                        self.presenting()
+        return GeometryReader { geometry in
+            ZStack(alignment: .center) {
+                self.presenting()
 
-                        VStack {
-                            self.text
-                        }
-                        .frame(width: geometry.size.width / 2,
-                               height: geometry.size.height / 5)
-                        .background(Color.secondary.colorInvert())
-                        .foregroundColor(Color.primary)
-                        .cornerRadius(20)
-                        .transition(.slide)
-                        .opacity(self.isPresented ? 1 : 0)
+                VStack {
+                    self.text
+                }
+                .frame(width: geometry.size.width / 2,
+                       height: geometry.size.height / 5)
+                .background(Color.secondary.colorInvert())
+                .foregroundColor(Color.primary)
+                .cornerRadius(20)
+                .transition(.slide)
+                .opacity(self.isPresented ? 1 : 0)
 
-                    }
             }
-
+        }
     }
-
 }

@@ -15,15 +15,15 @@ struct HomeView: View {
         VStack {
             content
         }
-        .onAppear() {
+        .onAppear {
             dataService.retrieveData()
         }
     }
     
     var content: some View {
-        if let _ = dataService.profile {
+        if dataService.profile != nil {
             return AnyView(
-                ZStack(alignment: .topTrailing){
+                ZStack(alignment: .topTrailing) {
                     VStack {
                         HomeDataView(dataService: dataService)
                         Spacer()

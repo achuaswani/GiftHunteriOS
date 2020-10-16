@@ -25,26 +25,28 @@ struct QuizView: View {
                 }
             }
         }
-        .onDisappear() {
+        .onDisappear {
             dataService.updateProfile(userValue: dataService.profile!) {_ in
-                
+                //To DO
             }
         }
         .alert(isPresented: $showingAlert) {
-            Alert(title: Text("No Level available"), message: Text("Come back later."), dismissButton: .default(Text("Got it!")))
+            Alert(title: Text("No Level available"),
+                  message: Text("Come back later."),
+                  dismissButton: .default(Text("Got it!")
+                  ))
         }
     }
     
     var content: some View {
         VStack {
             if questionNumber == 10 {
-                
-                ZStack(alignment: .topTrailing){
+                ZStack(alignment: .topTrailing) {
                     Text("Level completed. Click next for new Level")
                         .font(.system(size: 25, weight: .bold))
                     Spacer()
                     VStack {
-                        Button(action: {nextLevelAction()}) {
+                        Button(action: { nextLevelAction() }) {
                             Text("Next")
                                 .font(.headline)
                                 .foregroundColor(.white)
@@ -84,8 +86,7 @@ struct QuizView: View {
                 .foregroundColor(.white)
                 .padding()
             ForEach(0..<4) { index in
-            
-                Button(action: {submitAnswer(index)}) {
+                Button(action: { submitAnswer(index) }) {
                     Text(dataService.quizSet[questionNumber].options[index])
                         .font(.headline)
                         .foregroundColor(.black)
@@ -108,15 +109,14 @@ struct QuizView: View {
         if dataService.quizSet[questionNumber].answer == dataService.quizSet[questionNumber].options[index] {
             dataService.profile?.points += 1
         }
-        
         questionNumber += 1
-        
     }
     
     func nextLevelAction() {
         dataService.profile?.level += 1
         dataService.updateProfile(userValue: dataService.profile!) {_ in
-            dataService.fetchQuiz(grade: dataService.profile!.grade, level: "Level\(dataService.profile!.level)") { error in
+            dataService.fetchQuiz(grade: dataService.profile!.grade,
+                                  level: "Level\(dataService.profile!.level)") { error in
                 if error == nil {
                     questionNumber = 0
                 } else {

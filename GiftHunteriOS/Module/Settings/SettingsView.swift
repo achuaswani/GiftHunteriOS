@@ -9,8 +9,11 @@ import SwiftUI
 
 struct SettingsView: View {
     @EnvironmentObject var session: FirebaseSession
+    
     var body: some View {
-        content
+        VStack {
+            content
+        }
     }
     
     var content: some View {
