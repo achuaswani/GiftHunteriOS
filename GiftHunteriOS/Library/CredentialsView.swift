@@ -12,10 +12,10 @@ struct CredentialsView: View {
     @EnvironmentObject var session: FirebaseSession
     var title: String
     var loginView: Bool = false
-    @State var confirmPassword = ""
     @State var showPassword = false
     @State var email: String = ""
     @State var password: String = ""
+    @State var confirmPassword: String = ""
     @State var showErrorMessage: Bool = false
     @State var errorMessage: String = ""
     
