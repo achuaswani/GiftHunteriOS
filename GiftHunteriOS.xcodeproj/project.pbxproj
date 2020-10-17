@@ -51,7 +51,6 @@
 		DABF30852539F14F00E3DF28 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABF30842539F14F00E3DF28 /* Constants.swift */; };
 		DABF308A2539FB5800E3DF28 /* ResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABF30892539FB5800E3DF28 /* ResponseHandler.swift */; };
 		DABF308F253A1F2A00E3DF28 /* Monitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABF308E253A1F2A00E3DF28 /* Monitor.swift */; };
-		DABF309A253A91AB00E3DF28 /* CredentialsValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABF3099253A91AB00E3DF28 /* CredentialsValidationTests.swift */; };
 		DABF30A0253A947A00E3DF28 /* CredentialsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABF309F253A947A00E3DF28 /* CredentialsViewModel.swift */; };
 		DABF30AB253AA13B00E3DF28 /* ReuseablePublic.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABF30AA253AA13B00E3DF28 /* ReuseablePublic.swift */; };
 		DCBF51A475948DA481806F3E /* Pods_GiftHunteriOS_GiftHunteriOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70A5F3B1F90CABA41EA3628 /* Pods_GiftHunteriOS_GiftHunteriOSUITests.framework */; };
@@ -130,7 +129,6 @@
 		DABF30842539F14F00E3DF28 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		DABF30892539FB5800E3DF28 /* ResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseHandler.swift; sourceTree = "<group>"; };
 		DABF308E253A1F2A00E3DF28 /* Monitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monitor.swift; sourceTree = "<group>"; };
-		DABF3099253A91AB00E3DF28 /* CredentialsValidationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsValidationTests.swift; sourceTree = "<group>"; };
 		DABF309F253A947A00E3DF28 /* CredentialsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsViewModel.swift; sourceTree = "<group>"; };
 		DABF30AA253AA13B00E3DF28 /* ReuseablePublic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseablePublic.swift; sourceTree = "<group>"; };
 		DADF2C2D2538B0DF00DB536F /* GiftHunteriOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GiftHunteriOS.entitlements; sourceTree = "<group>"; };
@@ -223,7 +221,6 @@
 			children = (
 				5B1408B224DC9A1D003626EE /* GiftHunteriOSTests.swift */,
 				5B1408B424DC9A1D003626EE /* Info.plist */,
-				DABF3099253A91AB00E3DF28 /* CredentialsValidationTests.swift */,
 			);
 			path = GiftHunteriOSTests;
 			sourceTree = "<group>";
@@ -722,7 +719,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DABF309A253A91AB00E3DF28 /* CredentialsValidationTests.swift in Sources */,
 				5B1408B324DC9A1D003626EE /* GiftHunteriOSTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
