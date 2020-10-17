@@ -8,16 +8,12 @@
 import SwiftUI
 
 struct CredentialsView: View {
-    
-    @EnvironmentObject var session: FirebaseSession
-    var title: String
-    var loginView: Bool = false
+    @ObservedObject var viewModel: CredentialsViewModel
     @State var showPassword = false
-    @State var email: String = ""
-    @State var password: String = ""
-    @State var confirmPassword: String = ""
-    @State var showErrorMessage: Bool = false
-    @State var errorMessage: String = ""
+    
+    init(viewModel: CredentialsViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         header
@@ -27,7 +23,7 @@ struct CredentialsView: View {
     
     var header:  some View {
         VStack {
-            Text(title)
+            Text(viewModel.title)
                 .font(.system(size: 42, weight: .bold, design: .rounded))
                 .foregroundColor(Color.black)
                 .opacity(0.8)
@@ -37,7 +33,7 @@ struct CredentialsView: View {
     var textFieldSection: some View {
         VStack(alignment: .leading, spacing: 15) {
           
-          TextField("Email", text: self.$email)
+            TextField("Email", text: $viewModel.email)
             .padding()
             .background(Color.normalTextField)
             .cornerRadius(20.0)
@@ -45,12 +41,13 @@ struct CredentialsView: View {
                         
             passwordTextField
             
-            if showErrorMessage {
-                Text(errorMessage)
+            if viewModel.showErrorMessage {
+                Text(viewModel.errorMessage)
                     .font(.system(size: 12, weight: .light, design: .rounded))
                     .foregroundColor(Color.red)
                     .opacity(0.8)
                     .lineLimit(2)
+                    .multilineTextAlignment(.center)
                     .padding([.leading, .trailing], 15)
             }
             
@@ -60,10 +57,10 @@ struct CredentialsView: View {
     
     var passwordTextField: some View {
         VStack {
-            showPasswordTextFields(hintText: "Password", textValue: self.$password)
+            showPasswordTextFields(hintText: "Password", textValue: $viewModel.password)
                 .padding([.top, .bottom], 10)
-            if !loginView {
-                showPasswordTextFields(hintText: "Confirm password", textValue: self.$confirmPassword)
+            if !viewModel.loginView {
+                showPasswordTextFields(hintText: "Confirm password", textValue: $viewModel.confirmPassword)
                 .padding([.top, .bottom], 10)
             }
         }
@@ -71,8 +68,8 @@ struct CredentialsView: View {
     
     var buttonView: some View {
         VStack {
-            Button(action: buttonAction) {
-                Text(title)
+            Button(action: viewModel.buttonAction) {
+                Text(viewModel.title)
                     .font(.headline)
                     .foregroundColor(.white)
                     .padding()
@@ -85,29 +82,7 @@ struct CredentialsView: View {
             .padding([.leading, .trailing], 27.5)
         }
     }
-    
-    func buttonAction() {
-        if loginView {
-            session.login(email: email, password: password) { (_, error) in
-                displayErrorMessage(error: error)
-            }
-        } else {
-            session.register(email: email, password: password) { (_, error) in
-                displayErrorMessage(error: error)
-            }
-        }
-    }
-    
-    func displayErrorMessage(error: Error?) {
-        if error != nil {
-            self.showErrorMessage = true
-            self.errorMessage = error?.localizedDescription ?? "Error"
-        } else {
-            self.showErrorMessage = true
-            self.errorMessage = ""
-        }
-    }
-    
+
     func showPasswordTextFields(hintText: String, textValue: Binding<String>) -> AnyView {
        return AnyView(
             HStack {

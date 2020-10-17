@@ -17,8 +17,8 @@ struct LoginView: View {
     var body: some View {
         NavigationView {
             VStack {
-                CredentialsView(title: "Login",
-                                loginView: true)
+                let viewModel = CredentialsViewModel(session: session, loginView: true)
+                CredentialsView(viewModel: viewModel)
                 forgotPasswrod
                 registerAccount
             }

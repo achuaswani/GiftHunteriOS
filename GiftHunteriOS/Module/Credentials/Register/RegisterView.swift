@@ -12,8 +12,8 @@ struct RegisterView: View {
     
     var body: some View {
         VStack {
-            CredentialsView(title: "Register",
-                            loginView: false)
+            let viewModel = CredentialsViewModel(session: session, loginView: false)
+            CredentialsView(viewModel: viewModel)
         }
         .font(.system(size: 16, weight: .light, design: .rounded))
     }

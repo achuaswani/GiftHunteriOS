@@ -37,7 +37,7 @@ class FirebaseDataService: ObservableObject {
                 self.retrieveData()
             }
         } catch {
-            print("Error")
+            debugPrint("Error")
         }
     }
     

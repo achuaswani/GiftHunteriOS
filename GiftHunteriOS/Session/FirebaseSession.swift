@@ -41,7 +41,7 @@ class FirebaseSession: ObservableObject {
             self.isLoggedIn = false
             self.user = nil
         } catch {
-            print("cannot signout")
+            debugPrint("cannot signout")
         }
     }
     
