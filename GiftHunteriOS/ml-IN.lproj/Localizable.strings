@@ -20,7 +20,7 @@
 
 //register
 "register.label.header.title" = "Register new account";
-"register.textfield.confirm.password.title" = "Confirm password";
+"register.textfield.confirm.password.hint.text" = "Confirm password";
 "register.label.confirm.password.error.message" = "Password not matching.";
 "register.label.backend.error.message" = "Some went worng. Please try after sometime.";
 "register.textfield.username.title" = "Enter user name";

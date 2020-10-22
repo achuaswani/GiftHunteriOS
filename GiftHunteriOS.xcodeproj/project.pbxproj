@@ -53,6 +53,7 @@
 		DABF308F253A1F2A00E3DF28 /* Monitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABF308E253A1F2A00E3DF28 /* Monitor.swift */; };
 		DABF30A0253A947A00E3DF28 /* CredentialsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABF309F253A947A00E3DF28 /* CredentialsViewModel.swift */; };
 		DABF30AB253AA13B00E3DF28 /* ReuseablePublic.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABF30AA253AA13B00E3DF28 /* ReuseablePublic.swift */; };
+		DABF30CF253AA67800E3DF28 /* CredentialsUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABF30CE253AA67800E3DF28 /* CredentialsUITest.swift */; };
 		DCBF51A475948DA481806F3E /* Pods_GiftHunteriOS_GiftHunteriOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70A5F3B1F90CABA41EA3628 /* Pods_GiftHunteriOS_GiftHunteriOSUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -115,7 +116,6 @@
 		5BE4D1BD24DE65D100C18A8E /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
 		5BE4D1BF24DF1D2B00C18A8E /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Toast.swift; path = ../Utilities/Toast.swift; sourceTree = "<group>"; };
 		5BE4D1C924DF546000C18A8E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		5BE4D1CB24DF546600C18A8E /* ml */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ml; path = ml.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5BE4D1CD24DF6C0900C18A8E /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		5BE4D1CF24DF6CD400C18A8E /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		5BE4D1DC24E0B6AE00C18A8E /* HomeNoDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNoDataView.swift; sourceTree = "<group>"; };
@@ -131,6 +131,8 @@
 		DABF308E253A1F2A00E3DF28 /* Monitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monitor.swift; sourceTree = "<group>"; };
 		DABF309F253A947A00E3DF28 /* CredentialsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsViewModel.swift; sourceTree = "<group>"; };
 		DABF30AA253AA13B00E3DF28 /* ReuseablePublic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseablePublic.swift; sourceTree = "<group>"; };
+		DABF30CA253AA44800E3DF28 /* ml-IN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ml-IN"; path = "ml-IN.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		DABF30CE253AA67800E3DF28 /* CredentialsUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsUITest.swift; sourceTree = "<group>"; };
 		DADF2C2D2538B0DF00DB536F /* GiftHunteriOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GiftHunteriOS.entitlements; sourceTree = "<group>"; };
 		EF364CA004C988A40D173A05 /* Pods-GiftHunteriOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiftHunteriOSTests.debug.xcconfig"; path = "Target Support Files/Pods-GiftHunteriOSTests/Pods-GiftHunteriOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F1EFD8FEEEE4DD41F63F54D3 /* Pods-GiftHunteriOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiftHunteriOS.release.xcconfig"; path = "Target Support Files/Pods-GiftHunteriOS/Pods-GiftHunteriOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				5B1408BD24DC9A1E003626EE /* GiftHunteriOSUITests.swift */,
+				DABF30CE253AA67800E3DF28 /* CredentialsUITest.swift */,
 				5B1408BF24DC9A1E003626EE /* Info.plist */,
 			);
 			path = GiftHunteriOSUITests;
@@ -505,8 +508,8 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				ml,
 				Base,
+				"ml-IN",
 			);
 			mainGroup = 5B14089424DC9A1B003626EE;
 			productRefGroup = 5B14089E24DC9A1B003626EE /* Products */;
@@ -727,6 +730,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DABF30CF253AA67800E3DF28 /* CredentialsUITest.swift in Sources */,
 				5B1408BE24DC9A1E003626EE /* GiftHunteriOSUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -751,7 +755,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				5BE4D1C924DF546000C18A8E /* en */,
-				5BE4D1CB24DF546600C18A8E /* ml */,
+				DABF30CA253AA44800E3DF28 /* ml-IN */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -763,6 +767,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -824,6 +829,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

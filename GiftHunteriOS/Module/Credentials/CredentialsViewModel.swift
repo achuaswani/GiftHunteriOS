@@ -25,9 +25,9 @@ class CredentialsViewModel: ObservableObject, CredentialsViewModelType {
         self.session = session
         self.loginView = loginView
         if loginView {
-            title = "Login"
+            title = "login.button.login.title".localized()
         } else {
-            title = "Register"
+            title = "login.button.register.title".localized()
         }
     }
     

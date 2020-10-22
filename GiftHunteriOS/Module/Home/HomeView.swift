@@ -14,6 +14,7 @@ struct HomeView: View {
     var body: some View {
         VStack {
             content
+                .accessibility(identifier: "HomeView")
         }
         .onAppear {
             dataService.retrieveData()
