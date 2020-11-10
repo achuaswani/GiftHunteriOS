@@ -88,15 +88,15 @@ class CredentialsViewModel: ObservableObject, CredentialsViewModelType {
     
     func validateRegisteration() -> Bool {
         guard !confirmPassword.isEmpty else {
-            errorMessage =  ResponseHandler.AllFieldsManditory.responseValue()
+            updateErrorMessage(ResponseHandler.AllFieldsManditory.responseValue())
             return false
         }
         guard password.isValidPassword else {
-            errorMessage =  ResponseHandler.InvalidPassword.responseValue()
+            updateErrorMessage(ResponseHandler.InvalidPassword.responseValue())
             return false
         }
-        guard password != confirmPassword else {
-            errorMessage =  ResponseHandler.PasswordNotMatching.responseValue()
+        guard password == confirmPassword else {
+            updateErrorMessage(ResponseHandler.PasswordNotMatching.responseValue())
             return false
         }
         return true

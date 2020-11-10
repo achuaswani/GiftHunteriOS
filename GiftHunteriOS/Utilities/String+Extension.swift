@@ -13,6 +13,6 @@ extension String {
     }
     
     var isValidPassword: Bool {
-        NSPredicate(format: "SELF MATCHES %@", "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*()\\-_=+{}|?>.<,:;~`’]{8,}$").evaluate(with: self)
+        NSPredicate(format: "SELF MATCHES %@", "[0-9a-zA-Z!@#$%^&*()\\-_=+{}|?>.<,:;~`’]{6,}$").evaluate(with: self)
     }
 }

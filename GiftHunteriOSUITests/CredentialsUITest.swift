@@ -37,12 +37,12 @@ class CredentialsUITest: XCTestCase {
         emailIdTextField.tap()
         emailIdTextField.typeText("Test@gmail.com \n")
         let passwordTextField = app.secureTextFields["password"]
-        passwordTextField.doubleTap()        
-        app.menuItems["Paste"].tap()
+        passwordTextField.tap()
+        passwordTextField.typeText("123456")
+        
         let loginButton = app.buttons["button"]
         loginButton.tap()
         XCTAssertTrue(app.staticTexts["HomeView"].exists)
         
     }
-
 }

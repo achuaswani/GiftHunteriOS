@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites name='GiftHunteriOSTests.xctest' tests='5' failures='1'>
+  <testsuite name='GiftHunteriOSUITests.CredentialsUITest' tests='1' failures='1'>
+    <testcase classname='GiftHunteriOSUITests.CredentialsUITest' name='testLoggingLoginScreenViewed'>
+      <failure message='Failed to get matching snapshot: No matches found for Descendants matching type MenuItem from input {('>GiftHunteriOSUITests/CredentialsUITest.swift:41</failure>
+    </testcase>
+  </testsuite>
+  <testsuite name='GiftHunteriOSUITests.GiftHunteriOSUITests' tests='2' failures='0'>
+    <testcase classname='GiftHunteriOSUITests.GiftHunteriOSUITests' name='testExample' time='4.834'/>
+    <testcase classname='GiftHunteriOSUITests.GiftHunteriOSUITests' name='testLaunchPerformance' time='27.367'/>
+  </testsuite>
+  <testsuite name='GiftHunteriOSTests.GiftHunteriOSTests' tests='2' failures='0'>
+    <testcase classname='GiftHunteriOSTests.GiftHunteriOSTests' name='testExample' time='0.003'/>
+    <testcase classname='GiftHunteriOSTests.GiftHunteriOSTests' name='testPerformanceExample' time='0.319'/>
+  </testsuite>
+</testsuites>

@@ -32,7 +32,7 @@
 		5B1408F924DD1F93003626EE /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1408F824DD1F93003626EE /* ProfileView.swift */; };
 		5B1408FC24DD204C003626EE /* AccountSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1408FB24DD204C003626EE /* AccountSettingsView.swift */; };
 		5B14090024DDC897003626EE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1408FF24DDC897003626EE /* HomeView.swift */; };
-		5B14090224DDE922003626EE /* String+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B14090124DDE922003626EE /* String+Validation.swift */; };
+		5B14090224DDE922003626EE /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B14090124DDE922003626EE /* String+Extension.swift */; };
 		5B14090424DDEB32003626EE /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B14090324DDEB32003626EE /* Profile.swift */; };
 		5B14090624DDEC9C003626EE /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B14090524DDEC9C003626EE /* Quiz.swift */; };
 		5B18156E24E2012F0065F7B4 /* QuizStarter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18156D24E2012F0065F7B4 /* QuizStarter.swift */; };
@@ -54,6 +54,8 @@
 		DABF30A0253A947A00E3DF28 /* CredentialsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABF309F253A947A00E3DF28 /* CredentialsViewModel.swift */; };
 		DABF30AB253AA13B00E3DF28 /* ReuseablePublic.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABF30AA253AA13B00E3DF28 /* ReuseablePublic.swift */; };
 		DABF30CF253AA67800E3DF28 /* CredentialsUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABF30CE253AA67800E3DF28 /* CredentialsUITest.swift */; };
+		DABF30D6254119B900E3DF28 /* BaseTestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABF30D5254119B900E3DF28 /* BaseTestProtocol.swift */; };
+		DABF30DB254121CC00E3DF28 /* BaseTestClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABF30DA254121CC00E3DF28 /* BaseTestClass.swift */; };
 		DCBF51A475948DA481806F3E /* Pods_GiftHunteriOS_GiftHunteriOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70A5F3B1F90CABA41EA3628 /* Pods_GiftHunteriOS_GiftHunteriOSUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -108,7 +110,7 @@
 		5B1408F824DD1F93003626EE /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		5B1408FB24DD204C003626EE /* AccountSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsView.swift; sourceTree = "<group>"; };
 		5B1408FF24DDC897003626EE /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		5B14090124DDE922003626EE /* String+Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Validation.swift"; sourceTree = "<group>"; };
+		5B14090124DDE922003626EE /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		5B14090324DDEB32003626EE /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		5B14090524DDEC9C003626EE /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
 		5B18156D24E2012F0065F7B4 /* QuizStarter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizStarter.swift; sourceTree = "<group>"; };
@@ -133,6 +135,8 @@
 		DABF30AA253AA13B00E3DF28 /* ReuseablePublic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseablePublic.swift; sourceTree = "<group>"; };
 		DABF30CA253AA44800E3DF28 /* ml-IN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ml-IN"; path = "ml-IN.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		DABF30CE253AA67800E3DF28 /* CredentialsUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsUITest.swift; sourceTree = "<group>"; };
+		DABF30D5254119B900E3DF28 /* BaseTestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTestProtocol.swift; sourceTree = "<group>"; };
+		DABF30DA254121CC00E3DF28 /* BaseTestClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTestClass.swift; sourceTree = "<group>"; };
 		DADF2C2D2538B0DF00DB536F /* GiftHunteriOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GiftHunteriOS.entitlements; sourceTree = "<group>"; };
 		EF364CA004C988A40D173A05 /* Pods-GiftHunteriOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiftHunteriOSTests.debug.xcconfig"; path = "Target Support Files/Pods-GiftHunteriOSTests/Pods-GiftHunteriOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F1EFD8FEEEE4DD41F63F54D3 /* Pods-GiftHunteriOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiftHunteriOS.release.xcconfig"; path = "Target Support Files/Pods-GiftHunteriOS/Pods-GiftHunteriOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -231,8 +235,10 @@
 			isa = PBXGroup;
 			children = (
 				5B1408BD24DC9A1E003626EE /* GiftHunteriOSUITests.swift */,
+				DABF30D5254119B900E3DF28 /* BaseTestProtocol.swift */,
 				DABF30CE253AA67800E3DF28 /* CredentialsUITest.swift */,
 				5B1408BF24DC9A1E003626EE /* Info.plist */,
+				DABF30DA254121CC00E3DF28 /* BaseTestClass.swift */,
 			);
 			path = GiftHunteriOSUITests;
 			sourceTree = "<group>";
@@ -252,7 +258,6 @@
 			children = (
 				5B1408CC24DC9A68003626EE /* FirebaseSession.swift */,
 				5B1408D224DC9B58003626EE /* ImageLoader.swift */,
-				5B1408D424DC9B58003626EE /* AsyncImage.swift */,
 				5B1ECCCC24DE26EA0077BFBC /* FirebaseDataService.swift */,
 			);
 			path = Services;
@@ -266,7 +271,7 @@
 				5B1408D924DC9BFA003626EE /* Localizations.swift */,
 				DABF308E253A1F2A00E3DF28 /* Monitor.swift */,
 				5B1408E924DC9EEE003626EE /* Window+Extension.swift */,
-				5B14090124DDE922003626EE /* String+Validation.swift */,
+				5B14090124DDE922003626EE /* String+Extension.swift */,
 				DABF30842539F14F00E3DF28 /* Constants.swift */,
 				DABF30892539FB5800E3DF28 /* ResponseHandler.swift */,
 				DABF30AA253AA13B00E3DF28 /* ReuseablePublic.swift */,
@@ -371,6 +376,7 @@
 				5BE4D1BF24DF1D2B00C18A8E /* Toast.swift */,
 				5BE4D1BD24DE65D100C18A8E /* CloseButton.swift */,
 				5BE4D1CF24DF6CD400C18A8E /* ImagePicker.swift */,
+				5B1408D424DC9B58003626EE /* AsyncImage.swift */,
 				5BE4D1E024E0BD5400C18A8E /* DisplayPicture.swift */,
 			);
 			path = Library;
@@ -686,7 +692,7 @@
 				5B1408EA24DC9EEE003626EE /* Window+Extension.swift in Sources */,
 				5B1ECCCD24DE26EA0077BFBC /* FirebaseDataService.swift in Sources */,
 				5B1408D724DC9B58003626EE /* AsyncImage.swift in Sources */,
-				5B14090224DDE922003626EE /* String+Validation.swift in Sources */,
+				5B14090224DDE922003626EE /* String+Extension.swift in Sources */,
 				5BE4D1DF24E0BA0900C18A8E /* HomeDataView.swift in Sources */,
 				5B1408DE24DC9C07003626EE /* WebViewController.swift in Sources */,
 				5B1408D024DC9B39003626EE /* User.swift in Sources */,
@@ -731,7 +737,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DABF30CF253AA67800E3DF28 /* CredentialsUITest.swift in Sources */,
+				DABF30D6254119B900E3DF28 /* BaseTestProtocol.swift in Sources */,
 				5B1408BE24DC9A1E003626EE /* GiftHunteriOSUITests.swift in Sources */,
+				DABF30DB254121CC00E3DF28 /* BaseTestClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
