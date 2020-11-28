@@ -202,7 +202,7 @@
 				5B1408ED24DD1A23003626EE /* Navigation */,
 				5B1408D824DC9BE5003626EE /* Utilities */,
 				5B1408D124DC9B58003626EE /* Services */,
-				5B1408CE24DC9B2B003626EE /* Entities */,
+				5B1408CE24DC9B2B003626EE /* Models */,
 				5B1408A024DC9A1B003626EE /* GiftHunteriOSApp.swift */,
 				5B1408A224DC9A1B003626EE /* ContentView.swift */,
 				5B1408A424DC9A1D003626EE /* Assets.xcassets */,
@@ -243,14 +243,14 @@
 			path = GiftHunteriOSUITests;
 			sourceTree = "<group>";
 		};
-		5B1408CE24DC9B2B003626EE /* Entities */ = {
+		5B1408CE24DC9B2B003626EE /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				5B1408CF24DC9B39003626EE /* User.swift */,
 				5B14090324DDEB32003626EE /* Profile.swift */,
 				5B14090524DDEC9C003626EE /* Quiz.swift */,
 			);
-			path = Entities;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		5B1408D124DC9B58003626EE /* Services */ = {
