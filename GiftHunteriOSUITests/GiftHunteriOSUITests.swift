@@ -9,7 +9,6 @@ import XCTest
 
 class GiftHunteriOSUITests: XCTestCase, BaseTestProtocol {
     let app = XCUIApplication()
-    
 
     override func setUp() {
         super.setUp()
@@ -28,7 +27,7 @@ class GiftHunteriOSUITests: XCTestCase, BaseTestProtocol {
         add(fullScreenshotAttachment)
         app.terminate()
         super.tearDown()
-    }    
+    }
 
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {

@@ -8,27 +8,25 @@
 import SwiftUI
 
 struct DisplayPicture: View {
-    @State var profile: Profile
-    @State var image: Image? = Image("noImage")
+    @State var user: User
+    @State var image: Image = Image("noImage")
     @State var isShowPicker: Bool = false
     var body: some View {
         HStack {
-            Spacer()
-            getImageFromURL(urlString: profile.image)
-            Spacer()
+            getImageFromURL(url: user.photoURL)
         }
     }
-    
-    func getImageFromURL(urlString: String) -> AnyView {
+
+    func getImageFromURL(url: URL?) -> AnyView {
         return  AnyView(AsyncImage(
-                       urlString: urlString,
-                       placeholder: image!.resizable().aspectRatio(contentMode: .fit)
+                       url: url,
+                       placeholder: image.resizable().aspectRatio(contentMode: .fit)
                         .foregroundColor(Color.black)
                    )
             .padding()
             .aspectRatio(contentMode: .fit)
             .sheet(isPresented: $isShowPicker) {
-                ImagePicker(image: self.$image, profile: $profile)
+                ImagePicker(image: self.$image, user: $user)
             }
             .onTapGesture {
                 isShowPicker = true
@@ -39,6 +37,6 @@ struct DisplayPicture: View {
 
 struct DisplayPicture_Previews: PreviewProvider {
     static var previews: some View {
-        DisplayPicture(profile: Profile.default)
+        DisplayPicture(user: User.default)
     }
 }

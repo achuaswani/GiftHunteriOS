@@ -6,7 +6,7 @@
   Copyright © 2020 RAS. All rights reserved.
 */
 //Create localizable without storyboards https://medium.com/@Yerazhas/string-localization-in-swift-without-storyboards-e243e5a64f58
-//Login Screen
+// Login Screen
 "login.label.header.title" = "Login to access your account";
 "login.textfield.password.hint.text" = "Enter password";
 "login.textfield.emailid.hint.text" = "Enter email id";
@@ -18,22 +18,24 @@
 "login.button.login.title" = "Login";
 "login.button.register.title" = "Register";
 
-//register
+// Register
 "register.label.header.title" = "Register new account";
 "register.textfield.confirm.password.hint.text" = "Confirm password";
 "register.label.confirm.password.error.message" = "Password not matching.";
 "register.label.backend.error.message" = "Some went worng. Please try after sometime.";
 "register.textfield.username.title" = "Enter user name";
 
-//Dashboard
-"dashboard.header.welcome.title" = "Welcome";
+// Dashboard
+"dashboard.header.welcome.title" = "Welcome %@";
+"quiz.start" = "Start Quiz";
+"quiz.view.results" = "View Results";
 
-//Settings
+// Settings
 "settings.list.item.logout" = "Logout";
 "settings.list.item.profile" = "Profile";
 "settings.list.item.about" = "About";
 
-//profile
+// profile
 "profile.button.update.user.name.title" = "Reset User Name";
 "profile.label.reset.emailid.title" = "Reset email id";
 "profile.label.reset.password.title" = "Reset password";
@@ -48,3 +50,31 @@
 "toast.message.success.title" = "Saved!";
 "toast.message.failure.title" = "Error!";
 
+// Questions
+"remaining.time.info" = "Minutes Remaining: %@";
+"result.info.message" = "Previous result shows here";
+"correct.answer.message" = "Congrats! Correct answer";
+"wrong.answer.message" = "Sorry, Correct answer was %@";
+"time.up.message" = "Time-up, moving to next question Previous answer was %@";
+"quiz.score.prefix" = "Score: %@";
+
+// Alert messages
+"something.went.wrong.title" = "Something went wrong";
+"come.back.later" = "Come back later.";
+"general.got.it" = "Got it!";
+"general.ok" = "OK";
+"quiz.completed.message" = "Quiz completed";
+
+// MARK: - API Error Messages
+"service.response.session.error" = "Please try again! ";
+"service.response.api.error" = "API error - ";
+"service.response.parsing.error" =  "Parsing error";
+"service.response.missing.data.error" = "Missing data error";
+"service.request.error" = "Error in request";
+"service.request.internal.server.error" = "Internal server error.";
+"service.request.try.again" = "No internet connection. Please try again!";
+"service.request.session.timeout" = "Session timeout.";
+"service.request.page.not.found" = "Page not found.";
+
+// MARK: - Progress view messages
+"loading.text" = "Loading question..";

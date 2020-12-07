@@ -8,47 +8,48 @@
 import SwiftUI
 
 struct HomeView: View {
-    @ObservedObject var dataService = FirebaseDataService()
+    @EnvironmentObject var session: FirebaseSession
+    @StateObject var viewRouter = ViewRouter()
     
     @ViewBuilder
     var body: some View {
-        VStack {
-            content
-                .accessibility(identifier: "HomeView")
-        }
-        .onAppear {
-            dataService.retrieveData()
-        }
-    }
-    
-    var content: some View {
-        if dataService.profile != nil {
-            return AnyView(
-                ZStack(alignment: .topTrailing) {
-                    VStack {
-                        HomeDataView(dataService: dataService)
-                        Spacer()
-                        QuizStarter(dataService: dataService)
-                    }
-                    editAction
-                    .padding(.all, 5)
+        ZStack {
+            VStack {
+                if let user = session.user {
+                    DisplayPicture(user: user)
+                        .frame(width: 250, height: 200)
+                    Text("dashboard.header.welcome.title".localized(with: user.displayName ?? ""))
+                        .foregroundColor(Color.black)
+                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                    Spacer()
+                    buttonsView
                 }
-            )
-        } else {
-            return AnyView(
-                    HomeNoDataView(dataService: dataService)
-                )
+
+            }
+            .padding(.all)
+            .accessibility(identifier: "HomeView")
         }
     }
     
-    var editAction:  some View {
-        NavigationLink(destination: ProfileView(dataService: dataService)) {
-            Image(systemName: "pencil.circle.fill")
-                .font(.system(size: 30, weight: .bold))
-                .foregroundColor(.white)
-                .background(Color.black.opacity(0.6))
-                .clipShape(Circle())
+    var buttonsView: some View {
+        VStack {
+            showNavigationButton("quiz.start".localized(), page: .questionView)
+            showNavigationButton("quiz.view.results".localized(), page: .resultView)
         }
+    }
+    
+    func showNavigationButton(_ title: String, page: Page) -> AnyView {
+        return AnyView(
+            NavigationLink(destination: HomeRouterView(viewRouter: viewRouter).onAppear {
+                viewRouter.currentPage = page
+            }) {
+                Text(title)
+                    .frame(width: 300, height: 30)
+                    .font(.system(size: 16, weight: .bold, design: .rounded))
+            }
+            .buttonStyle(BaseButtonStyle())
+            .padding([.top, .bottom], 50)
+        )
     }
 }
 
