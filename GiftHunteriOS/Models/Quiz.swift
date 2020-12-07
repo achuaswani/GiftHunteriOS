@@ -2,19 +2,20 @@
 //  Quiz.swift
 //  GiftHunteriOS
 //
-//  Created by Aswani G on 8/7/20.
+//  Created by Aswani on 12/4/20.
 //
 
-import Foundation
-
-struct QuizSet: Codable {
-    var quiz: [Quiz]
-    static let `default`  = Self(quiz: [Quiz.default])
-}
-
 struct Quiz: Codable {
-    var question: String
-    var answer: String
-    var options: [String]
-    static let `default`  = Self(question: "", answer: "", options: ["", "", "", ""])
+    var quizId: String
+    var title: String
+    var quizDetails: String
+    var scoreBoardId: String
+    var hostId: String
+    static let `default`  = Self(
+        quizId: "",
+        title: "",
+        quizDetails: "",
+        scoreBoardId: "",
+        hostId: ""
+    )
 }

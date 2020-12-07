@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RegisterView: View {
     @EnvironmentObject var session: FirebaseSession
-    
+
     var body: some View {
         VStack {
             let viewModel = CredentialsViewModel(session: session, loginView: false)

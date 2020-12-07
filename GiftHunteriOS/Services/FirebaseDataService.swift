@@ -11,75 +11,40 @@ import CodableFirebase
 import FirebaseStorage
 
 class FirebaseDataService: ObservableObject {
-    @Published var profile: Profile?
-    @Published var quizSet: [Quiz] = [Quiz.default]
+    var databasePINReference = Database.database().reference().child(AppConstants.NODEACTIVEQUIZ)
+    var databaseQuestinsReference = Database.database().reference().child(AppConstants.NODEQUESTIONSLIST)
+    var userReference = Database.database().reference().child(AppConstants.NODEPROFILE)
+    var databaseScoreBoardReference = Database.database().reference().child(AppConstants.NODESCOREBOARDS)
+    var profileStorageReference = Storage.storage().reference().child(AppConstants.NODEPROFILE)
 
-    func retrieveData() {
-        guard let currentUser = Auth.auth().currentUser else { return }
-        let currentUserRef = Database.database().reference().child("Profile").child(currentUser.uid)
-        currentUserRef.observeSingleEvent(of: .value, with: { [weak self] snapshot in
-            guard let value = snapshot.value else { return }
-            do {
-                self?.profile = try FirebaseDecoder().decode(Profile.self, from: value)
-            } catch let error {
-                debugPrint(error)
-            }
-        })
-    }
-        
-    func updateProfile(userValue: Profile, handler: @escaping (Error?) -> Void) {
-        guard let currentUser = Auth.auth().currentUser else { return }
-        let databbase = Database.database().reference().child("Profile").child(currentUser.uid)
-        do {
-            let data = try FirebaseEncoder().encode(userValue)
-            databbase.setValue(data) { error, _ in
-                handler(error)
-                self.retrieveData()
-            }
-        } catch {
-            debugPrint("Error")
-        }
-    }
-    
-    func updateDisplayPicture(filePath: URL, profileData: Profile) {
-        guard let currentUser = Auth.auth().currentUser else { return }
-        let storage = Storage.storage()
-        let refernce = storage.reference().child("Profile").child(currentUser.uid).child("profile.jpg")
-        _ = refernce.putFile(from: filePath, metadata: nil) { metadata, error in
-          guard let metadata = metadata else {
-            // Uh-oh, an error occurred!
+
+    func updateDisplayPicture(filePath: URL, user: User) {
+        let dpStorageReference = profileStorageReference.child(user.uid).child("profile.jpg")
+        dpStorageReference.putFile(from: filePath, metadata: nil) { metadata, error in
+          guard let _ = metadata else {
             return
           }
-          // Metadata contains file metadata such as size, content-type.
-            _ = metadata.size
-          // You can also access to download URL after upload.
-          refernce.downloadURL { (url, error) in
+          dpStorageReference.downloadURL { (url, error) in
                 guard let downloadURL = url else {
-                  // Uh-oh, an error occurred!
                   return
                 }
-                self.profile = profileData
-                self.profile?.image = downloadURL.absoluteString
-                self.updateProfile(userValue: self.profile!) { error in
-                    debugPrint(error.debugDescription)
-                }
+                FirebaseSession().updateUserDetails(userName: user.displayName, profilePicture: downloadURL) {_ in }
           }
         }
     }
-    
-    func getTotalLevels(grade: String, handler: @escaping (Int?) -> Void) {
-        Database.database().reference().child("QA").child(grade)
-    }
-    
-    func fetchQuiz(grade: String, level: String, handler: @escaping (Error?) -> Void) {
-        let currentUserRef = Database.database().reference().child("QA").child(grade).child(level)
-        currentUserRef.observeSingleEvent(of: .value, with: { [weak self] snapshot in
-            guard let value = snapshot.value else { return }
-            do {
-                self?.quizSet = try FirebaseDecoder().decode([Quiz].self, from: value)
-            } catch let error {
-                handler(error)
-            }
+
+    // MARK: - Quiz details
+    func fetchQuestions(quizId: String, handler: @escaping ([Question]?, Error?) -> Void) {
+        let questionsRef = databaseQuestinsReference.child(quizId)
+        questionsRef.observeSingleEvent(of: .value, with: { snapshot in
+           guard let value = snapshot.value else { return }
+           do {
+               let questionsSet = try FirebaseDecoder().decode([Question].self, from: value)
+                handler(questionsSet, nil)
+           } catch let error {
+               handler(nil, error)
+           }
         })
     }
+
 }
