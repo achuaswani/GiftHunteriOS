@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var session: FirebaseSession
-
+    
     var body: some View {
         Group {
             if session.isLoggedIn {
@@ -21,7 +21,7 @@ struct ContentView: View {
         .navigationBarHidden(true)
         .onAppear(perform: getUser)
     }
-
+    
     func getUser() {
         session.listen()
     }

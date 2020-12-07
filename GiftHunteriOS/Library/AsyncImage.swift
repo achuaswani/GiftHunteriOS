@@ -13,18 +13,18 @@ import Combine
 struct AsyncImage<Placeholder: View>: View {
     @ObservedObject private var loader: ImageLoader
     private let placeholder: Placeholder?
-
-    init(url: URL?, placeholder: Placeholder? = nil) {
+    
+    init(urlString: String, placeholder: Placeholder? = nil) {
         self.placeholder = placeholder
-        loader = ImageLoader(url: url)
+        loader = ImageLoader(urlString: urlString)
     }
-
+    
     var body: some View {
         image
             .onAppear(perform: loader.load)
             .onDisappear(perform: loader.cancel)
     }
-
+    
     private var image: some View {
         Group {
             if loader.image != nil {

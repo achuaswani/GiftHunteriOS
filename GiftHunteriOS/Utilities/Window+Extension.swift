@@ -20,7 +20,7 @@ extension UIWindow {
             let openWebKit = UIAlertAction(title: "Web Kit Test", style: .default, handler: { _ in
                 self.rootViewController?.present(WebViewController(), animated: true)
             })
-
+            
             alertView.addAction(mockCrashAction)
             alertView.addAction(openWebKit)
             rootViewController?.present(alertView, animated: true, completion: {
@@ -35,7 +35,7 @@ extension UIWindow {
             })
         }
     }
-
+    
     @objc private func dismissOnTapOutside() {
         rootViewController?.dismiss(animated: true, completion: nil)
     }

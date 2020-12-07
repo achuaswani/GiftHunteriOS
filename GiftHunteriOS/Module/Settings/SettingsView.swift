@@ -9,23 +9,21 @@ import SwiftUI
 
 struct SettingsView: View {
     @EnvironmentObject var session: FirebaseSession
-
+    
     var body: some View {
         VStack {
             content
         }
     }
-
+    
     var content: some View {
         List {
-
-            NavigationLink(destination: AccountSettingsView()) {
-                Label("Account Settings", systemImage: "doc.badge.gearshape.fill")
-            }
             NavigationLink(destination: AboutView()) {
-                Label("About Us", systemImage: "pencil.circle.fill")
+                Label("Profile", systemImage: "pencil.circle.fill")
             }
-            Label("Help", systemImage: "questionmark.square.fill")
+            NavigationLink(destination: AccountSettingsView()) {
+                Label("Account Settings", systemImage: "doc.badge.gearshape")
+            }
             Label("Signout", systemImage: "power")
                 .onTapGesture {
                     session.logout()

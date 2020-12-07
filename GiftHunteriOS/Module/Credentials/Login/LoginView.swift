@@ -13,7 +13,7 @@ struct LoginView: View {
     @State var showErrorMessage = false
     @State var errorMessage = ""
     @EnvironmentObject var session: FirebaseSession
-
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -33,26 +33,23 @@ struct LoginView: View {
             self.isNavigationBarHidden = false
         }
     }
-
+    
     var forgotPasswrod: some View {
         VStack {
             Text("Forgot password?")
                 .foregroundColor(.blue)
-                .font(.system(size: 16, weight: .light, design: .rounded))
         }
     }
-
+    
     var registerAccount: some View {
         HStack {
             Text("Don't have an account? ")
                 .foregroundColor(Color.black)
                 .opacity(0.8)
-                .font(.system(size: 16, weight: .light, design: .rounded))
             NavigationLink(destination:
                             RegisterView()) {
                 Text("Register")
                     .foregroundColor(.blue)
-                    .font(.system(size: 16, weight: .light, design: .rounded))
             }
         }
         .padding(.top, 50)

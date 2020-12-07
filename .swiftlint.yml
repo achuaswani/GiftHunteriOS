@@ -24,5 +24,3 @@ identifier_name:
     warning: 100
 vertical_whitespace:
   max_empty_lines: 2
-included:
- - GiftHunteriOS

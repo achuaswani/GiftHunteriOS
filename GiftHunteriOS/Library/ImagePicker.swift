@@ -13,33 +13,32 @@ struct ImagePicker: UIViewControllerRepresentable {
     @Environment(\.presentationMode)
     var presentationMode
 
-    @Binding var image: Image
-    @Binding var user: User
+    @Binding var image: Image?
+    @Binding var profile: Profile
 
     class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
         @Binding var presentationMode: PresentationMode
-        @Binding var image: Image
-        @Binding var user: User
+        @Binding var image: Image?
+        @Binding var profile: Profile
 
         init(
             presentationMode: Binding<PresentationMode>,
-            image: Binding<Image>,
-            user: Binding<User>) {
+            image: Binding<Image?>,
+            profile: Binding<Profile>) {
             _presentationMode = presentationMode
             _image = image
-            _user = user
+            _profile = profile
         }
 
         func imagePickerController(_ picker: UIImagePickerController,
                                    didFinishPickingMediaWithInfo
                                     info: [UIImagePickerController.InfoKey: Any]) {
             let imageURL = info[UIImagePickerController.InfoKey.imageURL] as? URL
-            if let uiImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-                self.image = Image(uiImage: uiImage)
-            }
+            let uiImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+            self.image = Image(uiImage: uiImage)
 
             if let url = imageURL {
-                FirebaseDataService().updateDisplayPicture(filePath: url, user: user)
+                FirebaseDataService().updateDisplayPicture(filePath: url, profileData: profile)
             }
             presentationMode.dismiss()
 
@@ -52,7 +51,7 @@ struct ImagePicker: UIViewControllerRepresentable {
     }
 
     func makeCoordinator() -> Coordinator {
-        return Coordinator(presentationMode: presentationMode, image: $image, user: $user)
+        return Coordinator(presentationMode: presentationMode, image: $image, profile: $profile)
     }
 
     func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {

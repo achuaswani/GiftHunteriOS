@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct TabBar: View {
-
     var body: some View {
         TabView {
             NavigationView {
@@ -17,7 +16,6 @@ struct TabBar: View {
             .tabItem {
                 Image(systemName: "person.fill.questionmark")
                 Text("Quiz")
-                    .font(.system(size: 12, weight: .light, design: .rounded))
             }
             NavigationView {
                 SettingsView()
@@ -25,9 +23,8 @@ struct TabBar: View {
             .tabItem {
                 Image(systemName: "gearshape")
                 Text("Settings")
-                    .font(.system(size: 12, weight: .light, design: .rounded))
             }
-
+            
         }
     }
 }

@@ -19,7 +19,7 @@ struct Sidebar: View {
             #endif
         }
     }
-
+    
     var content: some View {
         List {
             NavigationLink(destination: HomeView()) {

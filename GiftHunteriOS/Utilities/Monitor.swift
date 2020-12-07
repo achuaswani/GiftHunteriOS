@@ -26,8 +26,9 @@ class Monitor {
 }
 
 extension Monitor {
-    func startMonitoring( callBack: @escaping (_ connection: Connection, _ rechable: Reachable) -> Void ) {
+    func startMonitoring( callBack: @escaping (_ connection: Connection, _ rechable: Reachable) -> Void ) -> Void {
         monitor.pathUpdateHandler = { path in
+
             let reachable = (path.status == .unsatisfied || path.status == .requiresConnection)  ? Reachable.no  : Reachable.yes
 
             if path.availableInterfaces.count == 0 {

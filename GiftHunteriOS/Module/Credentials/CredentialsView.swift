@@ -10,17 +10,17 @@ import SwiftUI
 struct CredentialsView: View {
     @ObservedObject var viewModel: CredentialsViewModel
     @State var showPassword = false
-
+    
     init(viewModel: CredentialsViewModel) {
         self.viewModel = viewModel
     }
-
+    
     var body: some View {
         header
         textFieldSection
         buttonView
     }
-
+    
     var header:  some View {
         VStack {
             Text(viewModel.title)
@@ -30,19 +30,19 @@ struct CredentialsView: View {
                 .opacity(0.8)
         }
     }
-
+    
     var textFieldSection: some View {
         VStack(alignment: .leading, spacing: 15) {
-
+          
             TextField("login.textfield.emailid.hint.text".localized(), text: $viewModel.email)
                 .accessibility(identifier: "email")
                 .padding()
                 .background(Color.normalTextField)
                 .cornerRadius(20.0)
                 .shadow(radius: 5.0, x: 5, y: 5)
-
+                        
             passwordTextField
-
+            
             if viewModel.showErrorMessage {
                 Text(viewModel.errorMessage)
                     .accessibility(identifier: "error")
@@ -53,11 +53,11 @@ struct CredentialsView: View {
                     .multilineTextAlignment(.center)
                     .padding([.leading, .trailing], 15)
             }
-
+            
         }
         .padding([.leading, .trailing], 27.5)
     }
-
+    
     var passwordTextField: some View {
         VStack {
             showPasswordTextFields(hintText: "login.textfield.password.hint.text".localized(),
@@ -69,26 +69,22 @@ struct CredentialsView: View {
                                        textValue: $viewModel.confirmPassword)
                     .accessibility(identifier: "confirmPassword")
                     .padding([.top, .bottom], 10)
-                TextField("register.textfield.username.title".localized(), text: $viewModel.displayName)
-                    .accessibility(identifier: "displayName")
-                    .padding()
-                    .background(Color.normalTextField)
-                    .cornerRadius(20.0)
-                    .shadow(radius: 5.0, x: 5, y: 5)
-
             }
         }
     }
-
+    
     var buttonView: some View {
         VStack {
             Button(action: viewModel.buttonAction) {
                 Text(viewModel.title)
-                    .frame(width: 300, height: 30)
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
-
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .padding()
+                    .frame(width: 300, height: 50)
+                    .background(Color.normalButton)
+                    .cornerRadius(15.0)
+                    .shadow(radius: 10.0, x: 5, y: 5)
             }
-            .buttonStyle(BaseButtonStyle())
             .accessibility(identifier: "button")
             .padding([.top, .bottom], 50)
             .padding([.leading, .trailing], 27.5)
