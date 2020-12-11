@@ -8,10 +8,11 @@
 import SwiftUI
 
 enum Page {
+    case pinView
     case resultView
     case questionView
 }
 
 class ViewRouter: ObservableObject {
-    @Published var currentPage: Page = .questionView
+    @Published var currentPage: Page = .pinView
 }

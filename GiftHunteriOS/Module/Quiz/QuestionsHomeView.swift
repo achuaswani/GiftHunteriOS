@@ -43,7 +43,7 @@ struct QuestionsHomeView: View {
             viewModel.stopTimer()
         }
         .alert(isPresented: $viewModel.shouldShowAlert ) {
-            guard let alert = viewModel.alertProvder else {
+            guard let alert = viewModel.alertProvder.alert else {
                 fatalError("Alert not available")
             }
             return Alert(

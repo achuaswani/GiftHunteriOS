@@ -9,7 +9,11 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var session: FirebaseSession
-    @StateObject var viewRouter = ViewRouter()
+    @State var viewRouter = ViewRouter()
+    @State var shouldShowAlert = false
+    @State var page: Page?
+
+    @State private var textEntered = ""
     
     @ViewBuilder
     var body: some View {
@@ -24,7 +28,6 @@ struct HomeView: View {
                     Spacer()
                     buttonsView
                 }
-
             }
             .padding(.all)
             .accessibility(identifier: "HomeView")
@@ -34,15 +37,16 @@ struct HomeView: View {
     var buttonsView: some View {
         VStack {
             showNavigationButton("quiz.start".localized(), page: .questionView)
+            
             showNavigationButton("quiz.view.results".localized(), page: .resultView)
+                
         }
     }
     
     func showNavigationButton(_ title: String, page: Page) -> AnyView {
+        viewRouter.currentPage = .pinView
         return AnyView(
-            NavigationLink(destination: HomeRouterView(viewRouter: viewRouter).onAppear {
-                viewRouter.currentPage = page
-            }) {
+            NavigationLink(destination: HomeRouterView(viewRouter: viewRouter, view: page)) {
                 Text(title)
                     .frame(width: 300, height: 30)
                     .font(.system(size: 16, weight: .bold, design: .rounded))

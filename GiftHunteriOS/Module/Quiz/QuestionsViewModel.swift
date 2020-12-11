@@ -30,7 +30,7 @@ class QuestionsViewModel: ObservableObject {
     @Published var showToastMessage = false
     @Published var showProgressView = false
     @Published var toastMessage = ""
-    var alertProvder: AlertProvider?
+    var alertProvder = AlertProvider()
 
     func fetchQuestions(quizId: String) {
         showProgressView = true
@@ -52,10 +52,14 @@ class QuestionsViewModel: ObservableObject {
 
     func displayAlert() {
         async { [weak self] in
-            self?.alertProvder = AlertProvider(
-                title: "something.went.wrong.title".localized(),
-                message: "come.back.later".localized(),
-                primaryButtonText: "general.got.it".localized()
+            self?.alertProvder.alert = AlertProvider.Alert(
+                title: "alert.something.went.wrong.title".localized(),
+                message: "alert.come.back.later.message".localized(),
+                primaryButtonText: "general.got.it.button.title".localized(),
+                primaryButtonAction: { 
+                    
+                },
+                secondaryButtonText: "Cancel"
             )
             self?.shouldShowAlert = true
         }

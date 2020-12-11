@@ -6,7 +6,7 @@
   Copyright © 2020 RAS. All rights reserved.
 */
 //Create localizable without storyboards https://medium.com/@Yerazhas/string-localization-in-swift-without-storyboards-e243e5a64f58
-// Login Screen
+// MARK: - Login Screen
 "login.label.header.title" = "Login to access your account";
 "login.textfield.password.hint.text" = "Enter password";
 "login.textfield.emailid.hint.text" = "Enter email id";
@@ -18,24 +18,24 @@
 "login.button.login.title" = "Login";
 "login.button.register.title" = "Register";
 
-// Register
+// MARK: - Register
 "register.label.header.title" = "Register new account";
 "register.textfield.confirm.password.hint.text" = "Confirm password";
 "register.label.confirm.password.error.message" = "Password not matching.";
 "register.label.backend.error.message" = "Some went worng. Please try after sometime.";
 "register.textfield.username.title" = "Enter user name";
 
-// Dashboard
+// MARK: - Dashboard
 "dashboard.header.welcome.title" = "Welcome %@";
 "quiz.start" = "Start Quiz";
 "quiz.view.results" = "View Results";
 
-// Settings
+// MARK: - Settings
 "settings.list.item.logout" = "Logout";
 "settings.list.item.profile" = "Profile";
 "settings.list.item.about" = "About";
 
-// profile
+// MARK: - Profile
 "profile.button.update.user.name.title" = "Reset User Name";
 "profile.label.reset.emailid.title" = "Reset email id";
 "profile.label.reset.password.title" = "Reset password";
@@ -47,10 +47,13 @@
 "profile.label.password.validation.error.message" = "Incorrect Password";
 "profile.label.password.same.error.message" = "No change in password";
 
+// MARK: - Toast messages
 "toast.message.success.title" = "Saved!";
 "toast.message.failure.title" = "Error!";
+"quiz.completed.message" = "Quiz completed";
 
-// Questions
+
+// MARK: - Questions
 "remaining.time.info" = "Minutes Remaining: %@";
 "result.info.message" = "Previous result shows here";
 "correct.answer.message" = "Congrats! Correct answer";
@@ -58,12 +61,12 @@
 "time.up.message" = "Time-up, moving to next question Previous answer was %@";
 "quiz.score.prefix" = "Score: %@";
 
-// Alert messages
-"something.went.wrong.title" = "Something went wrong";
-"come.back.later" = "Come back later.";
-"general.got.it" = "Got it!";
-"general.ok" = "OK";
-"quiz.completed.message" = "Quiz completed";
+// MARK: -  Alert messages
+"alert.something.went.wrong.title" = "Something went wrong";
+"alert.come.back.later.message" = "Come back later.";
+"alert.enter.pin.title" = "Alert";
+"alert.no.quiz.available.message" = "No quiz available for this PIN. Check your PIN.";
+"alert.quiz.pin.incorrect.title" = "Incorrect PIN";
 
 // MARK: - API Error Messages
 "service.response.session.error" = "Please try again! ";
@@ -78,3 +81,16 @@
 
 // MARK: - Progress view messages
 "loading.text" = "Loading question..";
+
+// MARK: - General messages
+"general.got.it.button.title" = "Got it!";
+"general.ok.button.title" = "OK";
+"general.enter.input.text" = "Enter value";
+"general.dismiss.button.title" = "Dismiss";
+"general.submit.button.title" = "Submit";
+"general.cancel.button.title" = "Cancel";
+"general.alert.title" = "Alert";
+
+
+// MARK: - PIN View
+"quiz.pin.enter.hint.text.title" = "Enter quiz PIN";

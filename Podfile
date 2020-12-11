@@ -24,12 +24,12 @@ target 'GiftHunteriOS' do
     # Pods for testing
   end
 end
-  post_install do |installer|
-    installer.pods_project.targets.each do |target|
-      target.build_configurations.each do |configuration|
-          configuration.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
-          configuration.build_settings.delete('ARCHS')
-          configuration.build_settings['CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER'] = 'NO'
-         end
-     end
-  end
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |configuration|
+        configuration.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+        configuration.build_settings.delete('ARCHS')
+        configuration.build_settings['CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER'] = 'NO'
+       end
+   end
+end

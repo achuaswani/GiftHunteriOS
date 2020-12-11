@@ -35,15 +35,37 @@ class FirebaseDataService: ObservableObject {
 
     // MARK: - Quiz details
     func fetchQuestions(quizId: String, handler: @escaping ([Question]?, Error?) -> Void) {
-        let questionsRef = databaseQuestinsReference.child(quizId)
-        questionsRef.observeSingleEvent(of: .value, with: { snapshot in
-           guard let value = snapshot.value else { return }
+        let questionsReference = databaseQuestinsReference.child(quizId)
+        questionsReference.observeSingleEvent(of: .value, with: { snapshot in
+           guard let value = snapshot.value else {
+                return
+           }
            do {
                let questionsSet = try FirebaseDecoder().decode([Question].self, from: value)
                 handler(questionsSet, nil)
            } catch let error {
                handler(nil, error)
            }
+        })
+    }
+    
+    // MARK: - Verify Quiz PIN
+    
+    func verifyQuizPIN(pin: String, handler: @escaping (Quiz?) -> Void) {
+        databasePINReference.observeSingleEvent(of: .value, with: { snapshot in
+            let snapshot = snapshot.childSnapshot(forPath: pin)
+            guard let value = snapshot.value else {
+                handler(nil)
+                return
+            }
+            do {
+                
+                let quiz = try FirebaseDecoder().decode(Quiz.self, from: value)
+                handler(quiz)
+            } catch let error {
+                debugPrint(error.localizedDescription)
+                handler(nil)
+            }
         })
     }
 
