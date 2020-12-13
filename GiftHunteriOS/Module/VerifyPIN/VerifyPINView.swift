@@ -13,13 +13,13 @@ struct VerifyPINView: View {
 
     var body: some View {
         VStack {
-            Image("QuestionsTab")
+            Image("questionstab")
                 .resizable()
                 .frame(width: 350, height: 250)
                 .padding(.bottom, 100)
             TextField(viewModel.hinText, text: $pin)
                 .padding()
-                .background(Color.normalTextField)
+                .background(Color("normalTextField"))
                 .cornerRadius(20.0)
                 .shadow(radius: 5.0, x: 5, y: 5)
             Button(action: {
@@ -52,7 +52,7 @@ struct VerifyPINView: View {
 struct VerifyPINView_Previews: PreviewProvider {
     static var previews: some View {
         VerifyPINView(viewModel: VerifyPINViewModel(
-                        viewRouter: ViewRouter(),
-                        page: .questionView))
+                        viewRouter: ViewRouter(currentPage: .pinView,
+                                               nextPage: .questionView)))
     }
 }

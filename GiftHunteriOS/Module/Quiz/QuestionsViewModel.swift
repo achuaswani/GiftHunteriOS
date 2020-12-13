@@ -17,9 +17,8 @@ class QuestionsViewModel: ObservableObject {
     private var pin: String = ""
     private var questions: [Question] = [Question.default]
     private var cancellable: AnyCancellable!
-    private var elapsedTime = 0
     private var score = 0
-    private var timeRemaining: Int = 30
+    private var timeRemaining: Int = AppConstants.MAXSECONDS
 
     @Published var timeRemainingText = ""
     @Published var shouldShowAlert = false
@@ -31,8 +30,27 @@ class QuestionsViewModel: ObservableObject {
     @Published var showProgressView = false
     @Published var toastMessage = ""
     var alertProvder = AlertProvider()
+    
+    @Published var viewRouter: ViewRouter
+    @Published var quiz: Quiz?
+    
+    var quizTitle: String {
+        quiz?.title ?? ""
+    }
+    
+    var quizDescription: String {
+        quiz?.quizDetails ?? ""
+    }
+    
+    init(viewRouter: ViewRouter) {
+        self.viewRouter = viewRouter
+        self.quiz = viewRouter.quiz
+    }
 
-    func fetchQuestions(quizId: String) {
+    func fetchQuestions() {
+        guard let quizId = quiz?.quizId else {
+            return
+        }
         showProgressView = true
         questions.removeAll()
         questionNumber = 0
@@ -49,7 +67,7 @@ class QuestionsViewModel: ObservableObject {
             self.displayQuestion()
         }
     }
-
+    
     func displayAlert() {
         async { [weak self] in
             self?.alertProvder.alert = AlertProvider.Alert(
@@ -57,7 +75,7 @@ class QuestionsViewModel: ObservableObject {
                 message: "alert.come.back.later.message".localized(),
                 primaryButtonText: "general.got.it.button.title".localized(),
                 primaryButtonAction: { 
-                    
+                    self?.shouldShowAlert = false
                 },
                 secondaryButtonText: "Cancel"
             )
@@ -68,10 +86,10 @@ class QuestionsViewModel: ObservableObject {
 
     func displayQuestion() {
         async { [weak self] in
-            guard let self = self else {
+            guard let self = self, self.questionNumber < self.questions.count else {
                 return
             }
-            self.timeRemaining = 30
+            self.resetTimer()
             self.questionCounterText = "\(self.questionNumber + 1)/\(self.questions.count)"
             self.question = self.questions[self.questionNumber]
             self.startTimer()
@@ -92,8 +110,9 @@ class QuestionsViewModel: ObservableObject {
     }
 
     func updateScore() {
-        let scoreAlgorithm = ((AppConstants.MAXSECONDS - elapsedTime) * AppConstants.POINTSMULTIPLIER)
+        let scoreAlgorithm = (timeRemaining * AppConstants.POINTSMULTIPLIER)
         score += scoreAlgorithm
+        updateScoreToBackend()
         let scoreText = String(self.score)
         async { [weak self] in
             guard let self = self else {
@@ -102,6 +121,13 @@ class QuestionsViewModel: ObservableObject {
             self.scoreText = "quiz.score.prefix".localized(with: scoreText)
             self.updateResultMessage(message: "correct.answer.message".localized())
         }
+    }
+    
+    func updateScoreToBackend() {
+        guard let userName = viewRouter.userName, let id = quiz?.scoreBoardId else {
+            fatalError("Username/scoreboardid not exists")
+        }
+        dataService.updateScoreToDatabase(name: userName, score: score, scoreBoardId: id)
     }
 
     func updateResultMessage(message: String) {
@@ -117,7 +143,14 @@ class QuestionsViewModel: ObservableObject {
                 self.toastMessage = "quiz.completed.message".localized()
                 self.showToastMessage = true
                 self.stopTimer()
+                self.routeToResult()
             }
+        }
+    }
+    
+    func routeToResult() {
+        async { [weak self] in
+            self?.viewRouter.currentPage = .resultView
         }
     }
 
@@ -143,11 +176,15 @@ class QuestionsViewModel: ObservableObject {
             guard let self = self else {
                 return
             }
-            self.timeRemaining = 30
+            self.resetTimer()
             self.remainingTimeInfo()
             self.showProgressView = false
         }
         cancellable?.cancel()
+    }
+    
+    func resetTimer() {
+        timeRemaining = AppConstants.MAXSECONDS
     }
 
     func remainingTimeInfo() {

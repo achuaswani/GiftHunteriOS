@@ -12,31 +12,34 @@ struct QuestionsView: View {
     @StateObject var viewModel: QuestionsViewModel
 
     var body: some View {
-        VStack(alignment: .center, spacing: 3.0) {
-            Text(viewModel.question.questionText)
-                .font(.system(size: 16, weight: .bold, design: .rounded))
-                .foregroundColor(.white)
-                .padding(.all, BaseSize.generalSpacing)
+            VStack(alignment: .center, spacing: 3.0) {
+                Text(viewModel.question.questionText)
+                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                    .foregroundColor(.white)
+                    .padding(.all, BaseSize.generalSpacing)
                 HStack {
                     ForEach(0..<2) { index in
                         showButtonView(index)
                         }
                     }
                 .padding(.all, BaseSize.generalSpacing)
-                if viewModel.showProgressView {
-                    ProgressView()
-                }
+                
                 HStack {
                     ForEach(2..<4) { index in
                         showButtonView(index)
                     }
                 }
                 .padding(.all, BaseSize.generalSpacing)
-        }
-        .background(Color.accentColor)
-        .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
-        .shadow(color: Color.blue, radius: 20, x: 0, y: 10)
-        .padding(.all, BaseSize.outerSpacing)
+            }
+            .background(Color.accentColor)
+            .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
+            .shadow(color: Color.black.opacity(0.16), radius: 5, x: 0, y: 5)
+            .padding(.all, BaseSize.outerSpacing)
+            .overlay(Group {
+                if viewModel.showProgressView {
+                        ProgressView()
+                    }
+                })
     }
     
     func showButtonView(_ index: Int) -> AnyView {
@@ -45,7 +48,7 @@ struct QuestionsView: View {
                 viewModel.submitAnswer(index)
             }) {
                 Text(viewModel.question.options[index])
-                    .foregroundColor(.normalButton)
+                    .foregroundColor(Color("normalButton"))
                     .frame(width: 110, height: 50)
                     .font(.system(size: 16, weight: .bold, design: .rounded))
             }
@@ -58,6 +61,6 @@ struct QuestionsView: View {
 
 struct QuestionsView_Previews: PreviewProvider {
     static var previews: some View {
-        QuestionsView(viewModel: QuestionsViewModel())
+        QuestionsView(viewModel: QuestionsViewModel(viewRouter: ViewRouter(currentPage: .questionView, nextPage: .resultView)))
     }
 }

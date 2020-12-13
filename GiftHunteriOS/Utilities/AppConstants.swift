@@ -21,7 +21,6 @@ struct AppConstants {
     static let INTENTMSGQUESTIONFILEPATH = "media"
 
     // Firebase Nodes
-    static let NODEALLPLAYERS = "AllPlayers"
     static let NODEACTIVEQUIZ = "ActiveQuiz"
     static let NODEPROFILE = "Profile"
     static let NODEQUESTIONSLIST = "QuestionsList"

@@ -7,14 +7,31 @@
 
 import SwiftUI
 
-struct QuizResultViewModel: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+class QuizResultViewModel: ObservableObject {
+    @Published var scoreBoard = [ScoreBoard.default]
+    var viewRouter: ViewRouter
+    var dataService = FirebaseDataService()
+    
+    var headerTitle: String = "scoreboard.header.title".localized()
+    var quizTitle: String = ""
+    var quizDetails: String = ""
+    init(viewRouter: ViewRouter) {
+        self.viewRouter = viewRouter
+        if let quiz = viewRouter.quiz {
+            self.quizTitle = quiz.title
+            self.quizDetails = quiz.quizDetails
+        }
     }
-}
-
-struct QuizResultViewModel_Previews: PreviewProvider {
-    static var previews: some View {
-        QuizResultViewModel()
+    
+    func fetchScoreBoard() {
+        guard let scoreBoardId = viewRouter.quiz?.scoreBoardId else {
+            return
+        }
+        dataService.fetchScoreBoard(scoreBoardId: scoreBoardId) { [weak self] scoreBoardReponse in
+            guard let scoreBoardReponse = scoreBoardReponse else {
+                return
+            }
+            self?.scoreBoard = scoreBoardReponse
+        }
     }
 }

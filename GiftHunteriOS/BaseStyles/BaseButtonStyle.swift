@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BaseButtonStyle: ButtonStyle {
-    var color: Color = .normalButton
+    var color: Color = Color("normalButton") //#00BFAF for accent
 
     func makeBody(configuration: BaseButtonStyle.Configuration) -> some View {
 

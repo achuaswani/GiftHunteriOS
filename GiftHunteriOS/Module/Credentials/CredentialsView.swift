@@ -37,7 +37,7 @@ struct CredentialsView: View {
             TextField("login.textfield.emailid.hint.text".localized(), text: $viewModel.email)
                 .accessibility(identifier: "email")
                 .padding()
-                .background(Color.normalTextField)
+                .background(Color("normalTextField"))
                 .cornerRadius(20.0)
                 .shadow(radius: 5.0, x: 5, y: 5)
 
@@ -72,7 +72,7 @@ struct CredentialsView: View {
                 TextField("register.textfield.username.title".localized(), text: $viewModel.displayName)
                     .accessibility(identifier: "displayName")
                     .padding()
-                    .background(Color.normalTextField)
+                    .background(Color("normalTextField"))
                     .cornerRadius(20.0)
                     .shadow(radius: 5.0, x: 5, y: 5)
 
@@ -114,7 +114,7 @@ struct CredentialsView: View {
                 }
             }
             .padding()
-            .background(Color.normalTextField)
+            .background(Color("normalTextField"))
             .cornerRadius(20.0)
             .shadow(radius: 5.0, x: 5, y: 5)
        )

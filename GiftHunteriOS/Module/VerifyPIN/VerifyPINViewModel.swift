@@ -8,37 +8,61 @@
 import SwiftUI
 
 class VerifyPINViewModel: ObservableObject {
-    var hinText = "quiz.pin.enter.hint.text.title".localized()
-    var buttonText = "general.submit.button.title".localized()
+    var hinText: String {
+        switch viewRouter.nextPage {
+        case .createQuizView:
+            return "quiz.pin.creater.hint.text.title".localized()
+        default:
+            return "quiz.pin.enter.hint.text.title".localized()
+        }
+    }
+    var buttonText: String {
+        switch viewRouter.nextPage {
+        case.createQuizView:
+            return "general.create.button.title".localized()
+        default:
+            return "general.submit.button.title".localized()
+        }
+    }
     @Published var quiz: Quiz?
     @Published var shouldShowAlert = false
     var dataService = FirebaseDataService()
     var alertProvder = AlertProvider()
     
     @Published var viewRouter: ViewRouter
-    var page: Page
 
-    init(viewRouter: ViewRouter, page: Page) {
+    init(viewRouter: ViewRouter) {
         self.viewRouter = viewRouter
-        self.page = page
     }
     
     func verifyPIN(pin: String) {
+        guard !pin.isEmpty else {
+            self.displayAlert("alert.missing.pin.message".localized())
+            return
+        }
+        
         dataService.verifyQuizPIN(pin: pin) { [weak self] quizModel in
-            guard let quizModel = quizModel, let selfclass = self else {
-                self?.displayAlert()
+            guard  let self = self else {
                 return
             }
-            selfclass.quiz = quizModel
-            selfclass.viewRouter.currentPage = selfclass.page
+            guard let quizModel = quizModel else {
+                self.displayAlert("alert.no.quiz.available.message".localized())
+                return
+            }
+            self.viewRouter.quiz = quizModel
+           
+            guard let nextPage = self.viewRouter.nextPage else {
+                return
+            }
+            self.viewRouter.currentPage = nextPage
         }
     }
     
-    func displayAlert() {
+    func displayAlert(_ message: String) {
         async { [weak self] in
             self?.alertProvder.alert = AlertProvider.Alert(
-                title: "alert.quiz.pin.incorrect.title".localized(),
-                message: "alert.no.quiz.available.message".localized(),
+                title: "alert.enter.valid.pin.title".localized(),
+                message: message,
                 primaryButtonText: "general.got.it.button.title".localized(),
                 primaryButtonAction: {
                     self?.shouldShowAlert = false

@@ -9,50 +9,65 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var session: FirebaseSession
-    @State var viewRouter = ViewRouter()
+    
     @State var shouldShowAlert = false
-    @State var page: Page?
-
+    @State var page: Page = .questionView
     @State private var textEntered = ""
+    @ObservedObject var viewModel = HomeViewModel()
     
     @ViewBuilder
     var body: some View {
-        ZStack {
-            VStack {
-                if let user = session.user {
-                    DisplayPicture(user: user)
-                        .frame(width: 250, height: 200)
-                    Text("dashboard.header.welcome.title".localized(with: user.displayName ?? ""))
-                        .foregroundColor(Color.black)
-                        .font(.system(size: 16, weight: .bold, design: .rounded))
-                    Spacer()
-                    buttonsView
-                }
-            }
-            .padding(.all)
-            .accessibility(identifier: "HomeView")
-        }
-    }
-    
-    var buttonsView: some View {
         VStack {
-            showNavigationButton("quiz.start".localized(), page: .questionView)
+            MapView()
+              .frame(height: 200)
+              .edgesIgnoringSafeArea(.all)
             
-            showNavigationButton("quiz.view.results".localized(), page: .resultView)
-                
+            if let user = session.user, let userName = user.displayName {
+                DisplayPicture(user: user)
+                    .offset(y: -130)
+                    .padding([.top, .bottom], -120)
+                Text("dashboard.header.welcome.title".localized(with: userName))
+                    .foregroundColor(Color.black)
+                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                    .padding([.top, .bottom], 0)
+                ScrollView {
+                    ForEach(viewModel.viewList, id: \.self) { viewList in
+                            showNavigationButton(viewList: viewList, userName: userName)
+                                .shadow(color: Color.black.opacity(0.16), radius: 5, x: 0, y: 5)
+                                .background(Color.white)
+                                .cornerRadius(15)
+                                .padding(.all, 10)
+                                
+                        }
+                    .frame(maxWidth: .infinity)
+                }
+                .background(Color("backgroundColor"))
+            }
         }
+        .accessibility(identifier: "HomeView")
+        .frame(maxWidth: .infinity)
+
     }
     
-    func showNavigationButton(_ title: String, page: Page) -> AnyView {
-        viewRouter.currentPage = .pinView
+    func showNavigationButton(viewList: ViewList, userName: String) -> AnyView {
         return AnyView(
-            NavigationLink(destination: HomeRouterView(viewRouter: viewRouter, view: page)) {
-                Text(title)
-                    .frame(width: 300, height: 30)
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
+            HStack {
+                NavigationLink(destination: HomeRouterView(
+                                viewRouter: ViewRouter(
+                                    currentPage: .pinView,
+                                    userName: userName,
+                                    nextPage: viewList.viewName))) {
+                    Image(viewList.imageName)
+                        .resizable()
+                        .frame(width: 120, height: 150)
+                        .padding(.horizontal, 30)
+                    Text(viewList.buttonTitle)
+                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                        .foregroundColor(.black)
+                        .padding(.horizontal, 30)
+                }
+                .padding(5)
             }
-            .buttonStyle(BaseButtonStyle())
-            .padding([.top, .bottom], 50)
         )
     }
 }

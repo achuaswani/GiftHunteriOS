@@ -68,5 +68,34 @@ class FirebaseDataService: ObservableObject {
             }
         })
     }
-
+    
+    // MARK: - Fetch Scoreboard
+    
+    func fetchScoreBoard(scoreBoardId: String, handler: @escaping ([ScoreBoard]?) -> Void) {
+        databaseScoreBoardReference.child(scoreBoardId).observeSingleEvent(of: .value, with: { snapshot in
+            var scoreBoard = [ScoreBoard]()
+            for player in snapshot.children.allObjects {
+                guard let playerItem = player as? DataSnapshot else {
+                    handler(nil)
+                    return
+                }
+                let playerName = playerItem.key
+                let playerPoints = playerItem.childSnapshot(forPath: "score").value as! Int
+                scoreBoard.append(ScoreBoard(name: String(playerName), score: playerPoints, rank: 0))
+            }
+            for pass in 0..<scoreBoard.count {
+                for currentPoistion in pass+1..<scoreBoard.count where (scoreBoard[pass].score) < (scoreBoard[currentPoistion].score) {
+                    let tmp = scoreBoard[pass]
+                    scoreBoard[pass] = scoreBoard[currentPoistion]
+                    scoreBoard[pass].rank = pass + 1
+                    scoreBoard[currentPoistion] = tmp
+                }
+            }
+            handler(scoreBoard)
+        })
+    }
+    
+    func updateScoreToDatabase(name: String, score: Int, scoreBoardId: String) {
+        databaseScoreBoardReference.child(scoreBoardId).child(name).child("score").setValue(score)
+    }
 }

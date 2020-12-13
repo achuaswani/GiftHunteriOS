@@ -12,7 +12,7 @@ struct ContentView: View {
 
     var body: some View {
         Group {
-            if session.isLoggedIn {
+            if session.isLoggedIn, session.user?.displayName != nil {
                 DashboardView()
             } else {
                 LoginView()

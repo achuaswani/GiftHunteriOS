@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct QuestionsHomeView: View {
-    @StateObject var viewModel: QuestionsViewModel = {
-        QuestionsViewModel()
-    }()
-    @StateObject var viewRouter: ViewRouter
+    @StateObject var viewModel: QuestionsViewModel
     
     var body: some View {
         VStack {
-            Text("header")
+            Text(viewModel.quizTitle)
                 .padding(.horizontal, BaseSize.generalSpacing)
                 .font(.system(size: 18, weight: .bold, design: .rounded))
+            Text(viewModel.quizDescription)
+                .padding(.horizontal, BaseSize.generalSpacing)
+                .font(.system(size: 16, weight: .bold, design: .rounded))
             QuestionsView(viewModel: viewModel)
                 .padding(.all, BaseSize.generalSpacing)
 
@@ -33,11 +33,9 @@ struct QuestionsHomeView: View {
             Text(viewModel.timeRemainingText)
                 .padding(.all, BaseSize.generalSpacing)
                 .font(.system(size: 14, weight: .bold, design: .rounded))
-            
-            
         }
         .onAppear {
-            viewModel.fetchQuestions(quizId: "123")
+            viewModel.fetchQuestions()
         }
         .onDisappear {
             viewModel.stopTimer()
@@ -53,11 +51,6 @@ struct QuestionsHomeView: View {
             )
         }
         .toast(isPresented: $viewModel.showToastMessage) {
-            if viewModel.showToastMessage {
-                async {
-                    viewRouter.currentPage = .resultView
-                }
-            }
             return Text(viewModel.toastMessage)
         }
     }
@@ -65,6 +58,6 @@ struct QuestionsHomeView: View {
 
 struct QuestionsHomeView_Previews: PreviewProvider {
     static var previews: some View {
-        QuestionsHomeView(viewRouter: ViewRouter())
+        QuestionsHomeView(viewModel: QuestionsViewModel(viewRouter: ViewRouter(currentPage: .questionView, nextPage: .resultView)))
     }
 }

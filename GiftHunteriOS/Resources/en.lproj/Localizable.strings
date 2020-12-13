@@ -29,6 +29,7 @@
 "dashboard.header.welcome.title" = "Welcome %@";
 "quiz.start" = "Start Quiz";
 "quiz.view.results" = "View Results";
+"quiz.view.create.quiz" = "Create Quiz";
 
 // MARK: - Settings
 "settings.list.item.logout" = "Logout";
@@ -52,7 +53,6 @@
 "toast.message.failure.title" = "Error!";
 "quiz.completed.message" = "Quiz completed";
 
-
 // MARK: - Questions
 "remaining.time.info" = "Minutes Remaining: %@";
 "result.info.message" = "Previous result shows here";
@@ -66,7 +66,8 @@
 "alert.come.back.later.message" = "Come back later.";
 "alert.enter.pin.title" = "Alert";
 "alert.no.quiz.available.message" = "No quiz available for this PIN. Check your PIN.";
-"alert.quiz.pin.incorrect.title" = "Incorrect PIN";
+"alert.enter.valid.pin.title" = "Enter valid PIN!";
+"alert.missing.pin.message" = "PIN is missing.";
 
 // MARK: - API Error Messages
 "service.response.session.error" = "Please try again! ";
@@ -90,7 +91,14 @@
 "general.submit.button.title" = "Submit";
 "general.cancel.button.title" = "Cancel";
 "general.alert.title" = "Alert";
+"general.create.button.title" = "Create";
 
 
 // MARK: - PIN View
 "quiz.pin.enter.hint.text.title" = "Enter quiz PIN";
+"quiz.pin.creater.hint.text.title" = "Create PIN";
+
+// MARK: - Scoreboard
+"scoreboard.header.title" = "ScoreBoard";
+"scoreboard.score.title" = "Score: ";
+"scoreboard.rank.title" = "Rank: ";

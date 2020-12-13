@@ -17,9 +17,9 @@ struct BaseSize {
     
     static var outerSpacing: CGFloat {
         if ScreenSize.maxLength > 812.0 {
-            return 20
-        } else {
             return 15
+        } else {
+            return 10
         }
     }
 }
