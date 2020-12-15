@@ -22,7 +22,7 @@ struct LoadingView<Content>: View where Content: View {
                 
                 if isShowing {
                     Rectangle()
-                        .fill(Color.black).opacity(isShowing ? 0.6 : 0)
+                        .fill(Color("loadingview")).opacity(isShowing ? 0.6 : 0)
                         .edgesIgnoringSafeArea(.all)
 
                     VStack(spacing: 48) {

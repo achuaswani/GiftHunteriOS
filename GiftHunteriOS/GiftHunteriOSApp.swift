@@ -15,7 +15,9 @@ struct GiftHunteriOSApp: App {
     }
     var body: some Scene {
         WindowGroup {
-            ContentView().environmentObject(FirebaseSession())
+            ContentView()
+                .environmentObject(FirebaseSession())
+                .environmentObject(FirebaseDataService())
         }
     }
 }

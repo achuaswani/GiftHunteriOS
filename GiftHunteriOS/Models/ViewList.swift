@@ -8,8 +8,14 @@
 import Foundation
 
 struct ViewList: Hashable {
-    let viewName: Page
+    let currentPage: Page
+    let nextPage: Page
     let buttonTitle: String
     let imageName: String
-    static let `default` = Self(viewName: .pinView, buttonTitle: "Title", imageName: "placeholder")
+    static let `default` = Self(
+        currentPage: .pinView,
+        nextPage: .createQuizView,
+        buttonTitle: "Title",
+        imageName: "placeholder"
+    )
 }

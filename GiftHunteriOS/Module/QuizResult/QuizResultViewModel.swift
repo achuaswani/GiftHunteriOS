@@ -10,9 +10,8 @@ import SwiftUI
 class QuizResultViewModel: ObservableObject {
     @Published var scoreBoard = [ScoreBoard.default]
     var viewRouter: ViewRouter
-    var dataService = FirebaseDataService()
-    
-    var headerTitle: String = "scoreboard.header.title".localized()
+    var dataService = QuizService()
+    let headerTitle: String = "scoreboard.header.title".localized()
     var quizTitle: String = ""
     var quizDetails: String = ""
     init(viewRouter: ViewRouter) {
@@ -24,7 +23,7 @@ class QuizResultViewModel: ObservableObject {
     }
     
     func fetchScoreBoard() {
-        guard let scoreBoardId = viewRouter.quiz?.scoreBoardId else {
+        guard let scoreBoardId = viewRouter.scoreBoardId else {
             return
         }
         dataService.fetchScoreBoard(scoreBoardId: scoreBoardId) { [weak self] scoreBoardReponse in

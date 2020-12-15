@@ -10,7 +10,7 @@ import Combine
 import Foundation
 
 class QuestionsViewModel: ObservableObject {
-    private var dataService = FirebaseDataService()
+    private var dataService = QuizService()
     private var questionNumber: Int = 0
     private var questionId: String = ""
     private var previousQuestionId: String = ""
@@ -33,7 +33,8 @@ class QuestionsViewModel: ObservableObject {
     
     @Published var viewRouter: ViewRouter
     @Published var quiz: Quiz?
-    
+    var userName: String  = ""
+
     var quizTitle: String {
         quiz?.title ?? ""
     }
@@ -45,6 +46,13 @@ class QuestionsViewModel: ObservableObject {
     init(viewRouter: ViewRouter) {
         self.viewRouter = viewRouter
         self.quiz = viewRouter.quiz
+    }
+    
+    func updateData(_ name: String?) {
+        guard let name = name else {
+            return
+        }
+        userName = name
     }
 
     func fetchQuestions() {
@@ -124,7 +132,7 @@ class QuestionsViewModel: ObservableObject {
     }
     
     func updateScoreToBackend() {
-        guard let userName = viewRouter.userName, let id = quiz?.scoreBoardId else {
+        guard let id = quiz?.scoreBoardId else {
             fatalError("Username/scoreboardid not exists")
         }
         dataService.updateScoreToDatabase(name: userName, score: score, scoreBoardId: id)
@@ -143,14 +151,18 @@ class QuestionsViewModel: ObservableObject {
                 self.toastMessage = "quiz.completed.message".localized()
                 self.showToastMessage = true
                 self.stopTimer()
-                self.routeToResult()
+                self.routeToNextPage()
             }
         }
     }
     
-    func routeToResult() {
+    func routeToNextPage() {
         async { [weak self] in
-            self?.viewRouter.currentPage = .resultView
+            guard let self = self, let nextPage = self.viewRouter.nextPage else {
+                return
+            }
+            self.viewRouter.scoreBoardId = self.quiz?.scoreBoardId
+            self.viewRouter.currentPage = nextPage
         }
     }
 

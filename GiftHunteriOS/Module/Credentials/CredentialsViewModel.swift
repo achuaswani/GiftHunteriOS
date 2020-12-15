@@ -7,11 +7,7 @@
 
 import SwiftUI
 
-protocol CredentialsViewModelType {
-    func buttonAction()
-}
-
-class CredentialsViewModel: ObservableObject, CredentialsViewModelType {
+class CredentialsViewModel: ObservableObject {
     @Published var email: String = ""
     @Published var password: String = ""
     @Published var confirmPassword: String = ""
@@ -19,8 +15,11 @@ class CredentialsViewModel: ObservableObject, CredentialsViewModelType {
     @Published var showErrorMessage: Bool = false
     @Published var title: String = ""
     @Published var displayName = ""
+    @Published var selectedType: Role = .admin
     var loginView: Bool = false
     var session: FirebaseSession
+    var emailRegistered = false
+    var firebaseDataService: FirebaseDataService?
 
     init(session: FirebaseSession, loginView: Bool) {
         self.session = session
@@ -28,17 +27,22 @@ class CredentialsViewModel: ObservableObject, CredentialsViewModelType {
         if loginView {
             title = "login.button.login.title".localized()
         } else {
+            session.cancelListening()
             title = "login.button.register.title".localized()
         }
     }
+    
+    func updatedSelection(_ item: Role) {
+        selectedType = item
+    }
 
-    func buttonAction() {
+    func buttonAction(dataService: FirebaseDataService) {
+        firebaseDataService = dataService
         Monitor().startMonitoring { [weak self] _, reachable in
             guard let self = self else { return }
             guard self.validateFields(reachable) else {
                 return
             }
-
             self.sendAuthenticationRequest()
         }
     }
@@ -53,23 +57,47 @@ class CredentialsViewModel: ObservableObject, CredentialsViewModelType {
                 case .success:
                     break
                 case .failure(let error):
-                    self.updateErrorMessage(error.localizedDescription)
+                    self.updateErrorMessage(error.debugDescription)
                 }
             }
         } else {
             guard self.validateRegisteration() else {
                 return
             }
-            session.register(email: email, password: password, displayName: displayName) { [weak self] (result: Result<Bool, APIError>) in
-                    guard let self = self else {
-                        return
-                    }
-                    switch result {
-                    case .success:
-                        break
-                    case .failure(let error):
-                        self.updateErrorMessage(error.localizedDescription)
-                    }
+            registerUser()
+        }
+    }
+    
+    func registerUser() {
+        let profileUpdateHandler = {[weak self] (result: Result<Bool, APIError>) in
+            guard let self = self else {
+                return
+            }
+            switch result {
+            case .success:
+                self.createProfile()
+            case .failure(let error):
+                self.updateErrorMessage(error.debugDescription)
+            }
+            
+        }
+        self.session.register(email: self.email,
+                              password: self.password,
+                              handler: profileUpdateHandler)
+        
+    }
+    
+    func createProfile() {
+        guard let user = session.user else {
+            return
+        }
+        let profile = Profile(userName: self.displayName, userId: user.uid, role: selectedType, quizPIN: [])
+        firebaseDataService?.updateProfile(userValue: profile) { error in
+            if error != nil {
+                self.updateErrorMessage(APIError.profileNotUpdated.debugDescription)
+            } else {
+                self.session.listen()
+                self.firebaseDataService?.updateToUserNamesList()
             }
         }
     }

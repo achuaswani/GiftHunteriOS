@@ -5,7 +5,7 @@
 //  Created by Aswani on 12/4/20.
 //
 
-struct Quiz: Codable {
+struct Quiz: Codable, Hashable {
     var quizId: String
     var title: String
     var quizDetails: String

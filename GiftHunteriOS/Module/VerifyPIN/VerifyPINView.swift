@@ -10,7 +10,8 @@ import SwiftUI
 struct VerifyPINView: View {
     @StateObject var viewModel: VerifyPINViewModel
     @State var pin = ""
-
+    @EnvironmentObject var firebaseDataService: FirebaseDataService
+   
     var body: some View {
         VStack {
             Image("questionstab")
@@ -23,7 +24,7 @@ struct VerifyPINView: View {
                 .cornerRadius(20.0)
                 .shadow(radius: 5.0, x: 5, y: 5)
             Button(action: {
-                viewModel.verifyPIN(pin: pin)
+                viewModel.verifyPIN(pin, firebaseDataService: firebaseDataService)
             }) {
                 Text(viewModel.buttonText)
                     .frame(width: 300, height: 30)

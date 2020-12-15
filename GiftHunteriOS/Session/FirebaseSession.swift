@@ -16,16 +16,15 @@ class FirebaseSession: ObservableObject {
     // MARK: Properties
     @Published var user: User?
     @Published var isLoggedIn: Bool = false
-
+    var authListener: AuthStateDidChangeListenerHandle?
+    
     // MARK: Functions
     func listen() {
-        _ = Auth.auth().addStateDidChangeListener { (_, user) in
+        authListener = Auth.auth().addStateDidChangeListener { (_, user) in
             if let user = user {
                 self.user = User(
                     uid: user.uid,
-                    email: user.email,
-                    displayName: user.displayName,
-                    photoURL: user.photoURL
+                    email: user.email
                 )
                 self.isLoggedIn = true
                 self.setUserIdToCrashlytics(user.uid)
@@ -34,6 +33,13 @@ class FirebaseSession: ObservableObject {
                 self.user = nil
             }
         }
+    }
+    
+    func cancelListening() {
+        guard let authListener = authListener else {
+            return
+        }
+        Auth.auth().removeStateDidChangeListener(authListener)
     }
 
     func login(email: String, password: String, handler: @escaping(Result<Bool, APIError>) -> Void) {
@@ -65,12 +71,11 @@ class FirebaseSession: ObservableObject {
         }
     }
 
-    func register(email: String, password: String, displayName: String, handler: @escaping(Result<Bool, APIError>) -> Void) {
-        Auth.auth().createUser(withEmail: email, password: password) { user, error in
-            if user != nil {
-                self.updateUserDetails(userName: displayName, profilePicture: nil) { _ in
-                    handler(.success(true))
-                }
+    func register(email: String, password: String, handler: @escaping(Result<Bool, APIError>) -> Void) {
+        Auth.auth().createUser(withEmail: email, password: password) { response, error in
+            if let user = response?.user {
+                self.user = User(uid: user.uid, email: user.email)
+                handler(.success(true))
             } else {
                 if let error = error, let errCode = Status(rawValue: error._code) {
                     switch errCode {
@@ -84,18 +89,6 @@ class FirebaseSession: ObservableObject {
                 }
             }
         }
-    }
-
-    func updateUserDetails(userName: String?, profilePicture: URL?, handler: @escaping  UserProfileChangeCallback) {
-        let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
-        if userName != nil {
-            changeRequest?.displayName = userName
-        }
-        if profilePicture != nil {
-            changeRequest?.photoURL = profilePicture
-        }
-
-        changeRequest?.commitChanges(completion: handler)
     }
 
     func updateEmailId(to email: String, handler: @escaping UserProfileChangeCallback) {

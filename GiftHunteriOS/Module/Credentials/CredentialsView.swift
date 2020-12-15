@@ -10,6 +10,7 @@ import SwiftUI
 struct CredentialsView: View {
     @ObservedObject var viewModel: CredentialsViewModel
     @State var showPassword = false
+    @EnvironmentObject var firebaseDataService: FirebaseDataService
 
     init(viewModel: CredentialsViewModel) {
         self.viewModel = viewModel
@@ -75,14 +76,43 @@ struct CredentialsView: View {
                     .background(Color("normalTextField"))
                     .cornerRadius(20.0)
                     .shadow(radius: 5.0, x: 5, y: 5)
-
+                Divider()
+                    .padding(.top, 10)
+               roleSelectionView
+            }
+        }
+    }
+    
+    var roleSelectionView: some View {
+        ScrollView {
+            ForEach(Role.allCases, id: \.self) { item in
+                HStack {
+                    if viewModel.selectedType == item {
+                        Image(systemName: "checkmark.circle.fill")
+                            .foregroundColor(.blue)
+                            .padding(.all)
+                    } else {
+                        Image(systemName: "checkmark.circle")
+                            .foregroundColor(.blue)
+                            .padding(.all)
+                    }
+                    Text(item.rawValue)
+                        .font(.system(size: 16, weight: .light, design: .rounded))
+                        .multilineTextAlignment(.leading)
+                        .position(x: 50, y: 10)
+                        .padding(.all)
+                }
+                .onTapGesture {
+                    viewModel.updatedSelection(item)
+                }
+                Divider()
             }
         }
     }
 
     var buttonView: some View {
         VStack {
-            Button(action: viewModel.buttonAction) {
+            Button(action: { viewModel.buttonAction(dataService: firebaseDataService) }) {
                 Text(viewModel.title)
                     .frame(width: 300, height: 30)
                     .font(.system(size: 16, weight: .bold, design: .rounded))

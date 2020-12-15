@@ -10,7 +10,7 @@ import SwiftUI
 struct QuestionsView: View {
     
     @StateObject var viewModel: QuestionsViewModel
-
+    @EnvironmentObject var firebaseDataService: FirebaseDataService
     var body: some View {
             VStack(alignment: .center, spacing: 3.0) {
                 Text(viewModel.question.questionText)
@@ -40,6 +40,9 @@ struct QuestionsView: View {
                         ProgressView()
                     }
                 })
+            .onAppear {
+                viewModel.updateData(firebaseDataService.profile?.userName)
+            }
     }
     
     func showButtonView(_ index: Int) -> AnyView {

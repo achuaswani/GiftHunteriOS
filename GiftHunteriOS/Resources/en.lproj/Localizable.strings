@@ -27,9 +27,10 @@
 
 // MARK: - Dashboard
 "dashboard.header.welcome.title" = "Welcome %@";
-"quiz.start" = "Start Quiz";
-"quiz.view.results" = "View Results";
-"quiz.view.create.quiz" = "Create Quiz";
+"quiz.start.button.title" = "Start Quiz";
+"quiz.results.button.title" = "View Results";
+"quiz.create.button.title" = "Create Quiz";
+"quiz.view.active.button.title" = "View Your Active Quizzes";
 
 // MARK: - Settings
 "settings.list.item.logout" = "Logout";
@@ -68,6 +69,8 @@
 "alert.no.quiz.available.message" = "No quiz available for this PIN. Check your PIN.";
 "alert.enter.valid.pin.title" = "Enter valid PIN!";
 "alert.missing.pin.message" = "PIN is missing.";
+"alert.already.exists.pin.your.list" = "PIN already exists in your list";
+"alert.missing.profile.data.message" = "Missing profile data";
 
 // MARK: - API Error Messages
 "service.response.session.error" = "Please try again! ";
@@ -79,6 +82,8 @@
 "service.request.try.again" = "No internet connection. Please try again!";
 "service.request.session.timeout" = "Session timeout.";
 "service.request.page.not.found" = "Page not found.";
+"error.profile.not.updated.title" = "Profile not updated, try again";
+"error.profile.user.name.not.exists" = "User name already exists";
 
 // MARK: - Progress view messages
 "loading.text" = "Loading question..";
@@ -102,3 +107,7 @@
 "scoreboard.header.title" = "ScoreBoard";
 "scoreboard.score.title" = "Score: ";
 "scoreboard.rank.title" = "Rank: ";
+
+// MARK: - User Results view
+"user.result.no.results.text" = "No results to show. You haven't participated in any quiz yet.";
+"user.result.header.title" = "Quiz Results";

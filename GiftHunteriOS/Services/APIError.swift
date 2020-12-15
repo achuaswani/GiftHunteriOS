@@ -25,6 +25,8 @@ enum APIError: Error {
     case internalServerError
     case notFound
     case genericError(error: Error)
+    case profileNotUpdated
+    case profileNameAlreadyExists
 
     var debugDescription: String {
         switch self {
@@ -62,6 +64,11 @@ enum APIError: Error {
             return "service.request.page.not.found".localized()
         case .genericError(let error):
             return error.localizedDescription
+        case .profileNotUpdated:
+            return "error.profile.not.updated.title".localized()
+        case .profileNameAlreadyExists:
+            return "eerror.profile.user.name.not.exists".localized()
+
 
         }
     }

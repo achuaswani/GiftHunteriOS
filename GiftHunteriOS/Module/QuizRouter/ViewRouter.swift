@@ -12,21 +12,25 @@ enum Page {
     case resultView
     case questionView
     case createQuizView
+    case userResultsView
 }
 
 class ViewRouter: ObservableObject {
     @Published var currentPage: Page
-    @Published var userName: String?
     @Published var nextPage: Page?
     @Published var quiz: Quiz?
+    @Published var pin: String?
+    @Published var scoreBoardId: String?
     init(currentPage: Page,
-         userName: String? = nil,
          nextPage: Page? = nil,
-         quiz: Quiz? = nil) {
+         quiz: Quiz? = nil,
+         pin: String? = nil,
+         scoreBoardId: String? = nil) {
         self.currentPage = currentPage
-        self.userName = userName
         self.nextPage = nextPage
         self.quiz = quiz
+        self.pin = pin
+        self.scoreBoardId = scoreBoardId
     }
 
 }

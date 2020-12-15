@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct DisplayPicture: View {
-    @State var user: User
     @State var image: Image = Image("noImage")
+    @State var imageURL: URL?
     @State var isShowPicker: Bool = false
+    @EnvironmentObject var firebaseDataservice: FirebaseDataService
+    
     var body: some View {
         HStack {
-            getImageFromURL(url: user.photoURL)
+            getImageFromURL(url: URL(string: firebaseDataservice.profile?.userDisplayPicture ?? ""))
                 .clipShape(Circle())
                 .overlay(Circle().stroke(Color.white, lineWidth: 4))
                 .shadow(radius: 7)
@@ -29,7 +31,12 @@ struct DisplayPicture: View {
             .padding()
             .aspectRatio(contentMode: .fit)
             .sheet(isPresented: $isShowPicker) {
-                ImagePicker(image: self.$image, user: $user)
+                ImagePicker(image: $image, imageURL: $imageURL)
+                    .onDisappear {
+                        if let url = imageURL, firebaseDataservice.profile?.userDisplayPicture != url.absoluteString {
+                            firebaseDataservice.updateDisplayPicture(filePath: url)
+                        }
+                    }
             }
             .onTapGesture {
                 isShowPicker = true
@@ -37,9 +44,4 @@ struct DisplayPicture: View {
         )
     }
 }
-
-struct DisplayPicture_Previews: PreviewProvider {
-    static var previews: some View {
-        DisplayPicture(user: User.default)
-    }
-}
+ 

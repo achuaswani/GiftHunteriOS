@@ -11,28 +11,102 @@ import CodableFirebase
 import FirebaseStorage
 
 class FirebaseDataService: ObservableObject {
-    var databasePINReference = Database.database().reference().child(AppConstants.NODEACTIVEQUIZ)
-    var databaseQuestinsReference = Database.database().reference().child(AppConstants.NODEQUESTIONSLIST)
-    var userReference = Database.database().reference().child(AppConstants.NODEPROFILE)
-    var databaseScoreBoardReference = Database.database().reference().child(AppConstants.NODESCOREBOARDS)
-    var profileStorageReference = Storage.storage().reference().child(AppConstants.NODEPROFILE)
-
-
-    func updateDisplayPicture(filePath: URL, user: User) {
-        let dpStorageReference = profileStorageReference.child(user.uid).child("profile.jpg")
+    
+    var profileStorageReference = Storage.storage().reference().child(AppConstants.NODEUSERS)
+    var databaseUsersReference = Database.database().reference().child(AppConstants.NODEUSERS)
+    var userNamesReference = Database.database().reference().child(AppConstants.NODEUSERNAMES)
+    static let shared = FirebaseDataService()
+    
+    @Published var profile: Profile?
+    @Published var isProfileLoaded: Bool = false
+   
+    // MARK: Functions
+    func listen() {
+        retrieveData { data, error in
+            guard let profile = data else {
+                self.isProfileLoaded = false
+                return
+            }
+            self.profile = profile
+            self.isProfileLoaded = true
+        }
+    }
+    
+    func clearData() {
+        self.profile = nil
+        isProfileLoaded = false
+    }
+    
+    // MARK: - Upload image to backend
+    func updateDisplayPicture(filePath: URL) {
+        guard let userId = profile?.userId else {
+            return
+        }
+        let dpStorageReference = profileStorageReference.child(userId).child("profile.jpg")
         dpStorageReference.putFile(from: filePath, metadata: nil) { metadata, error in
-          guard let _ = metadata else {
+          guard metadata  != nil else {
             return
           }
           dpStorageReference.downloadURL { (url, error) in
                 guard let downloadURL = url else {
                   return
                 }
-                FirebaseSession().updateUserDetails(userName: user.displayName, profilePicture: downloadURL) {_ in }
+                self.profile?.userDisplayPicture = downloadURL.absoluteString
+                guard let profile = self.profile else {
+                    return
+                }
+                self.updateProfile(userValue: profile) { error in
+                    if error != nil {
+                        print(error.debugDescription)
+                    }
+                }
           }
         }
     }
+    
+    func updateProfile(userValue: Profile, handler: @escaping (Error?) -> Void) {
+        guard let currentUser = Auth.auth().currentUser else { return }
+        let databbase = databaseUsersReference.child(currentUser.uid)
+        do {
+            let data = try FirebaseEncoder().encode(userValue)
+            databbase.setValue(data) { error, _ in
+                self.profile = userValue
+                handler(error)
+            }
+        } catch {
+            debugPrint("Error")
+        }
+    }
+    
+    func updateToUserNamesList() {
+        guard let profile = profile else {
+            return
+        }
+        userNamesReference.child(profile.userName).setValue(profile.userId)
+    }
+    
+    func retrieveData(handler: @escaping (Profile?, Error?) -> Void) {
+        guard let currentUser = Auth.auth().currentUser else { return }
+        let currentUserRef = databaseUsersReference.child(currentUser.uid)
+        currentUserRef.observeSingleEvent(of: .value, with: { snapshot in
+            guard let value = snapshot.value else { return }
+            do {
+                self.profile = try FirebaseDecoder().decode(Profile.self, from: value)
+                handler(self.profile, nil)
+            } catch let error {
+                debugPrint(error)
+                handler(nil, error)
+            }
+        })
+    }
 
+}
+
+class QuizService {
+    var databasePINReference = Database.database().reference().child(AppConstants.NODEACTIVEQUIZ)
+    var databaseQuestinsReference = Database.database().reference().child(AppConstants.NODEQUESTIONSLIST)
+    var databaseScoreBoardReference = Database.database().reference().child(AppConstants.NODESCOREBOARDS)
+    
     // MARK: - Quiz details
     func fetchQuestions(quizId: String, handler: @escaping ([Question]?, Error?) -> Void) {
         let questionsReference = databaseQuestinsReference.child(quizId)
@@ -69,6 +143,18 @@ class FirebaseDataService: ObservableObject {
         })
     }
     
+    // MARK: - Create New Quiz
+    func createNewQuiz(pin: String, quiz: Quiz) {
+        databasePINReference.child(pin).setValue(quiz) { (error: Error?, ref: DatabaseReference) in
+            if let error = error {
+              print("Data could not be saved: \(error).")
+            } else {
+              print("Data saved successfully!")
+            }
+          }
+    }
+    
+    
     // MARK: - Fetch Scoreboard
     
     func fetchScoreBoard(scoreBoardId: String, handler: @escaping ([ScoreBoard]?) -> Void) {
@@ -92,6 +178,20 @@ class FirebaseDataService: ObservableObject {
                 }
             }
             handler(scoreBoard)
+        })
+    }
+    
+    func fetchScoreOfUser(userName: String, scoreBoardId: String, handler: @escaping (Int?) -> Void) {
+        databaseScoreBoardReference
+            .child(scoreBoardId)
+            .child(userName)
+            .child("score")
+            .observeSingleEvent(of: .value, with: { snapshot in
+                guard let value = snapshot.value as? Int else {
+                    handler(nil)
+                    return
+                }
+                handler(value)
         })
     }
     

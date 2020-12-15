@@ -12,35 +12,29 @@ struct ImagePicker: UIViewControllerRepresentable {
 
     @Environment(\.presentationMode)
     var presentationMode
-
     @Binding var image: Image
-    @Binding var user: User
-
+    @Binding var imageURL: URL?
     class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
         @Binding var presentationMode: PresentationMode
         @Binding var image: Image
-        @Binding var user: User
-
+        @Binding var imageURL: URL?
         init(
             presentationMode: Binding<PresentationMode>,
             image: Binding<Image>,
-            user: Binding<User>) {
+            imageURL: Binding<URL?>) {
             _presentationMode = presentationMode
             _image = image
-            _user = user
+            _imageURL = imageURL
         }
 
         func imagePickerController(_ picker: UIImagePickerController,
                                    didFinishPickingMediaWithInfo
                                     info: [UIImagePickerController.InfoKey: Any]) {
-            let imageURL = info[UIImagePickerController.InfoKey.imageURL] as? URL
+            imageURL = info[UIImagePickerController.InfoKey.imageURL] as? URL
             if let uiImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
                 self.image = Image(uiImage: uiImage)
             }
-
-            if let url = imageURL {
-                FirebaseDataService().updateDisplayPicture(filePath: url, user: user)
-            }
+            
             presentationMode.dismiss()
 
         }
@@ -52,7 +46,7 @@ struct ImagePicker: UIViewControllerRepresentable {
     }
 
     func makeCoordinator() -> Coordinator {
-        return Coordinator(presentationMode: presentationMode, image: $image, user: $user)
+        return Coordinator(presentationMode: presentationMode, image: $image, imageURL: $imageURL)
     }
 
     func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {

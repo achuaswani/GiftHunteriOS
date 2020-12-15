@@ -8,31 +8,34 @@
 import SwiftUI
 
 struct HomeView: View {
-    @EnvironmentObject var session: FirebaseSession
-    
     @State var shouldShowAlert = false
     @State var page: Page = .questionView
     @State private var textEntered = ""
     @ObservedObject var viewModel = HomeViewModel()
+    @EnvironmentObject var firebaseDataservice: FirebaseDataService
     
     @ViewBuilder
     var body: some View {
         VStack {
-            MapView()
-              .frame(height: 200)
-              .edgesIgnoringSafeArea(.all)
-            
-            if let user = session.user, let userName = user.displayName {
-                DisplayPicture(user: user)
-                    .offset(y: -130)
-                    .padding([.top, .bottom], -120)
-                Text("dashboard.header.welcome.title".localized(with: userName))
+            if let profile = firebaseDataservice.profile {
+                DisplayPicture()
+                    .frame(height: 200)
+                    .padding(.top, 30)
+                    Text("dashboard.header.welcome.title".localized(with: profile.userName))
                     .foregroundColor(Color.black)
                     .font(.system(size: 16, weight: .bold, design: .rounded))
-                    .padding([.top, .bottom], 0)
+                    .padding([.top, .bottom], 20)
+                
+    //            NavigationLink(destination: DisplayPicture(profile: $viewModel.profile),
+    //                                                       isActive: $shouldShowAlert) {
+    //                Button("action") {
+    //                    shouldShowAlert = true
+    //                }
+    //            }
                 ScrollView {
-                    ForEach(viewModel.viewList, id: \.self) { viewList in
-                            showNavigationButton(viewList: viewList, userName: userName)
+                    ForEach(firebaseDataservice.profile?.role.rawValue == Role.admin.rawValue ?
+                                viewModel.adminViewList : viewModel.userViewList, id: \.self) { viewList in
+                        showNavigationButton(viewList: viewList)
                                 .shadow(color: Color.black.opacity(0.16), radius: 5, x: 0, y: 5)
                                 .background(Color.white)
                                 .cornerRadius(15)
@@ -44,19 +47,19 @@ struct HomeView: View {
                 .background(Color("backgroundColor"))
             }
         }
+        .navigationBarHidden(true)
         .accessibility(identifier: "HomeView")
         .frame(maxWidth: .infinity)
-
     }
     
-    func showNavigationButton(viewList: ViewList, userName: String) -> AnyView {
+    func showNavigationButton(viewList: ViewList) -> AnyView {
         return AnyView(
             HStack {
                 NavigationLink(destination: HomeRouterView(
                                 viewRouter: ViewRouter(
-                                    currentPage: .pinView,
-                                    userName: userName,
-                                    nextPage: viewList.viewName))) {
+                                    currentPage: viewList.currentPage,
+                                    nextPage: viewList.nextPage
+                                ))) {
                     Image(viewList.imageName)
                         .resizable()
                         .frame(width: 120, height: 150)

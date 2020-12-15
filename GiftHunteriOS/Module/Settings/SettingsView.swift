@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @EnvironmentObject var session: FirebaseSession
+    @EnvironmentObject var firebaseDataService: FirebaseDataService
 
     var body: some View {
         VStack {
@@ -29,6 +30,7 @@ struct SettingsView: View {
             Label("Signout", systemImage: "power")
                 .onTapGesture {
                     session.logout()
+                    firebaseDataService.clearData()
                 }
         }
         .listStyle(SidebarListStyle())

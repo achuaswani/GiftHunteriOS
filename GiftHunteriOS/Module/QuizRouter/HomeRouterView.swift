@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeRouterView: View {
     @StateObject var viewRouter: ViewRouter
-    
+
     var body: some View {
         switch viewRouter.currentPage {
         case .pinView:
@@ -24,6 +24,9 @@ struct HomeRouterView: View {
         case .createQuizView:
             let viewModel = CreateQuizViewModel(viewRouter: viewRouter)
             CreateQuizView(viewModel: viewModel)
+        case .userResultsView:
+            let viewModel = UserResultsViewModel(viewRouter: viewRouter)
+            UserResultsView(viewModel: viewModel)
         }
     }
 }

@@ -26,36 +26,56 @@ class VerifyPINViewModel: ObservableObject {
     }
     @Published var quiz: Quiz?
     @Published var shouldShowAlert = false
-    var dataService = FirebaseDataService()
+    var dataService = QuizService()
     var alertProvder = AlertProvider()
-    
     @Published var viewRouter: ViewRouter
+    var firebaseDataService: FirebaseDataService?
 
     init(viewRouter: ViewRouter) {
         self.viewRouter = viewRouter
     }
     
-    func verifyPIN(pin: String) {
+    func verifyPIN(_ pin: String, firebaseDataService: FirebaseDataService) {
         guard !pin.isEmpty else {
-            self.displayAlert("alert.missing.pin.message".localized())
+            displayAlert("alert.missing.pin.message".localized())
             return
         }
+        
+        if firebaseDataService.profile?.quizPIN?.contains(pin) ?? false {
+            displayAlert("alert.already.exists.pin.your.list".localized())
+            return
+        }
+        viewRouter.pin = pin
         
         dataService.verifyQuizPIN(pin: pin) { [weak self] quizModel in
             guard  let self = self else {
                 return
             }
-            guard let quizModel = quizModel else {
+            if let quizModel = quizModel {
+                self.viewRouter.quiz = quizModel
+                if firebaseDataService.profile?.quizPIN == nil {
+                    firebaseDataService.profile?.quizPIN = [pin]
+                } else {
+                    firebaseDataService.profile?.quizPIN?.append(pin)
+                }
+                if let profile = firebaseDataService.profile {
+                    firebaseDataService.updateProfile(userValue: profile) { error in
+                        self.routeToNextPage()
+                    }
+                }
+                
+            } else {
                 self.displayAlert("alert.no.quiz.available.message".localized())
-                return
             }
-            self.viewRouter.quiz = quizModel
-           
-            guard let nextPage = self.viewRouter.nextPage else {
-                return
-            }
-            self.viewRouter.currentPage = nextPage
         }
+    }
+    
+    func routeToNextPage() {
+        guard let nextPage = self.viewRouter.nextPage else {
+            return
+        }
+        self.viewRouter.nextPage = .resultView
+        self.viewRouter.currentPage = nextPage
     }
     
     func displayAlert(_ message: String) {

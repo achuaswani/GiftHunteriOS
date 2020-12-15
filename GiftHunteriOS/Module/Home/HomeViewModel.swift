@@ -8,9 +8,39 @@
 import SwiftUI
 
 class HomeViewModel: ObservableObject {
-    @Published var viewList = [
-        ViewList(viewName: .questionView, buttonTitle: "quiz.start".localized(), imageName: "quiz"),
-        ViewList(viewName: .resultView, buttonTitle: "quiz.view.results".localized(), imageName: "results"),
-        ViewList(viewName: .createQuizView, buttonTitle: "quiz.view.create.quiz".localized(), imageName: "createQuiz")
+    let userViewList = [
+        ViewList(
+            currentPage: .pinView,
+            nextPage: .questionView,
+            buttonTitle: "quiz.start.button.title".localized(),
+            imageName: "quiz"
+        ),
+        ViewList(
+            currentPage: .userResultsView,
+            nextPage: .resultView,
+            buttonTitle: "quiz.results.button.title".localized(),
+            imageName: "results"
+        )
+    ]
+    
+    let adminViewList = [
+        ViewList(
+            currentPage: .pinView,
+            nextPage: .createQuizView,
+            buttonTitle: "quiz.create.button.title".localized(),
+            imageName: "createQuiz"
+        ),
+        ViewList(
+            currentPage: .pinView,
+            nextPage: .questionView,
+            buttonTitle: "quiz.view.active.button.title".localized(),
+            imageName: "quiz"
+        ),
+        ViewList(
+            currentPage: .userResultsView,
+            nextPage: .resultView,
+            buttonTitle: "quiz.results.button.title".localized(),
+            imageName: "results"
+        ),
     ]
 }

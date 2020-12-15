@@ -34,9 +34,12 @@
 		5B167E40258588190087DCD4 /* Window+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B167E3F258588190087DCD4 /* Window+Extension.swift */; };
 		5B18FB362585921A00069AE5 /* CreateQuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18FB352585921A00069AE5 /* CreateQuizView.swift */; };
 		5B18FB3B2585922300069AE5 /* CreateQuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18FB3A2585922300069AE5 /* CreateQuizViewModel.swift */; };
+		5B18FB402585E85C00069AE5 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18FB3F2585E85C00069AE5 /* Profile.swift */; };
 		5B1C23862583CCD000ADAE8D /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1C23852583CCD000ADAE8D /* HomeViewModel.swift */; };
-		5B1C23A82583EEAF00ADAE8D /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1C23A72583EEAF00ADAE8D /* MapView.swift */; };
 		5B1ECCCD24DE26EA0077BFBC /* FirebaseDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1ECCCC24DE26EA0077BFBC /* FirebaseDataService.swift */; };
+		5B2870BF2586B0FB00B1CE95 /* UserResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2870BE2586B0FB00B1CE95 /* UserResultsView.swift */; };
+		5B2870C42586B10800B1CE95 /* UserResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2870C32586B10800B1CE95 /* UserResultsViewModel.swift */; };
+		5B2870C92586CAFB00B1CE95 /* UserResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2870C82586CAFB00B1CE95 /* UserResult.swift */; };
 		5B6118FC258306980023AABE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B6118FB258306980023AABE /* GoogleService-Info.plist */; };
 		5B8A078C257C6FAB007EEBCE /* QuizResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A078B257C6FAB007EEBCE /* QuizResultView.swift */; };
 		5B8A0794257C6FD3007EEBCE /* QuizResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A0793257C6FD3007EEBCE /* QuizResultViewModel.swift */; };
@@ -128,9 +131,12 @@
 		5B167E3F258588190087DCD4 /* Window+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Window+Extension.swift"; sourceTree = "<group>"; };
 		5B18FB352585921A00069AE5 /* CreateQuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuizView.swift; sourceTree = "<group>"; };
 		5B18FB3A2585922300069AE5 /* CreateQuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuizViewModel.swift; sourceTree = "<group>"; };
+		5B18FB3F2585E85C00069AE5 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		5B1C23852583CCD000ADAE8D /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		5B1C23A72583EEAF00ADAE8D /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		5B1ECCCC24DE26EA0077BFBC /* FirebaseDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDataService.swift; sourceTree = "<group>"; };
+		5B2870BE2586B0FB00B1CE95 /* UserResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResultsView.swift; sourceTree = "<group>"; };
+		5B2870C32586B10800B1CE95 /* UserResultsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResultsViewModel.swift; sourceTree = "<group>"; };
+		5B2870C82586CAFB00B1CE95 /* UserResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResult.swift; sourceTree = "<group>"; };
 		5B6118FB258306980023AABE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5B8A078B257C6FAB007EEBCE /* QuizResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizResultView.swift; sourceTree = "<group>"; };
 		5B8A0793257C6FD3007EEBCE /* QuizResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizResultViewModel.swift; sourceTree = "<group>"; };
@@ -281,6 +287,8 @@
 				DAA0CFDF257B272A00346647 /* ScoreBoard.swift */,
 				DAA0CFE4257B2A1700346647 /* Quiz.swift */,
 				5B167E3325852F620087DCD4 /* ViewList.swift */,
+				5B18FB3F2585E85C00069AE5 /* Profile.swift */,
+				5B2870C82586CAFB00B1CE95 /* UserResult.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -317,6 +325,7 @@
 		5B1408E324DC9C5E003626EE /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				5B2870BD2586B0E300B1CE95 /* UserResults */,
 				5B18FB342585920700069AE5 /* CreateQuiz */,
 				5B9991EE2582F17000470B4C /* QuizRouter */,
 				5B9991C52582C1D700470B4C /* VerifyPIN */,
@@ -324,7 +333,6 @@
 				DABF309E253A944600E3DF28 /* Credentials */,
 				5BE4D1CC24DF6BF800C18A8E /* About */,
 				5B1408FE24DDC5EF003626EE /* Home */,
-				5B1408E624DC9D47003626EE /* Dashbaord */,
 				5B8A078A257C6F95007EEBCE /* QuizResult */,
 				5B1408F224DD1ABC003626EE /* Quiz */,
 				5B1408F524DD1AD1003626EE /* Settings */,
@@ -349,17 +357,10 @@
 			path = Register;
 			sourceTree = "<group>";
 		};
-		5B1408E624DC9D47003626EE /* Dashbaord */ = {
-			isa = PBXGroup;
-			children = (
-				5B1408E724DC9D57003626EE /* DashboardView.swift */,
-			);
-			path = Dashbaord;
-			sourceTree = "<group>";
-		};
 		5B1408ED24DD1A23003626EE /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				5B1408E724DC9D57003626EE /* DashboardView.swift */,
 				5B1408EE24DD1A33003626EE /* Sidebar.swift */,
 				5B1408F624DD1B31003626EE /* TabBar.swift */,
 			);
@@ -398,7 +399,6 @@
 				5BE4D1E024E0BD5400C18A8E /* DisplayPicture.swift */,
 				5B1408FF24DDC897003626EE /* HomeView.swift */,
 				5B1C23852583CCD000ADAE8D /* HomeViewModel.swift */,
-				5B1C23A72583EEAF00ADAE8D /* MapView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -410,6 +410,15 @@
 				5B18FB3A2585922300069AE5 /* CreateQuizViewModel.swift */,
 			);
 			path = CreateQuiz;
+			sourceTree = "<group>";
+		};
+		5B2870BD2586B0E300B1CE95 /* UserResults */ = {
+			isa = PBXGroup;
+			children = (
+				5B2870BE2586B0FB00B1CE95 /* UserResultsView.swift */,
+				5B2870C32586B10800B1CE95 /* UserResultsViewModel.swift */,
+			);
+			path = UserResults;
 			sourceTree = "<group>";
 		};
 		5B8A078A257C6F95007EEBCE /* QuizResult */ = {
@@ -773,6 +782,7 @@
 			files = (
 				5B1408E224DC9C55003626EE /* RegisterView.swift in Sources */,
 				5B8A079C257CD85D007EEBCE /* Status.swift in Sources */,
+				5B2870C42586B10800B1CE95 /* UserResultsViewModel.swift in Sources */,
 				DABF30852539F14F00E3DF28 /* AppConstants.swift in Sources */,
 				5B1C23862583CCD000ADAE8D /* HomeViewModel.swift in Sources */,
 				5BE4D1E124E0BD5400C18A8E /* DisplayPicture.swift in Sources */,
@@ -791,6 +801,8 @@
 				5B18FB3B2585922300069AE5 /* CreateQuizViewModel.swift in Sources */,
 				5B1408D024DC9B39003626EE /* User.swift in Sources */,
 				5B18FB362585921A00069AE5 /* CreateQuizView.swift in Sources */,
+				5B2870C92586CAFB00B1CE95 /* UserResult.swift in Sources */,
+				5B2870BF2586B0FB00B1CE95 /* UserResultsView.swift in Sources */,
 				DABF308A2539FB5800E3DF28 /* APIError.swift in Sources */,
 				5B1408F724DD1B31003626EE /* TabBar.swift in Sources */,
 				5B1408DC24DC9BFF003626EE /* View+Extension.swift in Sources */,
@@ -812,12 +824,12 @@
 				5B167E3425852F620087DCD4 /* ViewList.swift in Sources */,
 				DA3FF16A257C10430049106F /* QuestionsViewModel.swift in Sources */,
 				DA3FF172257C450F0049106F /* AlertProvider.swift in Sources */,
+				5B18FB402585E85C00069AE5 /* Profile.swift in Sources */,
 				5BE4D1CE24DF6C0900C18A8E /* AboutView.swift in Sources */,
 				DABF30AB253AA13B00E3DF28 /* ReuseablePublic.swift in Sources */,
 				5B1408E024DC9C46003626EE /* LoginView.swift in Sources */,
 				DA3FF16C257C10A00049106F /* QuestionsView.swift in Sources */,
 				DAA0CFE0257B272A00346647 /* ScoreBoard.swift in Sources */,
-				5B1C23A82583EEAF00ADAE8D /* MapView.swift in Sources */,
 				5B1408EF24DD1A33003626EE /* Sidebar.swift in Sources */,
 				5B9991C72582C1E900470B4C /* VerifyPINView.swift in Sources */,
 				5B1408A124DC9A1B003626EE /* GiftHunteriOSApp.swift in Sources */,
@@ -902,7 +914,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -964,7 +976,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -999,7 +1011,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_ENTITLEMENTS = GiftHunteriOS/GiftHunteriOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"GiftHunteriOS/Preview Content\"";
@@ -1025,7 +1037,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_ENTITLEMENTS = GiftHunteriOS/GiftHunteriOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"GiftHunteriOS/Preview Content\"";
