@@ -27,8 +27,8 @@ struct AsyncImage<Placeholder: View>: View {
 
     private var image: some View {
         Group {
-            if loader.image != nil {
-                Image(uiImage: loader.image!)
+            if let uiImage = loader.image {
+                Image(uiImage: uiImage)
                     .resizable()
             } else {
                 placeholder

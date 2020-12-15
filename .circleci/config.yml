@@ -1,7 +1,7 @@
 
 # iOS CircleCI 2.0 configuration file
 #
-version: 1.0
+version: 2.0
 jobs:
   build-and-test:
     macos:

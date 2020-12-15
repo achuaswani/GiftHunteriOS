@@ -15,19 +15,22 @@ struct DisplayPicture: View {
     
     var body: some View {
         HStack {
-            getImageFromURL(url: URL(string: firebaseDataservice.profile?.userDisplayPicture ?? ""))
+            getImageFromURL(url: firebaseDataservice.profile?.userDisplayPicture ?? "")
                 .clipShape(Circle())
                 .overlay(Circle().stroke(Color.white, lineWidth: 4))
                 .shadow(radius: 7)
         }
     }
 
-    func getImageFromURL(url: URL?) -> AnyView {
-        return  AnyView(AsyncImage(
-                       url: url,
-                       placeholder: image.resizable().aspectRatio(contentMode: .fit)
-                        .foregroundColor(Color.black)
-                   )
+    func getImageFromURL(url: String) -> AnyView {
+        return  AnyView(
+            AsyncImage(
+                url: URL(string: url),
+                placeholder: image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .foregroundColor(Color.black)
+            )
             .padding()
             .aspectRatio(contentMode: .fit)
             .sheet(isPresented: $isShowPicker) {

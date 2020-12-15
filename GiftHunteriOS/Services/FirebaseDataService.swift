@@ -99,7 +99,6 @@ class FirebaseDataService: ObservableObject {
             }
         })
     }
-
 }
 
 class QuizService {

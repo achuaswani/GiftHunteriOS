@@ -34,9 +34,9 @@ class ImageLoader: ObservableObject {
                 UIImage(data: $0.data)
 
         }
-            .replaceError(with: nil)
-            .receive(on: DispatchQueue.main)
-            .assign(to: \.image, on: self)
+        .replaceError(with: nil)
+        .receive(on: DispatchQueue.main)
+        .assign(to: \.image, on: self)
     }
 
     func cancel() {

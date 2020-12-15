@@ -299,7 +299,6 @@
 				DABF30892539FB5800E3DF28 /* APIError.swift */,
 				5B1408CC24DC9A68003626EE /* FirebaseSession.swift */,
 				5B1ECCCC24DE26EA0077BFBC /* FirebaseDataService.swift */,
-				5B1408D224DC9B58003626EE /* ImageLoader.swift */,
 				5B8A079B257CD85D007EEBCE /* Status.swift */,
 			);
 			path = Services;
@@ -325,6 +324,7 @@
 		5B1408E324DC9C5E003626EE /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				5BE0F300258875E9008FCF10 /* AsyncImage */,
 				5B2870BD2586B0E300B1CE95 /* UserResults */,
 				5B18FB342585920700069AE5 /* CreateQuiz */,
 				5B9991EE2582F17000470B4C /* QuizRouter */,
@@ -458,13 +458,21 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		5BE0F300258875E9008FCF10 /* AsyncImage */ = {
+			isa = PBXGroup;
+			children = (
+				5BE4D1CF24DF6CD400C18A8E /* ImagePicker.swift */,
+				5B1408D224DC9B58003626EE /* ImageLoader.swift */,
+				5B1408D424DC9B58003626EE /* AsyncImage.swift */,
+			);
+			path = AsyncImage;
+			sourceTree = "<group>";
+		};
 		5BE4D1BC24DE65BD00C18A8E /* Library */ = {
 			isa = PBXGroup;
 			children = (
 				5BE4D1BF24DF1D2B00C18A8E /* Toast.swift */,
 				5BE4D1BD24DE65D100C18A8E /* CloseButton.swift */,
-				5BE4D1CF24DF6CD400C18A8E /* ImagePicker.swift */,
-				5B1408D424DC9B58003626EE /* AsyncImage.swift */,
 				DA3FF171257C450F0049106F /* AlertProvider.swift */,
 			);
 			path = Library;
