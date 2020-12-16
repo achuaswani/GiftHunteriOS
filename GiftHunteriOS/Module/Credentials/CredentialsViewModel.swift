@@ -16,18 +16,18 @@ class CredentialsViewModel: ObservableObject {
     @Published var title: String = ""
     @Published var displayName = ""
     @Published var selectedType: Role = .admin
+    @Published var isProfileCreationSucceed = false
     var loginView: Bool = false
-    var session: FirebaseSession
+    var session: FirebaseSession?
     var emailRegistered = false
     var firebaseDataService: FirebaseDataService?
+   
 
-    init(session: FirebaseSession, loginView: Bool) {
-        self.session = session
+    init( loginView: Bool) {
         self.loginView = loginView
         if loginView {
             title = "login.button.login.title".localized()
         } else {
-            session.cancelListening()
             title = "login.button.register.title".localized()
         }
     }
@@ -36,8 +36,9 @@ class CredentialsViewModel: ObservableObject {
         selectedType = item
     }
 
-    func buttonAction(dataService: FirebaseDataService) {
+    func buttonAction(dataService: FirebaseDataService, firebaseSession: FirebaseSession) {
         firebaseDataService = dataService
+        session = firebaseSession
         Monitor().startMonitoring { [weak self] _, reachable in
             guard let self = self else { return }
             guard self.validateFields(reachable) else {
@@ -49,12 +50,22 @@ class CredentialsViewModel: ObservableObject {
 
     func sendAuthenticationRequest() {
         if loginView {
-            session.login(email: email, password: password) { [weak self] (result: Result<Bool, APIError>) in
+            session?.login(email: email, password: password) { [weak self] (result: Result<Bool, APIError>) in
                 guard let self = self else {
                     return
                 }
                 switch result {
                 case .success:
+                    if let uid  = self.session?.user?.uid {
+                        self.firebaseDataService?.retrieveData(uid) { profile, error in
+                            if profile != nil {
+                                self.isProfileCreationSucceed = true
+                            } else {
+                                self.updateErrorMessage(error.debugDescription)
+                            }
+                        }
+                    }
+                    
                     break
                 case .failure(let error):
                     self.updateErrorMessage(error.debugDescription)
@@ -64,7 +75,11 @@ class CredentialsViewModel: ObservableObject {
             guard self.validateRegisteration() else {
                 return
             }
-            registerUser()
+            if emailRegistered {
+                createProfile()
+            } else {
+                registerUser()
+            }
         }
     }
     
@@ -75,20 +90,19 @@ class CredentialsViewModel: ObservableObject {
             }
             switch result {
             case .success:
+                self.emailRegistered = true
                 self.createProfile()
             case .failure(let error):
                 self.updateErrorMessage(error.debugDescription)
             }
-            
         }
-        self.session.register(email: self.email,
+        self.session?.register(email: self.email,
                               password: self.password,
                               handler: profileUpdateHandler)
-        
     }
     
     func createProfile() {
-        guard let user = session.user else {
+        guard let user = session?.user else {
             return
         }
         let profile = Profile(userName: self.displayName, userId: user.uid, role: selectedType, quizPIN: [])
@@ -96,7 +110,7 @@ class CredentialsViewModel: ObservableObject {
             if error != nil {
                 self.updateErrorMessage(APIError.profileNotUpdated.debugDescription)
             } else {
-                self.session.listen()
+                self.isProfileCreationSucceed = true
                 self.firebaseDataService?.updateToUserNamesList()
             }
         }

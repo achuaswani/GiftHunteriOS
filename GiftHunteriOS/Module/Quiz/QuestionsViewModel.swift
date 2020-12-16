@@ -29,6 +29,8 @@ class QuestionsViewModel: ObservableObject {
     @Published var showToastMessage = false
     @Published var showProgressView = false
     @Published var toastMessage = ""
+    @Published var progress: Float = 0.5
+    
     var alertProvder = AlertProvider()
     
     @Published var viewRouter: ViewRouter
@@ -120,6 +122,7 @@ class QuestionsViewModel: ObservableObject {
     func updateScore() {
         let scoreAlgorithm = (timeRemaining * AppConstants.POINTSMULTIPLIER)
         score += scoreAlgorithm
+        progress = Float(questionNumber) / Float(questions.count - 1)
         updateScoreToBackend()
         let scoreText = String(self.score)
         async { [weak self] in

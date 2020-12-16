@@ -25,7 +25,7 @@ platform :ios do
   end
   lane :uitests do
     run_tests(workspace: "GiftHunteriOS.xcworkspace",
-            devices: ["iPhone 6s"],
+            devices: ["iPhone X"],
             scheme: "GiftHunteriOSUITests")
   end
 end

@@ -52,6 +52,7 @@
 		5BC0E3B8257DF115001A6960 /* HomeRouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC0E3B7257DF115001A6960 /* HomeRouterView.swift */; };
 		5BC0E3BD257DF147001A6960 /* ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC0E3BC257DF147001A6960 /* ViewRouter.swift */; };
 		5BC0E3C2257E05BC001A6960 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC0E3C1257E05BC001A6960 /* LoadingView.swift */; };
+		5BCA9CC1258A940300B54022 /* QuizService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCA9CC0258A940300B54022 /* QuizService.swift */; };
 		5BE4D1BE24DE65D100C18A8E /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE4D1BD24DE65D100C18A8E /* CloseButton.swift */; };
 		5BE4D1C024DF1D2B00C18A8E /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE4D1BF24DF1D2B00C18A8E /* Toast.swift */; };
 		5BE4D1C824DF546000C18A8E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5BE4D1CA24DF546000C18A8E /* Localizable.strings */; };
@@ -149,6 +150,7 @@
 		5BC0E3B7257DF115001A6960 /* HomeRouterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouterView.swift; sourceTree = "<group>"; };
 		5BC0E3BC257DF147001A6960 /* ViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRouter.swift; sourceTree = "<group>"; };
 		5BC0E3C1257E05BC001A6960 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		5BCA9CC0258A940300B54022 /* QuizService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizService.swift; sourceTree = "<group>"; };
 		5BE4D1BD24DE65D100C18A8E /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
 		5BE4D1BF24DF1D2B00C18A8E /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Toast.swift; path = ../Utilities/Toast.swift; sourceTree = "<group>"; };
 		5BE4D1C924DF546000C18A8E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 				5B1408CC24DC9A68003626EE /* FirebaseSession.swift */,
 				5B1ECCCC24DE26EA0077BFBC /* FirebaseDataService.swift */,
 				5B8A079B257CD85D007EEBCE /* Status.swift */,
+				5BCA9CC0258A940300B54022 /* QuizService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -794,6 +797,7 @@
 				DABF30852539F14F00E3DF28 /* AppConstants.swift in Sources */,
 				5B1C23862583CCD000ADAE8D /* HomeViewModel.swift in Sources */,
 				5BE4D1E124E0BD5400C18A8E /* DisplayPicture.swift in Sources */,
+				5BCA9CC1258A940300B54022 /* QuizService.swift in Sources */,
 				5B1408E824DC9D57003626EE /* DashboardView.swift in Sources */,
 				5BC0E3C2257E05BC001A6960 /* LoadingView.swift in Sources */,
 				5B1408FC24DD204C003626EE /* AccountSettingsView.swift in Sources */,

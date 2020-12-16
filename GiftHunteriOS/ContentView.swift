@@ -13,14 +13,8 @@ struct ContentView: View {
 
     var body: some View {
         Group {
-            if session.isLoggedIn {
-                Group {
-                    if dataService.profile != nil {
-                        DashboardView()
-                    } else {
-                        LoginView()
-                    }
-                }.onAppear(perform: gerProfile)
+            if session.isLoggedIn, dataService.isProfileLoaded {
+                DashboardView()
             } else {
                 LoginView()
             }
@@ -28,13 +22,12 @@ struct ContentView: View {
         .navigationBarHidden(true)
         .onAppear(perform: getUser)
     }
-
-    func getUser() {
-        session.listen()
-    }
     
-    func gerProfile() {
-        dataService.listen()
+    func getUser() {
+        session.getUser()
+        if let user = session.user {
+            dataService.listen(uid: user.uid)
+        }
     }
 }
 

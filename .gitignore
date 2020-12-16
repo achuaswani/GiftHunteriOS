@@ -17,4 +17,10 @@ Package.itmsp
 # app key
 GoogleService-Info.plist
 
+# fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
 .build

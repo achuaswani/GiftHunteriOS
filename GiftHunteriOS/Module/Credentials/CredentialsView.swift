@@ -11,10 +11,7 @@ struct CredentialsView: View {
     @ObservedObject var viewModel: CredentialsViewModel
     @State var showPassword = false
     @EnvironmentObject var firebaseDataService: FirebaseDataService
-
-    init(viewModel: CredentialsViewModel) {
-        self.viewModel = viewModel
-    }
+    @EnvironmentObject var session: FirebaseSession
 
     var body: some View {
         header
@@ -112,12 +109,18 @@ struct CredentialsView: View {
 
     var buttonView: some View {
         VStack {
-            Button(action: { viewModel.buttonAction(dataService: firebaseDataService) }) {
-                Text(viewModel.title)
-                    .frame(width: 300, height: 30)
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
-
-            }
+           // NavigationLink(destination: DashboardView(), isActive: $viewModel.isProfileCreationSucceed) {
+            Button(action: { viewModel.buttonAction(dataService: firebaseDataService, firebaseSession: session) }) {
+                    Text(viewModel.title)
+                        .frame(width: 300, height: 30)
+                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                    }
+                
+                /*Button(viewModel.title) {
+                    viewModel.buttonAction(dataService: firebaseDataService, firebaseSession: session)
+                }*/
+ 
+            //}
             .buttonStyle(BaseButtonStyle())
             .accessibility(identifier: "button")
             .padding([.top, .bottom], 50)

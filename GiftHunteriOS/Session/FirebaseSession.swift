@@ -15,36 +15,26 @@ class FirebaseSession: ObservableObject {
 
     // MARK: Properties
     @Published var user: User?
-    @Published var isLoggedIn: Bool = false
-    var authListener: AuthStateDidChangeListenerHandle?
+    @Published var isLoggedIn: Bool = Auth.auth().currentUser != nil
     
     // MARK: Functions
-    func listen() {
-        authListener = Auth.auth().addStateDidChangeListener { (_, user) in
-            if let user = user {
-                self.user = User(
-                    uid: user.uid,
-                    email: user.email
-                )
-                self.isLoggedIn = true
-                self.setUserIdToCrashlytics(user.uid)
-            } else {
-                self.isLoggedIn = false
-                self.user = nil
-            }
+    func getUser() {
+        if let user = Auth.auth().currentUser {
+            self.user = User(
+                uid: user.uid,
+                email: user.email
+            )
+            self.isLoggedIn = true
+            self.setUserIdToCrashlytics(user.uid)
+        } else {
+            self.user = nil
         }
-    }
-    
-    func cancelListening() {
-        guard let authListener = authListener else {
-            return
-        }
-        Auth.auth().removeStateDidChangeListener(authListener)
     }
 
     func login(email: String, password: String, handler: @escaping(Result<Bool, APIError>) -> Void) {
-        Auth.auth().signIn(withEmail: email, password: password) { user, error in
-            if user != nil {
+        Auth.auth().signIn(withEmail: email, password: password) { response, error in
+            if let user = response?.user {
+                self.user = User(uid: user.uid, email: user.email)
                 handler(.success(true))
             } else {
                 if let error = error, let errCode = Status(rawValue: error._code) {
