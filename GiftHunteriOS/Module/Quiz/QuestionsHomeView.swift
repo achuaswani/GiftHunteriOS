@@ -59,6 +59,6 @@ struct QuestionsHomeView: View {
 
 struct QuestionsHomeView_Previews: PreviewProvider {
     static var previews: some View {
-        QuestionsHomeView(viewModel: QuestionsViewModel(viewRouter: ViewRouter(currentPage: .questionView, nextPage: .resultView)))
+        QuestionsHomeView(viewModel: QuestionsViewModel(viewRouter: ViewRouter(currentPage: .questionView, nextPage: .resultView), firebaseDataService: FirebaseDataService()))
     }
 }

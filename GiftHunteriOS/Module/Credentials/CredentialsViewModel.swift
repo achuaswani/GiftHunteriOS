@@ -65,8 +65,6 @@ class CredentialsViewModel: ObservableObject {
                             }
                         }
                     }
-                    
-                    break
                 case .failure(let error):
                     self.updateErrorMessage(error.debugDescription)
                 }

@@ -18,4 +18,12 @@ struct Question: Codable {
         options: ["", "", "", ""],
         media: ""
     )
+    
+    func getQuizDictionary() -> [String: Any] {
+        return ["id": self.id,
+                "questionText": self.questionText,
+                "options": self.options,
+                "answer": self.answer,
+                "media": self.media]
+    }
 }

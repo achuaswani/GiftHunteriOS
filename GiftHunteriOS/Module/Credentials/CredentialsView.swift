@@ -109,18 +109,14 @@ struct CredentialsView: View {
 
     var buttonView: some View {
         VStack {
-           // NavigationLink(destination: DashboardView(), isActive: $viewModel.isProfileCreationSucceed) {
-            Button(action: { viewModel.buttonAction(dataService: firebaseDataService, firebaseSession: session) }) {
-                    Text(viewModel.title)
-                        .frame(width: 300, height: 30)
-                        .font(.system(size: 16, weight: .bold, design: .rounded))
-                    }
-                
-                /*Button(viewModel.title) {
+            Button(action: {
                     viewModel.buttonAction(dataService: firebaseDataService, firebaseSession: session)
-                }*/
- 
-            //}
+                }
+            ) {
+                Text(viewModel.title)
+                    .frame(width: 300, height: 30)
+                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                }
             .buttonStyle(BaseButtonStyle())
             .accessibility(identifier: "button")
             .padding([.top, .bottom], 50)

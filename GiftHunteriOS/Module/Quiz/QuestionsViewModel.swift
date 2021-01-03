@@ -10,7 +10,6 @@ import Combine
 import Foundation
 
 class QuestionsViewModel: ObservableObject {
-    private var dataService = QuizService()
     private var questionNumber: Int = 0
     private var questionId: String = ""
     private var previousQuestionId: String = ""
@@ -45,13 +44,18 @@ class QuestionsViewModel: ObservableObject {
         quiz?.quizDetails ?? ""
     }
     
-    init(viewRouter: ViewRouter) {
+    private let firebaseDataService: FirebaseDataService
+    private var dataService = QuizService()
+
+    init(viewRouter: ViewRouter, firebaseDataService: FirebaseDataService) {
+        self.viewRouter = viewRouter
+        self.firebaseDataService = firebaseDataService
         self.viewRouter = viewRouter
         self.quiz = viewRouter.quiz
     }
     
-    func updateData(_ name: String?) {
-        guard let name = name else {
+    func updateData() {
+        guard let name = firebaseDataService.profile?.userName else {
             return
         }
         userName = name
@@ -84,7 +88,7 @@ class QuestionsViewModel: ObservableObject {
                 title: "alert.something.went.wrong.title".localized(),
                 message: "alert.come.back.later.message".localized(),
                 primaryButtonText: "general.got.it.button.title".localized(),
-                primaryButtonAction: { 
+                primaryButtonAction: {
                     self?.shouldShowAlert = false
                 },
                 secondaryButtonText: "Cancel"

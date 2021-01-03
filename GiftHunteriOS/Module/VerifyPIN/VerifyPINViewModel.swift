@@ -8,34 +8,22 @@
 import SwiftUI
 
 class VerifyPINViewModel: ObservableObject {
-    var hinText: String {
-        switch viewRouter.nextPage {
-        case .createQuizView:
-            return "quiz.pin.creater.hint.text.title".localized()
-        default:
-            return "quiz.pin.enter.hint.text.title".localized()
-        }
-    }
-    var buttonText: String {
-        switch viewRouter.nextPage {
-        case.createQuizView:
-            return "general.create.button.title".localized()
-        default:
-            return "general.submit.button.title".localized()
-        }
-    }
+    var hinText: String = "quiz.pin.enter.hint.text.title".localized()
+    var buttonText: String = "general.submit.button.title".localized()
+    
     @Published var quiz: Quiz?
     @Published var shouldShowAlert = false
-    var dataService = QuizService()
-    var alertProvder = AlertProvider()
+    let alertProvder = AlertProvider()
     @Published var viewRouter: ViewRouter
-    var firebaseDataService: FirebaseDataService?
+    private var firebaseDataService: FirebaseDataService
+    private let dataService = QuizService()
 
-    init(viewRouter: ViewRouter) {
+    init(viewRouter: ViewRouter, firebaseDataService: FirebaseDataService) {
         self.viewRouter = viewRouter
+        self.firebaseDataService = firebaseDataService
     }
     
-    func verifyPIN(_ pin: String, firebaseDataService: FirebaseDataService) {
+    func verifyPIN(_ pin: String) {
         guard !pin.isEmpty else {
             displayAlert("alert.missing.pin.message".localized())
             return
@@ -47,23 +35,22 @@ class VerifyPINViewModel: ObservableObject {
         }
         viewRouter.pin = pin
         
-        dataService.verifyQuizPIN(pin: pin) { [weak self] quizModel in
+        dataService.getActiveQuiz(for: pin) { [weak self] quizModel in
             guard  let self = self else {
                 return
             }
             if let quizModel = quizModel {
                 self.viewRouter.quiz = quizModel
-                if firebaseDataService.profile?.quizPIN == nil {
-                    firebaseDataService.profile?.quizPIN = [pin]
+                if self.firebaseDataService.profile?.quizPIN == nil {
+                    self.firebaseDataService.profile?.quizPIN = [pin]
                 } else {
-                    firebaseDataService.profile?.quizPIN?.append(pin)
+                    self.firebaseDataService.profile?.quizPIN?.append(pin)
                 }
-                if let profile = firebaseDataService.profile {
-                    firebaseDataService.updateProfile(userValue: profile) { error in
+                if let profile = self.firebaseDataService.profile {
+                    self.firebaseDataService.updateProfile(userValue: profile) { error in
                         self.routeToNextPage()
                     }
                 }
-                
             } else {
                 self.displayAlert("alert.no.quiz.available.message".localized())
             }

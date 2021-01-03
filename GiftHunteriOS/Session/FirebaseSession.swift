@@ -27,6 +27,7 @@ class FirebaseSession: ObservableObject {
             self.isLoggedIn = true
             self.setUserIdToCrashlytics(user.uid)
         } else {
+            self.isLoggedIn = false
             self.user = nil
         }
     }
@@ -35,8 +36,10 @@ class FirebaseSession: ObservableObject {
         Auth.auth().signIn(withEmail: email, password: password) { response, error in
             if let user = response?.user {
                 self.user = User(uid: user.uid, email: user.email)
+                self.isLoggedIn = true
                 handler(.success(true))
             } else {
+                self.isLoggedIn = false
                 if let error = error, let errCode = Status(rawValue: error._code) {
                     switch errCode {
                     case .authErrorCodeWrongPassword:
@@ -65,8 +68,10 @@ class FirebaseSession: ObservableObject {
         Auth.auth().createUser(withEmail: email, password: password) { response, error in
             if let user = response?.user {
                 self.user = User(uid: user.uid, email: user.email)
+                self.isLoggedIn = true
                 handler(.success(true))
             } else {
+                self.isLoggedIn = false
                 if let error = error, let errCode = Status(rawValue: error._code) {
                     switch errCode {
                     case .authErrorCodeWrongPassword:

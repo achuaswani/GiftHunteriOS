@@ -18,4 +18,22 @@ struct Quiz: Codable, Hashable {
         scoreBoardId: "",
         hostId: ""
     )
+    
+    func getQuizDictionary() -> [String: String] {
+        return ["quizId": self.quizId,
+                "title": self.title,
+                "quizDetails": self.quizDetails,
+                "scoreBoardId": self.scoreBoardId,
+                "hostId": self.hostId
+        ]
+    }
+}
+
+struct QuizWithPIN: Hashable {
+    var pin: String
+    var quiz: Quiz
+    static let `default`  = Self(
+        pin: "",
+        quiz: Quiz.default
+    )
 }

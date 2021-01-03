@@ -9,7 +9,6 @@ import SwiftUI
 
 struct UserResultsView: View {
     @ObservedObject var viewModel: UserResultsViewModel
-    @EnvironmentObject var firebaseDataservice: FirebaseDataService
 
     var body: some View {
         VStack {
@@ -37,9 +36,16 @@ struct UserResultsView: View {
         .navigationBarTitle(viewModel.headerTitle, displayMode: .inline)
         .frame(maxWidth: .infinity)
         .background(Color("backgroundColor"))
+        .overlay(Group {
+            if viewModel.showProgressView {
+                    ProgressView()
+                }
+            }
+        )
         .onAppear {
-            viewModel.fetchAllAttendedQuizes(profile: firebaseDataservice.profile)
+            viewModel.fetchAllAttendedQuizzes()
         }
+        
     }
     
     func showUserResultViewContent(_ userResult: UserResult) -> AnyView {
@@ -60,10 +66,13 @@ struct UserResultsView: View {
                                 .padding(.horizontal, 30)
                         }
                         .padding(.vertical, 30)
-                        Text(String(userResult.score))
-                            .font(.system(size: 26, weight: .bold, design: .rounded))
-                            .foregroundColor(.black)
-                            .padding(.horizontal, 30)
+                        if viewModel.role == .user {
+                            Text(String(userResult.score))
+                                .font(.system(size: 26, weight: .bold, design: .rounded))
+                                .foregroundColor(.black)
+                                .padding(.horizontal, 30)
+                        }
+                            
                     }
                 }
                 .padding(5)
@@ -76,7 +85,7 @@ struct UserResultsView: View {
 struct UserResultsView_Previews: PreviewProvider {
     static var previews: some View {
         let viewRouter = ViewRouter(currentPage: .userResultsView, nextPage: .resultView)
-        let viewModel = UserResultsViewModel(viewRouter: viewRouter)
+        let viewModel = UserResultsViewModel(viewRouter: viewRouter, firebaseDataService: FirebaseDataService())
         UserResultsView(viewModel: viewModel)
     }
 }

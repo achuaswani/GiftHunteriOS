@@ -7,8 +7,8 @@
 
 import Foundation
 
-func async(closure: @escaping () -> Void) {
-    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+func async(deadline: Double = 0.5, closure: @escaping () -> Void) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + deadline) {
           closure()
      }
 }

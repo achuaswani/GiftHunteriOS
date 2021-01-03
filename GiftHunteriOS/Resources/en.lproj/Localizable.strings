@@ -30,7 +30,7 @@
 "quiz.start.button.title" = "Start Quiz";
 "quiz.results.button.title" = "View Results";
 "quiz.create.button.title" = "Create Quiz";
-"quiz.view.active.button.title" = "View Your Active Quizzes";
+"quiz.view.active.button.title" = "View/Create Quizzes";
 
 // MARK: - Settings
 "settings.list.item.logout" = "Logout";
@@ -71,6 +71,7 @@
 "alert.missing.pin.message" = "PIN is missing.";
 "alert.already.exists.pin.your.list" = "PIN already exists in your list";
 "alert.missing.profile.data.message" = "Missing profile data";
+"alert.quiz.already.available.message" = "Quiz is already available for this PIN. Please enter another PIN.";
 
 // MARK: - API Error Messages
 "service.response.session.error" = "Please try again! ";
@@ -111,3 +112,26 @@
 // MARK: - User Results view
 "user.result.no.results.text" = "No results to show. You haven't participated in any quiz yet.";
 "user.result.header.title" = "Quiz Results";
+
+// MARK: - Create quiz view
+"create.quiz.header.title" = "Create Quiz";
+"create.quiz.enter.title.hint.text" = "Enter quiz title";
+"create.quiz.enter.quiz.pin.hint.text" = "Enter quiz pin";
+"create.quiz.enter.quiz.details.text" = "Enter quiz details";
+"create.quiz.create.button.title" = "Create";
+"update.quiz.start.button.title" = "Update";
+
+// MARK: - Quiz list
+"quiz.list.no.results.text" = "No results to show. You haven't created any quizzes yet.";
+"quiz.list.header.title" = "Quiz List";
+"quiz.list.publish.quiz.title" = "Published Quizzes";
+"quiz.list.unpublish.quiz.title" = "Unpublished Quizzes";
+"quiz.list.publish.quiz.details" = "To edit your active quiz move it to inactive state";
+"quiz.list.unpublish.quiz.details" = "To publish your inactive quiz, click activate";
+"quiz.list.publish.button.title" = "Publish";
+"quiz.list.unpublish.button.title" = "Unpublish";
+
+// MARK: - Create question
+"create.question.enter.question.text" = "Enter Question";
+"create.question.enter.option.text" = "Enter option";
+"create.question.add.next.button.title" = "Add Next";

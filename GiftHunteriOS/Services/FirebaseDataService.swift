@@ -12,10 +12,9 @@ import FirebaseStorage
 
 class FirebaseDataService: ObservableObject {
     
-    var profileStorageReference = Storage.storage().reference().child(AppConstants.NODEUSERS)
-    var databaseUsersReference = Database.database().reference().child(AppConstants.NODEUSERS)
-    var userNamesReference = Database.database().reference().child(AppConstants.NODEUSERNAMES)
-    static let shared = FirebaseDataService()
+    private var profileStorageReference = Storage.storage().reference().child(AppConstants.NODEUSERS)
+    private var databaseUsersReference = Database.database().reference().child(AppConstants.NODEUSERS)
+    private var userNamesReference = Database.database().reference().child(AppConstants.NODEUSERNAMES)
     
     @Published var profile: Profile?
     @Published var isProfileLoaded: Bool = false

@@ -10,7 +10,6 @@ import SwiftUI
 struct VerifyPINView: View {
     @StateObject var viewModel: VerifyPINViewModel
     @State var pin = ""
-    @EnvironmentObject var firebaseDataService: FirebaseDataService
    
     var body: some View {
         VStack {
@@ -24,7 +23,7 @@ struct VerifyPINView: View {
                 .cornerRadius(20.0)
                 .shadow(radius: 5.0, x: 5, y: 5)
             Button(action: {
-                viewModel.verifyPIN(pin, firebaseDataService: firebaseDataService)
+                viewModel.verifyPIN(pin)
             }) {
                 Text(viewModel.buttonText)
                     .frame(width: 300, height: 30)
@@ -52,8 +51,15 @@ struct VerifyPINView: View {
 
 struct VerifyPINView_Previews: PreviewProvider {
     static var previews: some View {
-        VerifyPINView(viewModel: VerifyPINViewModel(
-                        viewRouter: ViewRouter(currentPage: .pinView,
-                                               nextPage: .questionView)))
+        VerifyPINView(
+            viewModel:
+                VerifyPINViewModel(
+                    viewRouter: ViewRouter(
+                        currentPage: .pinView,
+                        nextPage: .questionView
+                    ),
+                    firebaseDataService: FirebaseDataService()
+                )
+        )
     }
 }

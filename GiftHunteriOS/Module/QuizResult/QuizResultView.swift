@@ -30,6 +30,12 @@ struct QuizResultView: View {
         .edgesIgnoringSafeArea([.leading, .trailing])
         .background(Color("backgroundColor"))
         .navigationBarTitle(viewModel.headerTitle, displayMode: .inline)
+        .overlay(Group {
+            if viewModel.showProgressView {
+                    ProgressView()
+                }
+            }
+        )
     }
     
     var cardView: some View {
@@ -66,6 +72,6 @@ struct QuizResultView: View {
 struct QuizResultView_Previews: PreviewProvider {
     static var previews: some View {
         let viewRouter = ViewRouter(currentPage: .resultView)
-        QuizResultView(viewModel: QuizResultViewModel(viewRouter: viewRouter))
+        QuizResultView(viewModel: QuizResultViewModel(viewRouter: viewRouter, firebaseDataService: FirebaseDataService()))
     }
 }

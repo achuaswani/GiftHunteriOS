@@ -26,12 +26,6 @@ struct HomeView: View {
                     .font(.system(size: 16, weight: .bold, design: .rounded))
                     .padding([.top, .bottom], 20)
                 
-    //            NavigationLink(destination: DisplayPicture(profile: $viewModel.profile),
-    //                                                       isActive: $shouldShowAlert) {
-    //                Button("action") {
-    //                    shouldShowAlert = true
-    //                }
-    //            }
                 ScrollView {
                     ForEach(firebaseDataservice.profile?.role.rawValue == Role.admin.rawValue ?
                                 viewModel.adminViewList : viewModel.userViewList, id: \.self) { viewList in
@@ -55,11 +49,14 @@ struct HomeView: View {
     func showNavigationButton(viewList: ViewList) -> AnyView {
         return AnyView(
             HStack {
-                NavigationLink(destination: HomeRouterView(
-                                viewRouter: ViewRouter(
-                                    currentPage: viewList.currentPage,
-                                    nextPage: viewList.nextPage
-                                ))) {
+                NavigationLink(destination:
+                                HomeRouterView(
+                                    viewRouter: ViewRouter(
+                                        currentPage: viewList.currentPage,
+                                        nextPage: viewList.nextPage
+                                    )
+                                )
+                ) {
                     Image(viewList.imageName)
                         .resizable()
                         .frame(width: 120, height: 150)

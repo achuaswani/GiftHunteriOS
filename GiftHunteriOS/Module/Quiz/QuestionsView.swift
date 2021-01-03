@@ -10,7 +10,6 @@ import SwiftUI
 struct QuestionsView: View {
     
     @StateObject var viewModel: QuestionsViewModel
-    @EnvironmentObject var firebaseDataService: FirebaseDataService
     var body: some View {
             VStack(alignment: .center, spacing: 3.0) {
                 Text(viewModel.question.questionText)
@@ -41,7 +40,7 @@ struct QuestionsView: View {
                     }
                 })
             .onAppear {
-                viewModel.updateData(firebaseDataService.profile?.userName)
+                viewModel.updateData()
             }
     }
     
@@ -64,6 +63,6 @@ struct QuestionsView: View {
 
 struct QuestionsView_Previews: PreviewProvider {
     static var previews: some View {
-        QuestionsView(viewModel: QuestionsViewModel(viewRouter: ViewRouter(currentPage: .questionView, nextPage: .resultView)))
+        QuestionsView(viewModel: QuestionsViewModel(viewRouter: ViewRouter(currentPage: .questionView, nextPage: .resultView), firebaseDataService: FirebaseDataService()))
     }
 }

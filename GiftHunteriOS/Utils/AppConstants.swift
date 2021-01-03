@@ -22,6 +22,7 @@ struct AppConstants {
 
     // Firebase Nodes
     static let NODEACTIVEQUIZ = "ActiveQuiz"
+    static let NODEINACTIVEQUIZ = "InactiveQuiz"
     static let NODEUSERS = "Users"
     static let NODEUSERNAMES = "UserNames"
     static let NODEQUESTIONSLIST = "QuestionsList"

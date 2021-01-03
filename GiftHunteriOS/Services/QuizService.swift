@@ -9,7 +9,8 @@ import FirebaseDatabase
 import CodableFirebase
 
 class QuizService {
-    var databasePINReference = Database.database().reference().child(AppConstants.NODEACTIVEQUIZ)
+    var databaseActiveQuizReference = Database.database().reference().child(AppConstants.NODEACTIVEQUIZ)
+    var databaseInactiveQuizReference = Database.database().reference().child(AppConstants.NODEINACTIVEQUIZ)
     var databaseQuestinsReference = Database.database().reference().child(AppConstants.NODEQUESTIONSLIST)
     var databaseScoreBoardReference = Database.database().reference().child(AppConstants.NODESCOREBOARDS)
     
@@ -30,16 +31,33 @@ class QuizService {
     }
     
     // MARK: - Verify Quiz PIN
-    
-    func verifyQuizPIN(pin: String, handler: @escaping (Quiz?) -> Void) {
-        databasePINReference.observeSingleEvent(of: .value, with: { snapshot in
+    func checkIfPINExists(_ pin: String, handler: @escaping (Bool) -> Void) {
+        databaseActiveQuizReference.observeSingleEvent(of: .value, with: { snapshot in
             let snapshot = snapshot.childSnapshot(forPath: pin)
-            guard let value = snapshot.value else {
+            guard snapshot.exists() else {
+                handler(false)
+                return
+            }
+            self.databaseInactiveQuizReference.observeSingleEvent(of: .value, with: { inactiveSnapshot in
+                let inactiveSnapshot = inactiveSnapshot.childSnapshot(forPath: pin)
+                guard inactiveSnapshot.exists() else {
+                    handler(false)
+                    return
+                }
+                handler(true)
+            })
+        })
+    }
+    
+    // MARK: - Get Active Quiz
+    func getActiveQuiz(for pin: String, handler: @escaping (Quiz?) -> Void) {
+        databaseActiveQuizReference.observeSingleEvent(of: .value, with: { snapshot in
+            let snapshot = snapshot.childSnapshot(forPath: pin)
+            guard snapshot.exists(), let value = snapshot.value else {
                 handler(nil)
                 return
             }
             do {
-                
                 let quiz = try FirebaseDecoder().decode(Quiz.self, from: value)
                 handler(quiz)
             } catch let error {
@@ -49,17 +67,64 @@ class QuizService {
         })
     }
     
-    // MARK: - Create New Quiz
-    func createNewQuiz(pin: String, quiz: Quiz) {
-        databasePINReference.child(pin).setValue(quiz) { (error: Error?, ref: DatabaseReference) in
-            if let error = error {
-              print("Data could not be saved: \(error).")
-            } else {
-              print("Data saved successfully!")
+    // MARK: - Get Inactive Quiz
+    func getInactiveQuiz(for pin: String, handler: @escaping (Quiz?) -> Void) {
+        databaseInactiveQuizReference.observeSingleEvent(of: .value, with: { snapshot in
+            let snapshot = snapshot.childSnapshot(forPath: pin)
+            guard snapshot.exists(), let value = snapshot.value else {
+                handler(nil)
+                return
             }
-          }
+            do {
+                let quiz = try FirebaseDecoder().decode(Quiz.self, from: value)
+                handler(quiz)
+            } catch let error {
+                debugPrint(error.localizedDescription)
+                handler(nil)
+            }
+        })
     }
     
+    // MARK: - Move Active quiz to Inactive state
+    func inactivateQuiz(for quizDetails: QuizWithPIN, handler:  @escaping(Error?) -> Void) {
+        databaseInactiveQuizReference.child(quizDetails.pin).setValue(quizDetails.quiz.getQuizDictionary()) { (error: Error?, ref: DatabaseReference) in
+            if error == nil {
+                self.databaseActiveQuizReference.child(quizDetails.pin).removeValue()
+            }
+            handler(error)
+        }
+    }
+    
+    // MARK: - Move Inactive quiz to Active state
+    func activateQuiz(for quizDetails: QuizWithPIN, handler:  @escaping(Error?) -> Void) {
+        databaseActiveQuizReference.child(quizDetails.pin).setValue(quizDetails.quiz.getQuizDictionary()) { (error: Error?, ref: DatabaseReference) in
+            if error == nil {
+                self.databaseInactiveQuizReference.child(quizDetails.pin).removeValue()
+            }
+            handler(error)
+    
+        }
+    }
+    
+    // MARK: - Create New Quiz
+    
+    func updateQuiz(pin: String, quiz: Quiz, handler:  @escaping(Error?) -> Void) {
+        databaseInactiveQuizReference.child(pin).setValue(quiz.getQuizDictionary()) { (error: Error?, ref: DatabaseReference) in
+           handler(error)
+        }
+    }
+    
+    // MARK: - Create new Question
+    
+    func updateQuestion(quizId: String, questions: [Question], handler:  @escaping(Error?) -> Void) {
+        var questionsDictionaryArray = [[String: Any]]()
+        for question in questions {
+            questionsDictionaryArray.append(question.getQuizDictionary())
+        }
+        databaseQuestinsReference.child(quizId).setValue(questionsDictionaryArray) { (error: Error?, ref: DatabaseReference) in
+           handler(error)
+        }
+    }
     
     // MARK: - Fetch Scoreboard
     
@@ -101,6 +166,7 @@ class QuizService {
         })
     }
     
+    // MARK: - Update score
     func updateScoreToDatabase(name: String, score: Int, scoreBoardId: String) {
         databaseScoreBoardReference.child(scoreBoardId).child(name).child("score").setValue(score)
     }

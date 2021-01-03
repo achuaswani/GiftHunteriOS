@@ -25,22 +25,16 @@ class HomeViewModel: ObservableObject {
     
     let adminViewList = [
         ViewList(
-            currentPage: .pinView,
-            nextPage: .createQuizView,
-            buttonTitle: "quiz.create.button.title".localized(),
-            imageName: "createQuiz"
-        ),
-        ViewList(
-            currentPage: .pinView,
-            nextPage: .questionView,
+            currentPage: .quizListView,
+            nextPage: .questionsListView,
             buttonTitle: "quiz.view.active.button.title".localized(),
-            imageName: "quiz"
+            imageName: "createQuiz"
         ),
         ViewList(
             currentPage: .userResultsView,
             nextPage: .resultView,
             buttonTitle: "quiz.results.button.title".localized(),
             imageName: "results"
-        ),
+        )
     ]
 }

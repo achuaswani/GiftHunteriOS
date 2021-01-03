@@ -14,7 +14,7 @@ struct ViewList: Hashable {
     let imageName: String
     static let `default` = Self(
         currentPage: .pinView,
-        nextPage: .createQuizView,
+        nextPage: .quizListView,
         buttonTitle: "Title",
         imageName: "placeholder"
     )

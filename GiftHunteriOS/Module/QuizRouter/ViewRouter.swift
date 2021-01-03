@@ -11,7 +11,8 @@ enum Page {
     case pinView
     case resultView
     case questionView
-    case createQuizView
+    case questionsListView
+    case quizListView
     case userResultsView
 }
 
