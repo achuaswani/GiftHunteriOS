@@ -17,23 +17,22 @@ class FirebaseDataService: ObservableObject {
     private var userNamesReference = Database.database().reference().child(AppConstants.NODEUSERNAMES)
     
     @Published var profile: Profile?
-    @Published var isProfileLoaded: Bool = false
+    @Published var isProfileLoading: Bool = false
    
     // MARK: Functions
     func listen(uid: String) {
+        isProfileLoading = true
         retrieveData(uid) { data, error in
+            self.isProfileLoading = false
             guard let profile = data else {
-                self.isProfileLoaded = false
                 return
             }
             self.profile = profile
-            self.isProfileLoaded = true
         }
     }
     
     func clearData() {
         self.profile = nil
-        isProfileLoaded = false
     }
     
     // MARK: - Upload image to backend
@@ -69,7 +68,6 @@ class FirebaseDataService: ObservableObject {
             let data = try FirebaseEncoder().encode(userValue)
             databbase.setValue(data) { error, _ in
                 self.profile = userValue
-                self.isProfileLoaded = true
                 handler(error)
             }
         } catch {
@@ -91,7 +89,6 @@ class FirebaseDataService: ObservableObject {
             guard let value = snapshot.value else { return }
             do {
                 self.profile = try FirebaseDecoder().decode(Profile.self, from: value)
-                self.isProfileLoaded = true
                 handler(self.profile, nil)
             } catch let error {
                 debugPrint(error)

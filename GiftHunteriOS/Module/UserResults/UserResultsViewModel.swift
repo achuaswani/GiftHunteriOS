@@ -31,7 +31,7 @@ class UserResultsViewModel: ObservableObject {
         guard let profile = firebaseDataService.profile,
               let pinSet = profile.quizPIN,
               !pinSet.isEmpty else {
-            debugPrint("No quiz available")
+            noQuizResultText = role == .teacher ? "user.result.no.results.teacher.text".localized() : "user.result.no.results.student.text".localized()
             showProgressView = false
             return
         }
@@ -73,7 +73,7 @@ class UserResultsViewModel: ObservableObject {
                 async { [weak self] in
                     self?.showProgressView = false
                     self?.userResults = userResultsData
-                    self?.noQuizResultText = "user.result.no.results.text".localized()
+                    self?.noQuizResultText = self?.role == .teacher ? "user.result.no.results.teacher.text".localized() : "user.result.no.results.student.text".localized()
                 }
             }
         }

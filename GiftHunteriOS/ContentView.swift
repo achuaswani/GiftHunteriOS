@@ -10,15 +10,20 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject var session: FirebaseSession
     @EnvironmentObject var dataService: FirebaseDataService
-
     var body: some View {
         Group {
-            if session.isLoggedIn, dataService.isProfileLoaded {
+            if session.isLoggedIn {
                 DashboardView()
             } else {
                 LoginView()
             }
         }
+        .overlay(Group {
+            if dataService.isProfileLoading {
+                    ProgressView()
+                }
+            }
+        )
         .navigationBarHidden(true)
         .onAppear(perform: getUser)
     }

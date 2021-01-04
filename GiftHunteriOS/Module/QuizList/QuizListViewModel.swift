@@ -40,7 +40,7 @@ class QuizListViewModel: ObservableObject {
         guard let profile = firebaseDataService.profile,
               let pinSet = profile.quizPIN,
               !pinSet.isEmpty else {
-            debugPrint("No quiz available")
+            noQuizText = "quiz.list.no.results.text".localized()
             showProgressView = false
             return
         }

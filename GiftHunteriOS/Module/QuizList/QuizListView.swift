@@ -21,7 +21,7 @@ struct QuizListView: View {
             if viewModel.inactiveQuiz.isEmpty, viewModel.activeQuiz.isEmpty {
                 Spacer()
                 Text(viewModel.noQuizText)
-                    .font(.system(size: 24, weight: .bold, design: .rounded))
+                    .font(.system(size: 34, weight: .bold, design: .rounded))
                     .foregroundColor(.black)
                     .multilineTextAlignment(.center)
                     .padding([.leading, .trailing], 30)

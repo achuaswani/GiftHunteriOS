@@ -110,7 +110,8 @@
 "scoreboard.rank.title" = "Rank: ";
 
 // MARK: - User Results view
-"user.result.no.results.text" = "No results to show. You haven't participated in any quiz yet.";
+"user.result.no.results.teacher.text" = "No results to show. Nobody participated in any quizzes yet.";
+"user.result.no.results.student.text" = "No results to show. You haven't participated in any quizzes yet.";
 "user.result.header.title" = "Quiz Results";
 
 // MARK: - Create quiz view
