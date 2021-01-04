@@ -20,7 +20,7 @@ class QuizListViewModel: ObservableObject {
     @Published var inactiveQuiz = [QuizWithPIN]()
     @Published var activeQuiz = [QuizWithPIN]()
     @Published var showProgressView = false
-    @Published var noQuizResultText = ""
+    @Published var noQuizText = ""
 
     private let dataService = QuizService()
     var firebaseDataService: FirebaseDataService
@@ -78,7 +78,9 @@ class QuizListViewModel: ObservableObject {
             self?.inactiveQuiz = inactiveQuizData
             self?.activeQuiz = activeQuizData
             self?.showProgressView = false
-            self?.noQuizResultText = "quiz.list.no.results.text".localized()
+            if inactiveQuizData.isEmpty, activeQuizData.isEmpty {
+                self?.noQuizText = "quiz.list.no.results.text".localized()
+            }
         }
     }
     

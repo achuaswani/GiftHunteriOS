@@ -87,7 +87,7 @@ class FirebaseDataService: ObservableObject {
     
     func retrieveData(_ uid: String, handler: @escaping (Profile?, Error?) -> Void) {
         let currentUserRef = databaseUsersReference.child(uid)
-        currentUserRef.observeSingleEvent(of: .value, with: { snapshot in
+        currentUserRef.observe(.value, with: { snapshot in
             guard let value = snapshot.value else { return }
             do {
                 self.profile = try FirebaseDecoder().decode(Profile.self, from: value)

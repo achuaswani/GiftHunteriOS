@@ -24,7 +24,7 @@ struct QuestionsHomeView: View {
             Text(viewModel.questionCounterText)
                 .padding(.all, BaseSize.generalSpacing)
                 .font(.system(size: 14, weight: .bold, design: .rounded))
-            ProgressView(value: viewModel.progress)
+            //ProgressView(value: viewModel.progress)
             Text(viewModel.scoreText)
                 .padding(.all, BaseSize.generalSpacing)
                 .font(.system(size: 14, weight: .bold, design: .rounded))

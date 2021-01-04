@@ -20,7 +20,7 @@ class UserResultsViewModel: ObservableObject {
     init(viewRouter: ViewRouter, firebaseDataService: FirebaseDataService) {
         self.viewRouter = viewRouter
         self.firebaseDataService = firebaseDataService
-        self.role = firebaseDataService.profile?.role ?? .user
+        self.role = firebaseDataService.profile?.role ?? .student
     }
     
     func fetchAllAttendedQuizzes() {
@@ -50,7 +50,7 @@ class UserResultsViewModel: ObservableObject {
                             score: 0,
                             quizDetails: quizModel
                         )
-                        if self.role == .user {
+                        if self.role == .student {
                             group.enter()
                             self.dataService.fetchScoreOfUser(
                                 userName: profile.userName,

@@ -27,7 +27,7 @@ struct HomeView: View {
                     .padding([.top, .bottom], 20)
                 
                 ScrollView {
-                    ForEach(firebaseDataservice.profile?.role.rawValue == Role.admin.rawValue ?
+                    ForEach(firebaseDataservice.profile?.role.rawValue == Role.teacher.rawValue ?
                                 viewModel.adminViewList : viewModel.userViewList, id: \.self) { viewList in
                         showNavigationButton(viewList: viewList)
                                 .shadow(color: Color.black.opacity(0.16), radius: 5, x: 0, y: 5)

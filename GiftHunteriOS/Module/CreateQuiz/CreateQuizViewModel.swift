@@ -126,6 +126,15 @@ class CreateQuizViewModel: ObservableObject {
         }
     }
     
+    func deleteQuiz() {
+        guard let pin = quizWithPIN?.pin else {
+            return
+        }
+        dataService.deleteQuiz(for: pin) { [weak self] error in
+            self?.closePresenter()
+        }
+    }
+    
     func displayAlert(_ message: String) {
         async { [weak self] in
             self?.alertProvder.alert = AlertProvider.Alert(

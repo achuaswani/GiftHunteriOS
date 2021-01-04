@@ -66,7 +66,7 @@ struct UserResultsView: View {
                                 .padding(.horizontal, 30)
                         }
                         .padding(.vertical, 30)
-                        if viewModel.role == .user {
+                        if viewModel.role == .student {
                             Text(String(userResult.score))
                                 .font(.system(size: 26, weight: .bold, design: .rounded))
                                 .foregroundColor(.black)

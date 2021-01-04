@@ -15,7 +15,7 @@ class CredentialsViewModel: ObservableObject {
     @Published var showErrorMessage: Bool = false
     @Published var title: String = ""
     @Published var displayName = ""
-    @Published var selectedType: Role = .admin
+    @Published var selectedType: Role = .teacher
     @Published var isProfileCreationSucceed = false
     var loginView: Bool = false
     var session: FirebaseSession?

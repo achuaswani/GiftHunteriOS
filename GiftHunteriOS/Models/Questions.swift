@@ -5,14 +5,12 @@
 //  Created by Aswani G on 8/7/20.
 //
 
-struct Question: Codable {
-    var id: String
+struct Question: Codable, Hashable {
     var questionText: String
     var answer: String
     var options: [String]
     var media: String
     static let `default`  = Self(
-        id: "",
         questionText: "",
         answer: "",
         options: ["", "", "", ""],
@@ -20,10 +18,11 @@ struct Question: Codable {
     )
     
     func getQuizDictionary() -> [String: Any] {
-        return ["id": self.id,
-                "questionText": self.questionText,
-                "options": self.options,
-                "answer": self.answer,
-                "media": self.media]
+        return [
+            "questionText": self.questionText,
+            "options": self.options,
+            "answer": self.answer,
+            "media": self.media
+        ]
     }
 }

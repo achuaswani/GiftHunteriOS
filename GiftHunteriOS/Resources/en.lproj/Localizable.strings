@@ -114,7 +114,7 @@
 "user.result.header.title" = "Quiz Results";
 
 // MARK: - Create quiz view
-"create.quiz.header.title" = "Create Quiz";
+"create.quiz.header.title" = "Quiz Details";
 "create.quiz.enter.title.hint.text" = "Enter quiz title";
 "create.quiz.enter.quiz.pin.hint.text" = "Enter quiz pin";
 "create.quiz.enter.quiz.details.text" = "Enter quiz details";
@@ -134,4 +134,10 @@
 // MARK: - Create question
 "create.question.enter.question.text" = "Enter Question";
 "create.question.enter.option.text" = "Enter option";
-"create.question.add.next.button.title" = "Add Next";
+"create.question.add.button.title" = "Add";
+"create.question.update.button.title" = "Update";
+"create.question.header.title" = "Questions Details";
+
+// MARK: - Question list
+"question.list.header.title" = "Question List";
+"question.list.no.results.text" = "No results to show. You haven't added any questions yet.";

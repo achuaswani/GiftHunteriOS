@@ -9,14 +9,35 @@ import SwiftUI
 
 struct CreateQuestionsView: View {
     @ObservedObject var viewModel: CreateQuestionsViewModel
+    @Environment(\.presentationMode) var presentationMode
     @ViewBuilder
     var body: some View {
         VStack {
-            CloseButton()
+            HStack {
+                CloseButton()
                 .padding([.leading, .top], 10)
-                .onTapGesture {
-                    
+                    .onTapGesture {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
+                Spacer()
+                Text(viewModel.headerTitle)
+                    .font(.system(size: 14, weight: .bold, design: .rounded))
+                    .foregroundColor(Color.black)
+                    .padding([.leading, .top], 20)
+                Spacer()
+                if viewModel.questionIndex != nil {
+                    Image(systemName: "trash.circle.fill")
+                        .resizable()
+                        .foregroundColor(.red)
+                        .frame(width: 30, height: 30)
+                        .padding()
+                        .onTapGesture {
+                            viewModel.deleteQuiz()
+                        }
                 }
+            }
+            .padding(.bottom, 10)
+            Divider()
             TextEditor(text: $viewModel.questionInput)
                 .accessibility(identifier: "questionInput")
                 .frame(minHeight: 30, alignment: .leading)
@@ -40,7 +61,7 @@ struct CreateQuestionsView: View {
                 }
             }
             Button(action: { viewModel.buttonAction() }) {
-                Text(viewModel.addNextButtonTitle)
+                Text(viewModel.addButtonTitle)
                     .frame(width: 300, height: 30)
                     .font(.system(size: 16, weight: .bold, design: .rounded))
             }
@@ -61,8 +82,10 @@ struct CreateQuestionsView: View {
                     )
                 )
             }
-            .onAppear {
-                viewModel.fetchQuestions()
+            .onReceive(viewModel.viewDismissalModePublisher) { shouldDismiss in
+                if shouldDismiss {
+                    self.presentationMode.wrappedValue.dismiss()
+                }
             }
         }
     }
@@ -88,6 +111,6 @@ struct CreateQuestionsView: View {
 
 struct CreateQuestionsView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateQuestionsView(viewModel: CreateQuestionsViewModel(quiz: Quiz.default, firebaseDataService: FirebaseDataService()))
+        CreateQuestionsView(viewModel: CreateQuestionsViewModel(quizId: "123", questions: [Question.default], questionIndex: nil, firebaseDataService: FirebaseDataService()))
     }
 }

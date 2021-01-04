@@ -20,8 +20,8 @@ struct QuizListView: View {
         ZStack {
             if viewModel.inactiveQuiz.isEmpty, viewModel.activeQuiz.isEmpty {
                 Spacer()
-                Text(viewModel.noQuizResultText)
-                    .font(.system(size: 34, weight: .bold, design: .rounded))
+                Text(viewModel.noQuizText)
+                    .font(.system(size: 24, weight: .bold, design: .rounded))
                     .foregroundColor(.black)
                     .multilineTextAlignment(.center)
                     .padding([.leading, .trailing], 30)
@@ -120,15 +120,14 @@ struct QuizListView: View {
         ZStack {
             VStack {
                 Text(quizDetails.quiz.title)
-                    .font(.system(size: 14, weight: .bold, design: .rounded))
+                    .font(.system(size: 16, weight: .bold, design: .rounded))
                     .foregroundColor(.black)
                     .padding(.horizontal, 30)
                 Text(quizDetails.quiz.quizDetails)
-                    .font(.system(size: 12, weight: .light, design: .rounded))
+                    .font(.system(size: 14, weight: .light, design: .rounded))
                     .foregroundColor(.black)
                     .padding(.horizontal, 30)
-                    .lineLimit(4
-                    )
+                    .lineLimit(4)
             }
             VStack(alignment: .trailing) {
                 if state == .publish {

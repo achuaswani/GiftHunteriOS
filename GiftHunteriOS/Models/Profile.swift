@@ -11,7 +11,7 @@ struct Profile: Codable {
     var role: Role
     var userDisplayPicture: String?
     var quizPIN: [String]?
-    static let `default` = Self(userName: "", userId: "", role: .user )
+    static let `default` = Self(userName: "", userId: "", role: .student )
     
     init(
         userName: String,
@@ -29,6 +29,6 @@ struct Profile: Codable {
 }
 
 enum Role: String, Codable, CaseIterable {
-    case admin
-    case user
+    case teacher
+    case student
 }

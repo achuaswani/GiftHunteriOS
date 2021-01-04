@@ -114,6 +114,14 @@ class QuizService {
         }
     }
     
+    // MARK: - Delete quiz
+    
+    func deleteQuiz(for pin: String, handler:  @escaping(Error?) -> Void) {
+        databaseInactiveQuizReference.child(pin).removeValue { (error: Error?, ref: DatabaseReference) in
+           handler(error)
+        }
+    }
+    
     // MARK: - Create new Question
     
     func updateQuestion(quizId: String, questions: [Question], handler:  @escaping(Error?) -> Void) {
@@ -129,7 +137,7 @@ class QuizService {
     // MARK: - Fetch Scoreboard
     
     func fetchScoreBoard(scoreBoardId: String, handler: @escaping ([ScoreBoard]?) -> Void) {
-        databaseScoreBoardReference.child(scoreBoardId).observeSingleEvent(of: .value, with: { snapshot in
+        databaseScoreBoardReference.child(scoreBoardId).observe(.value, with: { snapshot in
             var scoreBoard = [ScoreBoard]()
             for player in snapshot.children.allObjects {
                 guard let playerItem = player as? DataSnapshot else {
@@ -140,16 +148,26 @@ class QuizService {
                 let playerPoints = playerItem.childSnapshot(forPath: "score").value as! Int
                 scoreBoard.append(ScoreBoard(name: String(playerName), score: playerPoints, rank: 0))
             }
-            for pass in 0..<scoreBoard.count {
-                for currentPoistion in pass+1..<scoreBoard.count where (scoreBoard[pass].score) < (scoreBoard[currentPoistion].score) {
-                    let tmp = scoreBoard[pass]
-                    scoreBoard[pass] = scoreBoard[currentPoistion]
-                    scoreBoard[pass].rank = pass + 1
-                    scoreBoard[currentPoistion] = tmp
+            scoreBoard = self.quicksort(scoreBoard)
+            var rank = 1
+            scoreBoard[0].rank = rank
+            for pass in 1..<scoreBoard.count {
+                if scoreBoard[pass].score != scoreBoard[pass-1].score {
+                    rank += 1
                 }
+                scoreBoard[pass].rank = rank
             }
             handler(scoreBoard)
         })
+    }
+    
+    private func quicksort(_ a: [ScoreBoard]) -> [ScoreBoard] {
+        guard a.count > 1 else { return a }
+        let pivot = a[a.count/2].score
+        let less = a.filter { $0.score > pivot }
+        let equal = a.filter { $0.score == pivot }
+        let greater = a.filter { $0.score < pivot }
+        return quicksort(less) + equal + quicksort(greater)
     }
     
     func fetchScoreOfUser(userName: String, scoreBoardId: String, handler: @escaping (Int?) -> Void) {

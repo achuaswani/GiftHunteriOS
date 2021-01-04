@@ -26,7 +26,7 @@ struct SettingsView: View {
             NavigationLink(destination: AboutView()) {
                 Label("About Us", systemImage: "pencil.circle.fill")
             }
-            Label("Help", systemImage: "questionmark.square.fill")
+            //Label("Help", systemImage: "questionmark.square.fill")
             Label("Signout", systemImage: "power")
                 .onTapGesture {
                     session.logout()

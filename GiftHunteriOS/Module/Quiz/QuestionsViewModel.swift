@@ -28,7 +28,7 @@ class QuestionsViewModel: ObservableObject {
     @Published var showToastMessage = false
     @Published var showProgressView = false
     @Published var toastMessage = ""
-    @Published var progress: Float = 0.5
+    @Published var progress: Float = 0
     
     var alertProvder = AlertProvider()
     
@@ -59,6 +59,7 @@ class QuestionsViewModel: ObservableObject {
             return
         }
         userName = name
+        updateScoreToBackend()
     }
 
     func fetchQuestions() {

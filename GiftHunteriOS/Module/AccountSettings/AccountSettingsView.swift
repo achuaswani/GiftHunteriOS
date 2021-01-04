@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AccountSettingsView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Working in progress")
     }
 }
 

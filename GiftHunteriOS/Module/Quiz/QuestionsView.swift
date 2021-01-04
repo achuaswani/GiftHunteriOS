@@ -36,9 +36,9 @@ struct QuestionsView: View {
             .padding(.all, BaseSize.outerSpacing)
             .overlay(Group {
                 if viewModel.showProgressView {
-                        ProgressView()
-                    }
-                })
+                    ProgressView()
+                }
+            })
             .onAppear {
                 viewModel.updateData()
             }

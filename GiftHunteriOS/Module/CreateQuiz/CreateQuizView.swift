@@ -15,16 +15,26 @@ struct CreateQuizView: View {
         VStack {
             HStack {
                 CloseButton()
-                    .padding([.leading, .top], 1)
+                    .padding(.leading, 5)
                     .onTapGesture {
                         self.presentationMode.wrappedValue.dismiss()
                     }
                 Spacer()
-                Text("Quiz Details")
+                Text(viewModel.headerTitle)
                     .font(.system(size: 14, weight: .bold, design: .rounded))
                     .foregroundColor(Color.black)
-                    .padding([.leading, .top], 10)
+                    .padding([.leading, .top], 20)
                 Spacer()
+                if viewModel.isUpdateQuiz {
+                    Image(systemName: "trash.circle.fill")
+                        .resizable()
+                        .foregroundColor(.red)
+                        .frame(width: 30, height: 30)
+                        .padding()
+                        .onTapGesture {
+                            viewModel.deleteQuiz()
+                        }
+                }
             }
             Divider()
             VStack {
