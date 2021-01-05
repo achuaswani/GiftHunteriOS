@@ -24,7 +24,7 @@ struct CredentialsView: View {
             Text(viewModel.title)
                 .accessibility(identifier: "title")
                 .font(.system(size: 42, weight: .bold, design: .rounded))
-                .foregroundColor(Color.black)
+                .foregroundColor(Color("fontColor"))
                 .opacity(0.8)
         }
     }
@@ -36,6 +36,7 @@ struct CredentialsView: View {
                 .accessibility(identifier: "email")
                 .padding()
                 .background(Color("normalTextField"))
+                .font(.system(size: 14, weight: .light, design: .rounded))
                 .cornerRadius(20.0)
                 .shadow(radius: 5.0, x: 5, y: 5)
 
@@ -71,6 +72,7 @@ struct CredentialsView: View {
                     .accessibility(identifier: "displayName")
                     .padding()
                     .background(Color("normalTextField"))
+                    .font(.system(size: 14, weight: .light, design: .rounded))
                     .cornerRadius(20.0)
                     .shadow(radius: 5.0, x: 5, y: 5)
                 Divider()
@@ -94,7 +96,7 @@ struct CredentialsView: View {
                             .padding(.all)
                     }
                     Text(item.rawValue)
-                        .font(.system(size: 16, weight: .light, design: .rounded))
+                        .font(.system(size: 16, weight: .bold, design: .rounded))
                         .multilineTextAlignment(.leading)
                         .position(x: 50, y: 10)
                         .padding(.all)
@@ -129,8 +131,10 @@ struct CredentialsView: View {
             HStack {
                 if showPassword {
                     TextField(hintText, text: textValue)
+                        .font(.system(size: 14, weight: .light, design: .rounded))
                 } else {
                    SecureField(hintText, text: textValue)
+                    .font(.system(size: 14, weight: .light, design: .rounded))
                 }
                 Button(action: {
                     self.showPassword.toggle()

@@ -42,7 +42,9 @@ class CreateQuestionsViewModel: ObservableObject {
             viewDismissalModePublisher.send(shouldDismissView)
         }
     }
-    
+    deinit {
+            print("class being deinitialized")
+    }
     func resetTextEditor() {
         if questionInput  == questionHintText {
             questionInput = ""

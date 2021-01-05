@@ -23,6 +23,7 @@ class CreateQuizViewModel: ObservableObject {
     let alertProvder = AlertProvider()
     var quizWithPIN: QuizWithPIN?
     private var firebaseDataService: FirebaseDataService
+
     init(quizWithPIN: QuizWithPIN?, firebaseDataService: FirebaseDataService) {
         self.quizWithPIN = quizWithPIN
         self.firebaseDataService = firebaseDataService
@@ -35,24 +36,24 @@ class CreateQuizViewModel: ObservableObject {
             startButtonTitle = "update.quiz.start.button.title".localized()
         }
     }
+    deinit {
+            print("class being deinitialized")
+    }
+    
     var viewDismissalModePublisher = PassthroughSubject<Bool, Never>()
     private var shouldDismissView = false {
         didSet {
             viewDismissalModePublisher.send(shouldDismissView)
         }
     }
-    
-    func buttonAction() {
-        verifyPIN()
-    }
-    
+        
     func resetTextEditor() {
         if quizDetailsInput  == quizDetailsHintText {
             quizDetailsInput = ""
         }
     }
     
-    func verifyPIN() {
+    func buttonTapped() {
         guard !quizPINInput.isEmpty else {
             displayAlert("alert.missing.pin.message".localized())
             return
@@ -99,40 +100,54 @@ class CreateQuizViewModel: ObservableObject {
             guard let self = self else {
                 return
             }
-            guard let error = error else {
-                if !self.isUpdateQuiz {
-                    if self.firebaseDataService.profile?.quizPIN == nil {
-                        self.firebaseDataService.profile?.quizPIN = [pin]
+            if let error = error {
+                self.displayAlert(error.localizedDescription)
+            } else {
+                if !self.isUpdateQuiz, var profile = self.firebaseDataService.profile {
+                    let pin = self.quizPINInput
+                    var quizPINSet = profile.quizPIN
+                    if quizPINSet != nil {
+                        quizPINSet!.append(pin)
                     } else {
-                        self.firebaseDataService.profile?.quizPIN?.append(pin)
+                        quizPINSet = [pin]
                     }
-                    if let profile = self.firebaseDataService.profile {
-                        self.firebaseDataService.updateProfile(userValue: profile) { error in
-                            self.closePresenter()
-                        }
-                    }
+                    profile.quizPIN = quizPINSet
+                    self.updateProfileData(profile)
                 } else {
-                    self.closePresenter()
+                    self.shouldDismissView = true
                 }
-                return
             }
-            self.displayAlert(error.localizedDescription)
         }
     }
     
-    func closePresenter() {
-        async { [weak self] in
-            self?.shouldDismissView = true
+    func updateProfileData(_ profile: Profile) {
+        firebaseDataService.updateProfile(userValue: profile) { error in
+            if let error = error {
+                self.displayAlert(error.localizedDescription)
+            } else {
+                self.shouldDismissView = true
+            }
         }
     }
     
     func deleteQuiz() {
-        guard let pin = quizWithPIN?.pin else {
+        guard let pin = quizWithPIN?.pin,
+              var profile = firebaseDataService.profile else {
             return
         }
-        dataService.deleteQuiz(for: pin) { [weak self] error in
-            self?.closePresenter()
+        self.dataService.deleteQuiz(for: pin) { [weak self] error in
+            guard let self = self else {
+                return
+            }
+            if let error = error {
+                self.displayAlert(error.localizedDescription)
+                return
+            }
+            let quizPINSet = profile.quizPIN?.filter { $0 != pin }
+            profile.quizPIN = quizPINSet
+            self.updateProfileData(profile)
         }
+        
     }
     
     func displayAlert(_ message: String) {

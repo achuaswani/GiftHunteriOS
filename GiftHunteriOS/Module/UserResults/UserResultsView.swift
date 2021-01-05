@@ -16,7 +16,7 @@ struct UserResultsView: View {
                 Spacer()
                 Text(viewModel.noQuizResultText)
                     .font(.system(size: 34, weight: .bold, design: .rounded))
-                    .foregroundColor(.black)
+                    .foregroundColor(Color("fontColor"))
                     .multilineTextAlignment(.center)
                     .padding([.leading, .trailing], 30)
                 Spacer()
@@ -58,18 +58,18 @@ struct UserResultsView: View {
                         VStack {
                             Text(userResult.quizDetails.title)
                                 .font(.system(size: 24, weight: .bold, design: .rounded))
-                                .foregroundColor(.black)
+                                .foregroundColor(Color("fontColor"))
                                 .padding(.horizontal, 30)
                             Text(userResult.quizDetails.quizDetails)
                                 .font(.system(size: 24, weight: .bold, design: .rounded))
-                                .foregroundColor(.black)
+                                .foregroundColor(Color("fontColor"))
                                 .padding(.horizontal, 30)
                         }
                         .padding(.vertical, 30)
                         if viewModel.role == .student {
                             Text(String(userResult.score))
                                 .font(.system(size: 26, weight: .bold, design: .rounded))
-                                .foregroundColor(.black)
+                                .foregroundColor(Color("fontColor"))
                                 .padding(.horizontal, 30)
                         }
                             

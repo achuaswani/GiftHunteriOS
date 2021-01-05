@@ -20,6 +20,7 @@ struct VerifyPINView: View {
             TextField(viewModel.hinText, text: $pin)
                 .padding()
                 .background(Color("normalTextField"))
+                .font(.system(size: 14, weight: .light, design: .rounded))
                 .cornerRadius(20.0)
                 .shadow(radius: 5.0, x: 5, y: 5)
             Button(action: {

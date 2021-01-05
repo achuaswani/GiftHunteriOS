@@ -50,7 +50,7 @@ struct QuestionsView: View {
                 viewModel.submitAnswer(index)
             }) {
                 Text(viewModel.question.options[index])
-                    .foregroundColor(Color("normalButton"))
+                    .foregroundColor(Color.accentColor)
                     .frame(width: 110, height: 50)
                     .font(.system(size: 16, weight: .bold, design: .rounded))
             }

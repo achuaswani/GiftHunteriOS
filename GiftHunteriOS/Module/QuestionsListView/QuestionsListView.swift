@@ -19,7 +19,7 @@ struct QuestionsListView: View {
                     Spacer()
                     Text(viewModel.noQuestionsText)
                         .font(.system(size: 24, weight: .bold, design: .rounded))
-                        .foregroundColor(.black)
+                        .foregroundColor(Color("fontColor"))
                         .multilineTextAlignment(.center)
                         .padding([.leading, .trailing], 30)
                     Spacer()
@@ -28,7 +28,7 @@ struct QuestionsListView: View {
                         ForEach(0..<viewModel.questions.count) { index in
                             showQuestionListItem(index: index, question: viewModel.questions[index])
                                 .shadow(color: Color.black.opacity(0.16), radius: 5, x: 0, y: 5)
-                                .background(Color.white)
+                                .background(Color("cellColor"))
                                 .cornerRadius(15)
                                 .padding(.all, 10)
                         }
@@ -79,19 +79,19 @@ struct QuestionsListView: View {
             VStack {
                 Text(question.questionText)
                     .font(.system(size: 14, weight: .bold, design: .rounded))
-                    .foregroundColor(.black)
+                    .foregroundColor(Color("fontColor"))
                     .padding(.horizontal, 30)
                 ForEach(question.options, id: \.self) { option in
                     Text(option)
                         .font(.system(size: 12, weight: .light, design: .rounded))
-                        .foregroundColor(.black)
+                        .foregroundColor(Color("fontColor"))
                         .padding(.horizontal, 30)
                         
                 }
                 if let answer = Int(question.answer) {
                     Text("Answer: \(question.options[answer])")
                         .font(.system(size: 12, weight: .light, design: .rounded))
-                        .foregroundColor(.black)
+                        .foregroundColor(Color("fontColor"))
                         .padding(.horizontal, 30)
                 }
             }

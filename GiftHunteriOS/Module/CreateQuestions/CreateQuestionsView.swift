@@ -6,10 +6,16 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct CreateQuestionsView: View {
     @ObservedObject var viewModel: CreateQuestionsViewModel
     @Environment(\.presentationMode) var presentationMode
+    
+    init(viewModel: CreateQuestionsViewModel) {
+        UITextView.appearance().backgroundColor = .clear
+        self.viewModel = viewModel
+    }
     @ViewBuilder
     var body: some View {
         VStack {
@@ -22,7 +28,7 @@ struct CreateQuestionsView: View {
                 Spacer()
                 Text(viewModel.headerTitle)
                     .font(.system(size: 14, weight: .bold, design: .rounded))
-                    .foregroundColor(Color.black)
+                    .foregroundColor(Color("fontColor"))
                     .padding([.leading, .top], 20)
                 Spacer()
                 if viewModel.questionIndex != nil {
@@ -44,7 +50,7 @@ struct CreateQuestionsView: View {
                 .background(Color("normalTextField"))
                 .cornerRadius(20.0)
                 .shadow(radius: 5.0, x: 5, y: 5)
-                .foregroundColor(viewModel.questionInput == viewModel.questionHintText ? .gray : .black)
+                .foregroundColor(viewModel.questionInput == viewModel.questionHintText ? Color("disableFontColor") : Color("fontColor"))
                 .padding(30)
                 .onTapGesture {
                     viewModel.resetTextEditor()
@@ -100,6 +106,7 @@ struct CreateQuestionsView: View {
                 .accessibility(identifier: "quizTitle")
                 .padding()
                 .background(Color("normalTextField"))
+                .font(.system(size: 14, weight: .light, design: .rounded))
                 .cornerRadius(20.0)
                 .shadow(radius: 5.0, x: 5, y: 5)
                 .padding(.bottom, 30)

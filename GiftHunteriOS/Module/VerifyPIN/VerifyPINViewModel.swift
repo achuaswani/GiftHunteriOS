@@ -28,28 +28,30 @@ class VerifyPINViewModel: ObservableObject {
             displayAlert("alert.missing.pin.message".localized())
             return
         }
-        
-        if firebaseDataService.profile?.quizPIN?.contains(pin) ?? false {
+        guard var profile = firebaseDataService.profile else {
+            return
+        }
+        var quizPINSet = profile.quizPIN
+        if quizPINSet?.contains(pin) ?? false {
             displayAlert("alert.already.exists.pin.your.list".localized())
             return
         }
-        viewRouter.pin = pin
         
+        if quizPINSet != nil {
+            quizPINSet!.append(pin)
+        } else {
+            quizPINSet = [pin]
+        }
+        profile.quizPIN = quizPINSet
+        viewRouter.pin = pin
         dataService.getActiveQuiz(for: pin) { [weak self] quizModel in
             guard  let self = self else {
                 return
             }
             if let quizModel = quizModel {
                 self.viewRouter.quiz = quizModel
-                if self.firebaseDataService.profile?.quizPIN == nil {
-                    self.firebaseDataService.profile?.quizPIN = [pin]
-                } else {
-                    self.firebaseDataService.profile?.quizPIN?.append(pin)
-                }
-                if let profile = self.firebaseDataService.profile {
-                    self.firebaseDataService.updateProfile(userValue: profile) { error in
-                        self.routeToNextPage()
-                    }
+                self.firebaseDataService.updateProfile(userValue: profile) { error in
+                    self.routeToNextPage()
                 }
             } else {
                 self.displayAlert("alert.no.quiz.available.message".localized())

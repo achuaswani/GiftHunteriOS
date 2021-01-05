@@ -22,21 +22,26 @@ struct HomeView: View {
                     .frame(height: 200)
                     .padding(.top, 30)
                     Text("dashboard.header.welcome.title".localized(with: profile.userName))
-                    .foregroundColor(Color.black)
+                    .foregroundColor(Color("fontColor"))
                     .font(.system(size: 16, weight: .bold, design: .rounded))
                     .padding([.top, .bottom], 20)
                 
                 ScrollView {
                     ForEach(firebaseDataservice.profile?.role.rawValue == Role.teacher.rawValue ?
                                 viewModel.adminViewList : viewModel.userViewList, id: \.self) { viewList in
-                        showNavigationButton(viewList: viewList)
-                                .shadow(color: Color.black.opacity(0.16), radius: 5, x: 0, y: 5)
-                                .background(Color.white)
+                        HStack {
+                            Spacer()
+                            showNavigationButton(viewList: viewList)
+                                .shadow(
+                                    color: Color.black.opacity(0.16),
+                                    radius: 5, x: 0, y: 5)
+                                .background(Color("cellColor"))
                                 .cornerRadius(15)
-                                .padding(.all, 10)
-                                
+                             Spacer()
                         }
-                    .frame(maxWidth: .infinity)
+                        .frame(maxWidth: .infinity)
+                    }
+                    .padding(.top, 10)
                 }
                 .background(Color("backgroundColor"))
             }
@@ -48,23 +53,26 @@ struct HomeView: View {
     
     func showNavigationButton(viewList: ViewList) -> AnyView {
         return AnyView(
-            HStack {
-                NavigationLink(destination:
-                                HomeRouterView(
-                                    viewRouter: ViewRouter(
-                                        currentPage: viewList.currentPage,
-                                        nextPage: viewList.nextPage
-                                    )
-                                )
+            VStack {
+                NavigationLink(
+                    destination:
+                        HomeRouterView(
+                            viewRouter: ViewRouter(
+                                currentPage: viewList.currentPage,
+                                nextPage: viewList.nextPage
+                            )
+                        )
                 ) {
+                    HStack {
                     Image(viewList.imageName)
                         .resizable()
                         .frame(width: 120, height: 150)
                         .padding(.horizontal, 30)
                     Text(viewList.buttonTitle)
                         .font(.system(size: 16, weight: .bold, design: .rounded))
-                        .foregroundColor(.black)
+                        .foregroundColor(Color("fontColor"))
                         .padding(.horizontal, 30)
+                    }
                 }
                 .padding(5)
             }

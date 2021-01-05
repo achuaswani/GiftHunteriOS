@@ -44,7 +44,7 @@ struct LoginView: View {
     var registerAccount: some View {
         HStack {
             Text("Don't have an account? ")
-                .foregroundColor(Color.black)
+                .foregroundColor(Color("fontColor"))
                 .opacity(0.8)
                 .font(.system(size: 16, weight: .light, design: .rounded))
             NavigationLink(destination: RegisterView()) {

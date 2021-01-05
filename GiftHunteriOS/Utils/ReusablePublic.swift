@@ -12,3 +12,8 @@ func async(deadline: Double = 0.5, closure: @escaping () -> Void) {
           closure()
      }
 }
+func async(closure: @escaping () -> Void) {
+    DispatchQueue.main.async {
+          closure()
+     }
+}

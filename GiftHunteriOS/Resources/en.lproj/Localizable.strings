@@ -27,7 +27,7 @@
 
 // MARK: - Dashboard
 "dashboard.header.welcome.title" = "Welcome %@";
-"quiz.start.button.title" = "Start Quiz";
+"quiz.start.button.title" = "Attend Exams";
 "quiz.results.button.title" = "View Results";
 "quiz.create.button.title" = "Create Quiz";
 "quiz.view.active.button.title" = "View/Create Quizzes";

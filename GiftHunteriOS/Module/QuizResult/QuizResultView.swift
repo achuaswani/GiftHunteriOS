@@ -13,11 +13,11 @@ struct QuizResultView: View {
         VStack {
             Text(viewModel.quizTitle)
                 .font(.system(size: 26, weight: .bold, design: .rounded))
-                .foregroundColor(Color("normalFontColor"))
+                .foregroundColor(Color("fontColor"))
                 .multilineTextAlignment(.center)
             Text(viewModel.quizDetails)
                 .font(.system(size: 18, weight: .light, design: .rounded))
-                .foregroundColor(Color("normalFontColor"))
+                .foregroundColor(Color("fontColor"))
                 .multilineTextAlignment(.center)
             ScrollView(.vertical, showsIndicators: false) {
                 cardView
@@ -50,13 +50,13 @@ struct QuizResultView: View {
                     VStack {
                         Text(scoreBoard.name)
                             .font(.system(size: 24, weight: .bold, design: .rounded))
-                            .foregroundColor(Color("normalFontColor"))
+                            .foregroundColor(Color("fontColor"))
                         Text(String("\("scoreboard.score.title".localized()) \(scoreBoard.score)"))
                             .font(.system(size: 18, weight: .bold, design: .rounded))
-                            .foregroundColor(Color("normalFontColor"))
+                            .foregroundColor(Color("fontColor"))
                         Text(String("\("scoreboard.rank.title".localized()) \(scoreBoard.rank)"))
                             .font(.system(size: 16, weight: .light, design: .rounded))
-                            .foregroundColor(Color("normalFontColor"))
+                            .foregroundColor(Color("fontColor"))
                     }
                 }
                 .frame(width: 300.0, height: 100)
