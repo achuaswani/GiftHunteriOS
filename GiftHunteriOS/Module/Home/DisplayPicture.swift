@@ -16,9 +16,6 @@ struct DisplayPicture: View {
     var body: some View {
         HStack {
             getImageFromURL(url: firebaseDataservice.profile?.userDisplayPicture ?? "")
-                .clipShape(Circle())
-                .overlay(Circle().stroke(Color.white, lineWidth: 4))
-                .shadow(radius: 7)
         }
     }
 
@@ -28,11 +25,9 @@ struct DisplayPicture: View {
                 url: URL(string: url),
                 placeholder: image
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
                     .foregroundColor(Color.black)
             )
             .padding()
-            .aspectRatio(contentMode: .fit)
             .sheet(isPresented: $isShowPicker) {
                 ImagePicker(image: $image, imageURL: $imageURL)
                     .onDisappear {

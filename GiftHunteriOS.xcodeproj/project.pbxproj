@@ -45,10 +45,10 @@
 		5B318718259DA22A00965903 /* QuizListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B318717259DA22A00965903 /* QuizListViewModel.swift */; };
 		5B31871E259DA55A00965903 /* CreateQuestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B31871D259DA55A00965903 /* CreateQuestionsView.swift */; };
 		5B318726259DA56800965903 /* CreateQuestionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B318725259DA56800965903 /* CreateQuestionsViewModel.swift */; };
-		5B6118FC258306980023AABE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B6118FB258306980023AABE /* GoogleService-Info.plist */; };
 		5B8A078C257C6FAB007EEBCE /* QuizResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A078B257C6FAB007EEBCE /* QuizResultView.swift */; };
 		5B8A0794257C6FD3007EEBCE /* QuizResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A0793257C6FD3007EEBCE /* QuizResultViewModel.swift */; };
 		5B8A079C257CD85D007EEBCE /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A079B257CD85D007EEBCE /* Status.swift */; };
+		5B955C5025F3FF6A005B9669 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B955C4F25F3FF6A005B9669 /* GoogleService-Info.plist */; };
 		5B9991C72582C1E900470B4C /* VerifyPINView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9991C62582C1E900470B4C /* VerifyPINView.swift */; };
 		5B9991CF2582C1F500470B4C /* VerifyPINViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9991CE2582C1F500470B4C /* VerifyPINViewModel.swift */; };
 		5B9A387025A0D47300E020F9 /* CustomCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9A386F25A0D47300E020F9 /* CustomCorner.swift */; };
@@ -56,7 +56,7 @@
 		5B9A387E25A1A1A900E020F9 /* QuestionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9A387D25A1A1A900E020F9 /* QuestionsListViewModel.swift */; };
 		5BC082A0258C751000E604C9 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC0829F258C751000E604C9 /* Toast.swift */; };
 		5BC0E39F257DDCC9001A6960 /* DeviceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC0E39E257DDCC9001A6960 /* DeviceType.swift */; };
-		5BC0E3A4257DDD8F001A6960 /* BaseSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC0E3A3257DDD8F001A6960 /* BaseSize.swift */; };
+		5BC0E3A4257DDD8F001A6960 /* BaseStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC0E3A3257DDD8F001A6960 /* BaseStyle.swift */; };
 		5BC0E3AF257DEA65001A6960 /* QuestionsHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC0E3AE257DEA65001A6960 /* QuestionsHomeView.swift */; };
 		5BC0E3B8257DF115001A6960 /* HomeRouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC0E3B7257DF115001A6960 /* HomeRouterView.swift */; };
 		5BC0E3BD257DF147001A6960 /* ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC0E3BC257DF147001A6960 /* ViewRouter.swift */; };
@@ -151,10 +151,10 @@
 		5B318717259DA22A00965903 /* QuizListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizListViewModel.swift; sourceTree = "<group>"; };
 		5B31871D259DA55A00965903 /* CreateQuestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuestionsView.swift; sourceTree = "<group>"; };
 		5B318725259DA56800965903 /* CreateQuestionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuestionsViewModel.swift; sourceTree = "<group>"; };
-		5B6118FB258306980023AABE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5B8A078B257C6FAB007EEBCE /* QuizResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizResultView.swift; sourceTree = "<group>"; };
 		5B8A0793257C6FD3007EEBCE /* QuizResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizResultViewModel.swift; sourceTree = "<group>"; };
 		5B8A079B257CD85D007EEBCE /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
+		5B955C4F25F3FF6A005B9669 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5B9991C62582C1E900470B4C /* VerifyPINView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPINView.swift; sourceTree = "<group>"; };
 		5B9991CE2582C1F500470B4C /* VerifyPINViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPINViewModel.swift; sourceTree = "<group>"; };
 		5B9A386F25A0D47300E020F9 /* CustomCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCorner.swift; sourceTree = "<group>"; };
@@ -162,7 +162,7 @@
 		5B9A387D25A1A1A900E020F9 /* QuestionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsListViewModel.swift; sourceTree = "<group>"; };
 		5BC0829F258C751000E604C9 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		5BC0E39E257DDCC9001A6960 /* DeviceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceType.swift; sourceTree = "<group>"; };
-		5BC0E3A3257DDD8F001A6960 /* BaseSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSize.swift; sourceTree = "<group>"; };
+		5BC0E3A3257DDD8F001A6960 /* BaseStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseStyle.swift; sourceTree = "<group>"; };
 		5BC0E3AE257DEA65001A6960 /* QuestionsHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsHomeView.swift; sourceTree = "<group>"; };
 		5BC0E3B7257DF115001A6960 /* HomeRouterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouterView.swift; sourceTree = "<group>"; };
 		5BC0E3BC257DF147001A6960 /* ViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRouter.swift; sourceTree = "<group>"; };
@@ -501,7 +501,7 @@
 		5BC0E3CC257E1459001A6960 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				5B6118FB258306980023AABE /* GoogleService-Info.plist */,
+				5B955C4F25F3FF6A005B9669 /* GoogleService-Info.plist */,
 				5B1408A424DC9A1D003626EE /* Assets.xcassets */,
 				5BE4D1CA24DF546000C18A8E /* Localizable.strings */,
 			);
@@ -564,7 +564,7 @@
 			isa = PBXGroup;
 			children = (
 				DA3FF12B257BF5830049106F /* BaseButtonStyle.swift */,
-				5BC0E3A3257DDD8F001A6960 /* BaseSize.swift */,
+				5BC0E3A3257DDD8F001A6960 /* BaseStyle.swift */,
 			);
 			path = BaseStyles;
 			sourceTree = "<group>";
@@ -691,8 +691,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B1408A824DC9A1D003626EE /* Preview Assets.xcassets in Resources */,
+				5B955C5025F3FF6A005B9669 /* GoogleService-Info.plist in Resources */,
 				5BE4D1C824DF546000C18A8E /* Localizable.strings in Resources */,
-				5B6118FC258306980023AABE /* GoogleService-Info.plist in Resources */,
 				5B1408A524DC9A1D003626EE /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -872,7 +872,7 @@
 				5B1408CD24DC9A68003626EE /* FirebaseSession.swift in Sources */,
 				5B1408F424DD1ACD003626EE /* SettingsView.swift in Sources */,
 				5BE4D1BE24DE65D100C18A8E /* CloseButton.swift in Sources */,
-				5BC0E3A4257DDD8F001A6960 /* BaseSize.swift in Sources */,
+				5BC0E3A4257DDD8F001A6960 /* BaseStyle.swift in Sources */,
 				5BE4D1D024DF6CD400C18A8E /* ImagePicker.swift in Sources */,
 				5BC0E3BD257DF147001A6960 /* ViewRouter.swift in Sources */,
 				5B14090024DDC897003626EE /* HomeView.swift in Sources */,

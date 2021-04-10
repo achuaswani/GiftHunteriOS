@@ -19,12 +19,10 @@ struct HomeView: View {
         VStack {
             if let profile = firebaseDataservice.profile {
                 DisplayPicture()
-                    .frame(height: 200)
-                    .padding(.top, 30)
-                    Text("dashboard.header.welcome.title".localized(with: profile.userName))
+                    .frame(width: 150, height: 150, alignment: .center)
+                Text("dashboard.header.welcome.title".localized(with: profile.userName))
                     .foregroundColor(Color("fontColor"))
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                    .padding([.top, .bottom], 20)
+                    .font(BaseStyle.normalFont)
                 
                 ScrollView {
                     ForEach(firebaseDataservice.profile?.role.rawValue == Role.teacher.rawValue ?

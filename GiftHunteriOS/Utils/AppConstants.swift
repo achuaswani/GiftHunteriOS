@@ -6,12 +6,12 @@
 //
 
 struct AppConstants {
-    // Intent extra to switch views for Cast
+    /// Intent extra to switch views for Cast
     static let SWITCHTOGAMERROM = 1
     static let SWITCHTOSCOREBOARD = 2
     static let SWITCHTOFINALSCORE = 3
 
-    // Intent messages
+    /// Intent messages
     static let INTENTMSGID = "id"
     static let INTENTMSGPIN = "PIN"
     static let INTENTMSGNAME = "name"
@@ -29,7 +29,8 @@ struct AppConstants {
     static let NODEQUIZZESLIST = "QuizzesList"
     static let NODESCOREBOARDS = "ScoreBoards"
     static let NODETOTALPOINTS = "points"
-    // Time
+    
+    /// Time
     static let MAXSECONDS = 30
     static let POINTSMULTIPLIER = 10
     static let TIMEINTERVAL = 1

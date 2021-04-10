@@ -23,9 +23,10 @@ struct CredentialsView: View {
         VStack {
             Text(viewModel.title)
                 .accessibility(identifier: "title")
-                .font(.system(size: 42, weight: .bold, design: .rounded))
+                .font(BaseStyle.headerFont)
                 .foregroundColor(Color("fontColor"))
                 .opacity(0.8)
+                .padding(.all, 2)
         }
     }
 
@@ -34,13 +35,14 @@ struct CredentialsView: View {
 
             TextField("login.textfield.emailid.hint.text".localized(), text: $viewModel.email)
                 .accessibility(identifier: "email")
-                .padding()
+                .padding(.all, BaseStyle.innerSpacing)
                 .background(Color("normalTextField"))
-                .font(.system(size: 14, weight: .light, design: .rounded))
-                .cornerRadius(20.0)
+                .font(BaseStyle.normalFont)
+                .cornerRadius(BaseStyle.cornerRadius)
                 .shadow(radius: 5.0, x: 5, y: 5)
+                .padding(.bottom, BaseStyle.outerSpacing)
 
-            passwordTextField
+            passwordTextFields
 
             if viewModel.showErrorMessage {
                 Text(viewModel.errorMessage)
@@ -50,79 +52,37 @@ struct CredentialsView: View {
                     .opacity(0.8)
                     .lineLimit(2)
                     .multilineTextAlignment(.center)
-                    .padding([.leading, .trailing], 15)
+                    .padding(.all, BaseStyle.innerSpacing)
             }
 
         }
         .padding([.leading, .trailing], 27.5)
     }
 
-    var passwordTextField: some View {
+    var passwordTextFields: some View {
         VStack {
             showPasswordTextFields(hintText: "login.textfield.password.hint.text".localized(),
                                    textValue: $viewModel.password)
                 .accessibility(identifier: "password")
-                .padding([.top, .bottom], 10)
+                .padding(.bottom, BaseStyle.outerSpacing)
             if !viewModel.loginView {
                 showPasswordTextFields(hintText: "register.textfield.confirm.password.hint.text".localized(),
                                        textValue: $viewModel.confirmPassword)
                     .accessibility(identifier: "confirmPassword")
-                    .padding([.top, .bottom], 10)
+                    .padding(.bottom, BaseStyle.outerSpacing)
                 TextField("register.textfield.username.title".localized(), text: $viewModel.displayName)
                     .accessibility(identifier: "displayName")
-                    .padding()
+                    .padding(.all, BaseStyle.innerSpacing)
                     .background(Color("normalTextField"))
-                    .font(.system(size: 14, weight: .light, design: .rounded))
-                    .cornerRadius(20.0)
+                    .font(BaseStyle.normalFont)
+                    .cornerRadius(BaseStyle.cornerRadius)
                     .shadow(radius: 5.0, x: 5, y: 5)
+                    .padding(.bottom, BaseStyle.outerSpacing)
+                   
                 Divider()
-                    .padding(.top, 10)
+                    .padding(.all, BaseStyle.innerSpacing)
                roleSelectionView
             }
-        }
-    }
-    
-    var roleSelectionView: some View {
-        ScrollView {
-            ForEach(Role.allCases, id: \.self) { item in
-                HStack {
-                    if viewModel.selectedType == item {
-                        Image(systemName: "checkmark.circle.fill")
-                            .foregroundColor(.blue)
-                            .padding(.all)
-                    } else {
-                        Image(systemName: "checkmark.circle")
-                            .foregroundColor(.blue)
-                            .padding(.all)
-                    }
-                    Text(item.rawValue)
-                        .font(.system(size: 16, weight: .bold, design: .rounded))
-                        .multilineTextAlignment(.leading)
-                        .position(x: 50, y: 10)
-                        .padding(.all)
-                }
-                .onTapGesture {
-                    viewModel.updatedSelection(item)
-                }
-                Divider()
-            }
-        }
-    }
-
-    var buttonView: some View {
-        VStack {
-            Button(action: {
-                    viewModel.buttonAction(dataService: firebaseDataService, firebaseSession: session)
-                }
-            ) {
-                Text(viewModel.title)
-                    .frame(width: 300, height: 30)
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                }
-            .buttonStyle(BaseButtonStyle())
-            .accessibility(identifier: "button")
-            .padding([.top, .bottom], 50)
-            .padding([.leading, .trailing], 27.5)
         }
     }
 
@@ -131,10 +91,10 @@ struct CredentialsView: View {
             HStack {
                 if showPassword {
                     TextField(hintText, text: textValue)
-                        .font(.system(size: 14, weight: .light, design: .rounded))
+                        .font(BaseStyle.normalFont)
                 } else {
                    SecureField(hintText, text: textValue)
-                    .font(.system(size: 14, weight: .light, design: .rounded))
+                        .font(BaseStyle.normalFont)
                 }
                 Button(action: {
                     self.showPassword.toggle()
@@ -146,10 +106,47 @@ struct CredentialsView: View {
                     }
                 }
             }
-            .padding()
+            .padding(.all, BaseStyle.innerSpacing)
             .background(Color("normalTextField"))
-            .cornerRadius(20.0)
+            .cornerRadius(BaseStyle.cornerRadius)
             .shadow(radius: 5.0, x: 5, y: 5)
        )
     }
+    
+    var roleSelectionView: some View {
+        ForEach(Role.allCases, id: \.self) { item in
+            HStack {
+                if viewModel.selectedType == item {
+                    Image(systemName: "checkmark.circle.fill")
+                        .foregroundColor(.blue)
+                        
+                } else {
+                    Image(systemName: "checkmark.circle")
+                        .foregroundColor(.blue)
+                }
+                Text(item.rawValue)
+                    .font(BaseStyle.normalFont)
+                    .multilineTextAlignment(.leading)
+            }
+            .padding(.all, BaseStyle.innerSpacing)
+            .onTapGesture {
+                viewModel.updatedSelection(item)
+            }
+            Divider()
+        }
+    }
+    
+    var buttonView: some View {
+        VStack {
+            Button(action: {
+                    viewModel.buttonAction(dataService: firebaseDataService, firebaseSession: session)
+                }
+            ) {
+                Text(viewModel.title)
+            }
+            .buttonStyle(BaseButtonStyle())
+            .accessibility(identifier: "\(viewModel.title)button")
+        }
+    }
+
 }

@@ -13,27 +13,27 @@ struct QuestionsView: View {
     var body: some View {
             VStack(alignment: .center, spacing: 3.0) {
                 Text(viewModel.question.questionText)
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                    .font(BaseStyle.normalFont)
                     .foregroundColor(.white)
-                    .padding(.all, BaseSize.generalSpacing)
+                    .padding(.all, BaseStyle.generalSpacing)
                 HStack {
                     ForEach(0..<2) { index in
                         showButtonView(index)
                         }
                     }
-                .padding(.all, BaseSize.generalSpacing)
+                .padding(.all, BaseStyle.generalSpacing)
                 
                 HStack {
                     ForEach(2..<4) { index in
                         showButtonView(index)
                     }
                 }
-                .padding(.all, BaseSize.generalSpacing)
+                .padding(.all, BaseStyle.generalSpacing)
             }
             .background(Color.accentColor)
             .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
             .shadow(color: Color.black.opacity(0.16), radius: 5, x: 0, y: 5)
-            .padding(.all, BaseSize.outerSpacing)
+            .padding(.all, BaseStyle.outerSpacing)
             .overlay(Group {
                 if viewModel.showProgressView {
                     ProgressView()
@@ -52,10 +52,10 @@ struct QuestionsView: View {
                 Text(viewModel.question.options[index])
                     .foregroundColor(Color.accentColor)
                     .frame(width: 110, height: 50)
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                    .font(BaseStyle.normalFont)
             }
             .buttonStyle(BaseButtonStyle(color: .white))
-            .padding(BaseSize.generalSpacing)
+            .padding(BaseStyle.generalSpacing)
         )
     }
 

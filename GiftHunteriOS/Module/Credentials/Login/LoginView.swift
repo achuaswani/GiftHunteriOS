@@ -21,10 +21,9 @@ struct LoginView: View {
                 forgotPasswrod
                 registerAccount
             }
-            .font(.system(size: 16, weight: .light, design: .rounded))
+            .font(BaseStyle.normalFont)
         }
         .navigationBarHidden(isNavigationBarHidden)
-        .navigationBarTitle("")
         .onAppear {
             self.isNavigationBarHidden = true
         }
@@ -37,7 +36,7 @@ struct LoginView: View {
         VStack {
             Text("Forgot password?")
                 .foregroundColor(.blue)
-                .font(.system(size: 16, weight: .light, design: .rounded))
+                .font(BaseStyle.normalFont)
         }
     }
 
@@ -46,11 +45,11 @@ struct LoginView: View {
             Text("Don't have an account? ")
                 .foregroundColor(Color("fontColor"))
                 .opacity(0.8)
-                .font(.system(size: 16, weight: .light, design: .rounded))
+                .font(BaseStyle.normalFont)
             NavigationLink(destination: RegisterView()) {
                 Text("Register")
                     .foregroundColor(.blue)
-                    .font(.system(size: 16, weight: .light, design: .rounded))
+                    .font(BaseStyle.normalFont)
             }
         }
         .padding(.top, 50)

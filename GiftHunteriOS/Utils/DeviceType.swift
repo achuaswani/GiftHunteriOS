@@ -17,8 +17,8 @@ struct ScreenSize {
 
 struct DeviceType {
     static let iPhone5orless = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.maxLength <= 568.0
-    static let iPhone678 = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.maxLength == 667.0
-    static let iPhone678p = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.maxLength == 736.0
-    static let iPhoneX = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.maxLength == 812.0
+    static let iPhone678orless = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.maxLength <= 667.0
+    static let iPhone678porless = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.maxLength <= 736.0
+    static let iPhoneXorless = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.maxLength <= 812.0
     static let iPad = UIDevice.current.userInterfaceIdiom == .pad && ScreenSize.maxLength >= 1080.0
 }

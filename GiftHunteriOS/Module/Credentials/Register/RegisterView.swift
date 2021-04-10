@@ -14,7 +14,7 @@ struct RegisterView: View {
             let viewModel = CredentialsViewModel(loginView: false)
             CredentialsView(viewModel: viewModel)
         }
-        .font(.system(size: 16, weight: .light, design: .rounded))
+        .padding(.top, -50)
     }
 }
 
