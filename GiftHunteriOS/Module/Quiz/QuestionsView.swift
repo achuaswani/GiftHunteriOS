@@ -54,7 +54,7 @@ struct QuestionsView: View {
                     .frame(width: 110, height: 50)
                     .font(BaseStyle.normalFont)
             }
-            .buttonStyle(BaseButtonStyle(color: .white))
+            .buttonStyle(BaseButtonStyle(color: .white, halfScreen: true))
             .padding(BaseStyle.generalSpacing)
         )
     }

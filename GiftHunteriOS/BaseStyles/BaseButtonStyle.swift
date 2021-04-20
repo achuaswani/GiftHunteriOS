@@ -9,12 +9,13 @@ import SwiftUI
 
 struct BaseButtonStyle: ButtonStyle {
     var color: Color = Color.accentColor //#00BFAF for accent
+    var halfScreen: Bool = false
 
     func makeBody(configuration: BaseButtonStyle.Configuration) -> some View {
         if DeviceType.iPhone5orless {
             return configuration.label
                 .foregroundColor(.white)
-                .frame(width: 250, height: 15)
+                .frame(width: halfScreen ? 100: 250, height: 15)
                 .padding(.all, 12)
                 .background(color)
                 .cornerRadius(15.0)
@@ -23,7 +24,7 @@ struct BaseButtonStyle: ButtonStyle {
         } else if DeviceType.iPhone678orless {
             return configuration.label
                 .foregroundColor(.white)
-                .frame(width: 280, height: 15)
+                .frame(width: halfScreen ? 100 : 280, height: 15)
                 .padding(.all, 15)
                 .background(color)
                 .cornerRadius(15.0)
@@ -32,7 +33,7 @@ struct BaseButtonStyle: ButtonStyle {
         } else {
             return configuration.label
                 .foregroundColor(.white)
-                .frame(width: 300, height: 15)
+                .frame(width: halfScreen ? 100 : 300, height: 15)
                 .padding(.all, 20)
                 .background(color)
                 .cornerRadius(15.0)

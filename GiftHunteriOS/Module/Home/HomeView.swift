@@ -28,16 +28,16 @@ struct HomeView: View {
                     ForEach(firebaseDataservice.profile?.role.rawValue == Role.teacher.rawValue ?
                                 viewModel.adminViewList : viewModel.userViewList, id: \.self) { viewList in
                         HStack {
-                            Spacer()
                             showNavigationButton(viewList: viewList)
-                                .shadow(
-                                    color: Color.black.opacity(0.16),
-                                    radius: 5, x: 0, y: 5)
-                                .background(Color("cellColor"))
-                                .cornerRadius(15)
-                             Spacer()
                         }
                         .frame(maxWidth: .infinity)
+                        .background(Color("cellColor"))
+                        .shadow(
+                            color: Color.black.opacity(0.16),
+                            radius: 5, x: 0, y: 5)
+                        .cornerRadius(15)
+                        .padding([.leading, .trailing], 15)
+
                     }
                     .padding(.top, 10)
                 }
@@ -69,7 +69,7 @@ struct HomeView: View {
                     Text(viewList.buttonTitle)
                         .font(.system(size: 16, weight: .bold, design: .rounded))
                         .foregroundColor(Color("fontColor"))
-                        .padding(.horizontal, 30)
+                        .padding(.horizontal, 10)
                     }
                 }
                 .padding(5)

@@ -13,27 +13,25 @@ struct VerifyPINView: View {
    
     var body: some View {
         VStack {
-            Image("questionstab")
+            Image("QuestionsTab")
                 .resizable()
                 .frame(width: 350, height: 250)
-                .padding(.bottom, 100)
+                .padding(.all, 10)
             TextField(viewModel.hinText, text: $pin)
-                .padding()
+                .padding(.all, BaseStyle.innerSpacing)
                 .background(Color("normalTextField"))
-                .font(.system(size: 14, weight: .light, design: .rounded))
-                .cornerRadius(20.0)
+                .font(BaseStyle.normalFont)
+                .cornerRadius(BaseStyle.cornerRadius)
                 .shadow(radius: 5.0, x: 5, y: 5)
+                .padding([.leading, .trailing], 15)
             Button(action: {
                 viewModel.verifyPIN(pin)
             }) {
                 Text(viewModel.buttonText)
-                    .frame(width: 300, height: 30)
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
             }
             .buttonStyle(BaseButtonStyle())
             .padding([.top, .bottom], 30)
         }
-        .padding([.leading, .trailing], 27.5)
         .alert(isPresented: $viewModel.shouldShowAlert ) {
             guard let alert = viewModel.alertProvder.alert else {
                 fatalError("Alert not available")
