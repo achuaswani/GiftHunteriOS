@@ -29,11 +29,6 @@ struct HomeView: View {
                                 viewModel.adminViewList : viewModel.userViewList, id: \.self) { viewList in
                         HStack {
                             showNavigationButton(viewList: viewList)
-                                .shadow(
-                                    color: Color.black.opacity(0.16),
-                                    radius: 5, x: 0, y: 5)
-                                .background(Color("cellColor"))
-                                .cornerRadius(15)
                         }
                         .frame(maxWidth: .infinity)
                         .background(Color("cellColor"))
