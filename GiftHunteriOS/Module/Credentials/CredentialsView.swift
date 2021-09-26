@@ -79,9 +79,7 @@ struct CredentialsView: View {
                     .shadow(radius: 5.0, x: 5, y: 5)
                     .padding(.bottom, BaseStyle.outerSpacing)
                    
-                Divider()
-                    .padding(.all, BaseStyle.innerSpacing)
-               roleSelectionView
+                roleSelectionView
             }
         }
     }
@@ -132,8 +130,9 @@ struct CredentialsView: View {
             .onTapGesture {
                 viewModel.updatedSelection(item)
             }
-            Divider()
         }
+        .padding(.leading, BaseStyle.innerSpacing)
+        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
     }
     
     var buttonView: some View {

@@ -34,6 +34,9 @@ struct TabBar: View {
 
 struct TabBar_Previews: PreviewProvider {
     static var previews: some View {
-        TabBar()
+        let dataService = FirebaseDataService()
+        dataService.profile = Profile.default
+        return TabBar()
+                .environmentObject(dataService)
     }
 }

@@ -20,6 +20,11 @@ struct RegisterView: View {
 
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {
-        RegisterView()
+        Group {
+            RegisterView()
+                .previewDevice("iPod touch (7th generation)")
+            RegisterView()
+                .previewDevice("iPhone 12 Pro Max")
+        }
     }
 }

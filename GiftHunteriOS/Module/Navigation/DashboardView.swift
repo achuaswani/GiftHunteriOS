@@ -31,6 +31,15 @@ struct DashboardView: View {
 
 struct DashboardView_Previews: PreviewProvider {
     static var previews: some View {
-        DashboardView()
+        let dataService = FirebaseDataService()
+        dataService.profile = Profile.default
+        return Group {
+                DashboardView()
+                    .previewDevice("iPod touch (7th generation)")
+                    .environmentObject(dataService)
+                DashboardView()
+                    .previewDevice("iPhone 12 Pro Max")
+                    .environmentObject(dataService)
+            }
     }
 }

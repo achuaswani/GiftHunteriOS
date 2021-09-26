@@ -25,7 +25,7 @@ struct HomeView: View {
                     .font(BaseStyle.normalFont)
                 
                 ScrollView {
-                    ForEach(firebaseDataservice.profile?.role.rawValue == Role.teacher.rawValue ?
+                    ForEach(profile.role.rawValue == Role.teacher.rawValue ?
                                 viewModel.adminViewList : viewModel.userViewList, id: \.self) { viewList in
                         HStack {
                             showNavigationButton(viewList: viewList)
@@ -80,6 +80,9 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        let dataService = FirebaseDataService()
+        dataService.profile = Profile.default
+        return HomeView()
+            .environmentObject(dataService)
     }
 }

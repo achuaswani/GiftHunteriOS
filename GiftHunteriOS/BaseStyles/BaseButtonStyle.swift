@@ -12,34 +12,13 @@ struct BaseButtonStyle: ButtonStyle {
     var halfScreen: Bool = false
 
     func makeBody(configuration: BaseButtonStyle.Configuration) -> some View {
-        if DeviceType.iPhone5orless {
-            return configuration.label
-                .foregroundColor(.white)
-                .frame(width: halfScreen ? 100: 250, height: 15)
-                .padding(.all, 12)
-                .background(color)
-                .cornerRadius(15.0)
-                .shadow(radius: 10.0, x: 5, y: 5)
-                .font(.system(size: 14, weight: .bold, design: .rounded))
-        } else if DeviceType.iPhone678orless {
-            return configuration.label
-                .foregroundColor(.white)
-                .frame(width: halfScreen ? 100 : 280, height: 15)
-                .padding(.all, 15)
-                .background(color)
-                .cornerRadius(15.0)
-                .shadow(radius: 10.0, x: 5, y: 5)
-                .font(.system(size: 15, weight: .bold, design: .rounded))
-        } else {
-            return configuration.label
-                .foregroundColor(.white)
-                .frame(width: halfScreen ? 100 : 300, height: 15)
-                .padding(.all, 20)
-                .background(color)
-                .cornerRadius(15.0)
-                .shadow(radius: 10.0, x: 5, y: 5)
-                .font(.system(size: 16, weight: .bold, design: .rounded))
-        }
-
+        return configuration.label
+            .foregroundColor(.white)
+            .frame(width: halfScreen ? BaseStyle.buttonhalfWidth: BaseStyle.buttonFullWidth, height: 15)
+            .padding(.all, BaseStyle.outerSpacing)
+            .background(color)
+            .cornerRadius(BaseStyle.cornerRadius)
+            .shadow(radius: 10.0, x: 5, y: 5)
+            .font(BaseStyle.normalFont)
     }
 }

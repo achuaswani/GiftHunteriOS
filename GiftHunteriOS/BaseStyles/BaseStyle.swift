@@ -66,4 +66,24 @@ struct BaseStyle {
             return 20.0
         }
     }
+    
+    static var buttonFullWidth: CGFloat {
+        if DeviceType.iPhone5orless {
+            return 250
+        } else if DeviceType.iPhone678orless {
+            return 280
+        } else {
+            return 310
+        }
+    }
+    
+    static var buttonhalfWidth: CGFloat {
+        if DeviceType.iPhone5orless {
+            return 100
+        } else if DeviceType.iPhone678orless {
+            return 130
+        } else {
+            return 150
+        }
+    }
 }
