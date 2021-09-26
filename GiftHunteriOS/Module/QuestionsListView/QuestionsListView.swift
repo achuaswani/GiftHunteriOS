@@ -122,7 +122,10 @@ struct QuestionsListView: View {
 
 struct QuestionsListView_Previews: PreviewProvider {
     static var previews: some View {
+        let dataService = FirebaseDataService()
+        dataService.profile = Profile.default
         let viewRouter = ViewRouter(currentPage: .questionsListView)
-        QuestionsListView(viewModel: QuestionsListViewModel(viewRouter: viewRouter, firebaseDataService: FirebaseDataService()))
+        return QuestionsListView(viewModel: QuestionsListViewModel(viewRouter: viewRouter, firebaseDataService: FirebaseDataService()))
+            .environmentObject(dataService)
     }
 }

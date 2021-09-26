@@ -113,5 +113,15 @@ struct CreateQuizView_Previews: PreviewProvider {
                 firebaseDataService: FirebaseDataService()
             )
         )
+        .previewDevice("iPod touch (7th generation)")
+        .preferredColorScheme(.dark)
+        CreateQuizView(
+            viewModel: CreateQuizViewModel(
+                quizWithPIN: QuizWithPIN.default,
+                firebaseDataService: FirebaseDataService()
+            )
+        )
+        .previewDevice("iPhone 12 Pro Max")
+            
     }
 }

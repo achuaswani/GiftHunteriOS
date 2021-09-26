@@ -31,12 +31,12 @@ class QuizResultViewModel: ObservableObject {
         guard let scoreBoardId = viewRouter.scoreBoardId else {
             return
         }
-        dataService.fetchScoreBoard(scoreBoardId: scoreBoardId) { [weak self] scoreBoardReponse in
+        dataService.fetchScoreBoard(scoreBoardId: scoreBoardId) { [weak self] scoreBoardResponse in
             self?.showProgressView = false
-            guard let scoreBoardReponse = scoreBoardReponse else {
+            guard let scoreBoardResponse = scoreBoardResponse else {
                 return
             }
-            self?.scoreBoard = scoreBoardReponse
+            self?.scoreBoard = scoreBoardResponse
         }
     }
 }

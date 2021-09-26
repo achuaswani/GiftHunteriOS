@@ -82,7 +82,14 @@ struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         let dataService = FirebaseDataService()
         dataService.profile = Profile.default
-        return HomeView()
-            .environmentObject(dataService)
+        return Group {
+            HomeView()
+                .previewDevice("iPod touch (7th generation)")
+                .preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
+                .environmentObject(dataService)
+            HomeView()
+                .previewDevice("iPhone 12 Pro Max")
+                .environmentObject(dataService)
+        }
     }
 }

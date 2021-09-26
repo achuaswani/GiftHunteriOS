@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -67,12 +67,16 @@
 		5BE4D1CE24DF6C0900C18A8E /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE4D1CD24DF6C0900C18A8E /* AboutView.swift */; };
 		5BE4D1D024DF6CD400C18A8E /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE4D1CF24DF6CD400C18A8E /* ImagePicker.swift */; };
 		5BE4D1E124E0BD5400C18A8E /* DisplayPicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE4D1E024E0BD5400C18A8E /* DisplayPicture.swift */; };
-		60E245DF2557E7598322AF88 /* Pods_GiftHunteriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33C2339FE8CFB451CC92791B /* Pods_GiftHunteriOS.framework */; };
-		BB6739F2AA2D07D73C81826C /* Pods_GiftHunteriOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8D304EA7EEF9E12B3A490C1 /* Pods_GiftHunteriOSTests.framework */; };
 		DA3FF12C257BF5830049106F /* BaseButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3FF12B257BF5830049106F /* BaseButtonStyle.swift */; };
 		DA3FF16A257C10430049106F /* QuestionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3FF169257C10430049106F /* QuestionsViewModel.swift */; };
 		DA3FF16C257C10A00049106F /* QuestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3FF16B257C10A00049106F /* QuestionsView.swift */; };
 		DA3FF172257C450F0049106F /* AlertProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3FF171257C450F0049106F /* AlertProvider.swift */; };
+		DA482DB727011CDD00DED61A /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = DA482DB627011CDD00DED61A /* FirebaseAnalytics */; };
+		DA482DB927011CDD00DED61A /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = DA482DB827011CDD00DED61A /* FirebaseAuth */; };
+		DA482DBB27011CDD00DED61A /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = DA482DBA27011CDD00DED61A /* FirebaseCrashlytics */; };
+		DA482DBD27011CDD00DED61A /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = DA482DBC27011CDD00DED61A /* FirebaseDatabase */; };
+		DA482DBF27011CDD00DED61A /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = DA482DBE27011CDD00DED61A /* FirebaseStorage */; };
+		DA482DC22701209C00DED61A /* CodableFirebase in Frameworks */ = {isa = PBXBuildFile; productRef = DA482DC12701209C00DED61A /* CodableFirebase */; };
 		DAA0CFE0257B272A00346647 /* ScoreBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA0CFDF257B272A00346647 /* ScoreBoard.swift */; };
 		DAA0CFE5257B2A1700346647 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA0CFE4257B2A1700346647 /* Quiz.swift */; };
 		DABF304F2538E33300E3DF28 /* CredentialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABF304E2538E33300E3DF28 /* CredentialsView.swift */; };
@@ -84,7 +88,6 @@
 		DABF30CF253AA67800E3DF28 /* CredentialsUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABF30CE253AA67800E3DF28 /* CredentialsUITest.swift */; };
 		DABF30D6254119B900E3DF28 /* BaseTestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABF30D5254119B900E3DF28 /* BaseTestProtocol.swift */; };
 		DABF30DB254121CC00E3DF28 /* BaseTestClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABF30DA254121CC00E3DF28 /* BaseTestClass.swift */; };
-		DCBF51A475948DA481806F3E /* Pods_GiftHunteriOS_GiftHunteriOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70A5F3B1F90CABA41EA3628 /* Pods_GiftHunteriOS_GiftHunteriOSUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,8 +108,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2670864A32836F99D26B29CB /* Pods-GiftHunteriOS-GiftHunteriOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiftHunteriOS-GiftHunteriOSUITests.debug.xcconfig"; path = "Target Support Files/Pods-GiftHunteriOS-GiftHunteriOSUITests/Pods-GiftHunteriOS-GiftHunteriOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		33C2339FE8CFB451CC92791B /* Pods_GiftHunteriOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiftHunteriOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B14089D24DC9A1B003626EE /* GiftHunteriOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GiftHunteriOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B1408A024DC9A1B003626EE /* GiftHunteriOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftHunteriOSApp.swift; sourceTree = "<group>"; };
 		5B1408A224DC9A1B003626EE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -173,10 +174,6 @@
 		5BE4D1CD24DF6C0900C18A8E /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		5BE4D1CF24DF6CD400C18A8E /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		5BE4D1E024E0BD5400C18A8E /* DisplayPicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayPicture.swift; sourceTree = "<group>"; };
-		7F077A4C7AE66155E2F162D7 /* Pods-GiftHunteriOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiftHunteriOSTests.release.xcconfig"; path = "Target Support Files/Pods-GiftHunteriOSTests/Pods-GiftHunteriOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		92B45D319DA7FDCD635A1E4F /* Pods-GiftHunteriOS-GiftHunteriOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiftHunteriOS-GiftHunteriOSUITests.release.xcconfig"; path = "Target Support Files/Pods-GiftHunteriOS-GiftHunteriOSUITests/Pods-GiftHunteriOS-GiftHunteriOSUITests.release.xcconfig"; sourceTree = "<group>"; };
-		B8D304EA7EEF9E12B3A490C1 /* Pods_GiftHunteriOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiftHunteriOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CDEC04C88803D62CE193FF1E /* Pods-GiftHunteriOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiftHunteriOS.debug.xcconfig"; path = "Target Support Files/Pods-GiftHunteriOS/Pods-GiftHunteriOS.debug.xcconfig"; sourceTree = "<group>"; };
 		DA3FF12B257BF5830049106F /* BaseButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButtonStyle.swift; sourceTree = "<group>"; };
 		DA3FF169257C10430049106F /* QuestionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsViewModel.swift; sourceTree = "<group>"; };
 		DA3FF16B257C10A00049106F /* QuestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsView.swift; sourceTree = "<group>"; };
@@ -194,9 +191,6 @@
 		DABF30D5254119B900E3DF28 /* BaseTestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTestProtocol.swift; sourceTree = "<group>"; };
 		DABF30DA254121CC00E3DF28 /* BaseTestClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTestClass.swift; sourceTree = "<group>"; };
 		DADF2C2D2538B0DF00DB536F /* GiftHunteriOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GiftHunteriOS.entitlements; sourceTree = "<group>"; };
-		EF364CA004C988A40D173A05 /* Pods-GiftHunteriOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiftHunteriOSTests.debug.xcconfig"; path = "Target Support Files/Pods-GiftHunteriOSTests/Pods-GiftHunteriOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		F1EFD8FEEEE4DD41F63F54D3 /* Pods-GiftHunteriOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiftHunteriOS.release.xcconfig"; path = "Target Support Files/Pods-GiftHunteriOS/Pods-GiftHunteriOS.release.xcconfig"; sourceTree = "<group>"; };
-		F70A5F3B1F90CABA41EA3628 /* Pods_GiftHunteriOS_GiftHunteriOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiftHunteriOS_GiftHunteriOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,7 +198,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60E245DF2557E7598322AF88 /* Pods_GiftHunteriOS.framework in Frameworks */,
+				DA482DC22701209C00DED61A /* CodableFirebase in Frameworks */,
+				DA482DBD27011CDD00DED61A /* FirebaseDatabase in Frameworks */,
+				DA482DB727011CDD00DED61A /* FirebaseAnalytics in Frameworks */,
+				DA482DBB27011CDD00DED61A /* FirebaseCrashlytics in Frameworks */,
+				DA482DB927011CDD00DED61A /* FirebaseAuth in Frameworks */,
+				DA482DBF27011CDD00DED61A /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,7 +211,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB6739F2AA2D07D73C81826C /* Pods_GiftHunteriOSTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,7 +218,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCBF51A475948DA481806F3E /* Pods_GiftHunteriOS_GiftHunteriOSUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,8 +231,6 @@
 				5B1408B124DC9A1D003626EE /* GiftHunteriOSTests */,
 				5B1408BC24DC9A1E003626EE /* GiftHunteriOSUITests */,
 				5B14089E24DC9A1B003626EE /* Products */,
-				C15EE25611A8F621B6CB2B26 /* Pods */,
-				5EF97833D1A9BA43831E79FE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -537,29 +532,6 @@
 			path = About;
 			sourceTree = "<group>";
 		};
-		5EF97833D1A9BA43831E79FE /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				33C2339FE8CFB451CC92791B /* Pods_GiftHunteriOS.framework */,
-				F70A5F3B1F90CABA41EA3628 /* Pods_GiftHunteriOS_GiftHunteriOSUITests.framework */,
-				B8D304EA7EEF9E12B3A490C1 /* Pods_GiftHunteriOSTests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		C15EE25611A8F621B6CB2B26 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				CDEC04C88803D62CE193FF1E /* Pods-GiftHunteriOS.debug.xcconfig */,
-				F1EFD8FEEEE4DD41F63F54D3 /* Pods-GiftHunteriOS.release.xcconfig */,
-				2670864A32836F99D26B29CB /* Pods-GiftHunteriOS-GiftHunteriOSUITests.debug.xcconfig */,
-				92B45D319DA7FDCD635A1E4F /* Pods-GiftHunteriOS-GiftHunteriOSUITests.release.xcconfig */,
-				EF364CA004C988A40D173A05 /* Pods-GiftHunteriOSTests.debug.xcconfig */,
-				7F077A4C7AE66155E2F162D7 /* Pods-GiftHunteriOSTests.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		DA3FF12A257BF5690049106F /* BaseStyles */ = {
 			isa = PBXGroup;
 			children = (
@@ -587,11 +559,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5B1408C224DC9A1E003626EE /* Build configuration list for PBXNativeTarget "GiftHunteriOS" */;
 			buildPhases = (
-				AC6FD6DC0F4A115EB82A18E5 /* [CP] Check Pods Manifest.lock */,
 				5B14089924DC9A1B003626EE /* Sources */,
 				5B14089A24DC9A1B003626EE /* Frameworks */,
 				5B14089B24DC9A1B003626EE /* Resources */,
-				CBB6CC85E79972F45EFD848B /* [CP] Embed Pods Frameworks */,
 				DABF30532539516300E3DF28 /* SwiftLint */,
 			);
 			buildRules = (
@@ -599,6 +569,14 @@
 			dependencies = (
 			);
 			name = GiftHunteriOS;
+			packageProductDependencies = (
+				DA482DB627011CDD00DED61A /* FirebaseAnalytics */,
+				DA482DB827011CDD00DED61A /* FirebaseAuth */,
+				DA482DBA27011CDD00DED61A /* FirebaseCrashlytics */,
+				DA482DBC27011CDD00DED61A /* FirebaseDatabase */,
+				DA482DBE27011CDD00DED61A /* FirebaseStorage */,
+				DA482DC12701209C00DED61A /* CodableFirebase */,
+			);
 			productName = GiftHunteriOS;
 			productReference = 5B14089D24DC9A1B003626EE /* GiftHunteriOS.app */;
 			productType = "com.apple.product-type.application";
@@ -607,7 +585,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5B1408C524DC9A1E003626EE /* Build configuration list for PBXNativeTarget "GiftHunteriOSTests" */;
 			buildPhases = (
-				324D256D182EC701E3F8F9A2 /* [CP] Check Pods Manifest.lock */,
 				5B1408AA24DC9A1D003626EE /* Sources */,
 				5B1408AB24DC9A1D003626EE /* Frameworks */,
 				5B1408AC24DC9A1D003626EE /* Resources */,
@@ -626,11 +603,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5B1408C824DC9A1E003626EE /* Build configuration list for PBXNativeTarget "GiftHunteriOSUITests" */;
 			buildPhases = (
-				1B599A5A2DC71B856323B3CF /* [CP] Check Pods Manifest.lock */,
 				5B1408B524DC9A1E003626EE /* Sources */,
 				5B1408B624DC9A1E003626EE /* Frameworks */,
 				5B1408B724DC9A1E003626EE /* Resources */,
-				488C1CBDC97F4D88FFAD1025 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -674,6 +649,10 @@
 				"ml-IN",
 			);
 			mainGroup = 5B14089424DC9A1B003626EE;
+			packageReferences = (
+				DA482DB527011CDD00DED61A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				DA482DC02701209C00DED61A /* XCRemoteSwiftPackageReference "CodableFirebase" */,
+			);
 			productRefGroup = 5B14089E24DC9A1B003626EE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -714,106 +693,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1B599A5A2DC71B856323B3CF /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-GiftHunteriOS-GiftHunteriOSUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		324D256D182EC701E3F8F9A2 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-GiftHunteriOSTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		488C1CBDC97F4D88FFAD1025 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-GiftHunteriOS-GiftHunteriOSUITests/Pods-GiftHunteriOS-GiftHunteriOSUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-GiftHunteriOS-GiftHunteriOSUITests/Pods-GiftHunteriOS-GiftHunteriOSUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GiftHunteriOS-GiftHunteriOSUITests/Pods-GiftHunteriOS-GiftHunteriOSUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AC6FD6DC0F4A115EB82A18E5 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-GiftHunteriOS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CBB6CC85E79972F45EFD848B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-GiftHunteriOS/Pods-GiftHunteriOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-GiftHunteriOS/Pods-GiftHunteriOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GiftHunteriOS/Pods-GiftHunteriOS-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		DABF30532539516300E3DF28 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1007,7 +886,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1063,7 +942,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1075,7 +954,6 @@
 		};
 		5B1408C324DC9A1E003626EE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CDEC04C88803D62CE193FF1E /* Pods-GiftHunteriOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1101,7 +979,6 @@
 		};
 		5B1408C424DC9A1E003626EE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F1EFD8FEEEE4DD41F63F54D3 /* Pods-GiftHunteriOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1127,7 +1004,6 @@
 		};
 		5B1408C624DC9A1E003626EE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EF364CA004C988A40D173A05 /* Pods-GiftHunteriOSTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1150,7 +1026,6 @@
 		};
 		5B1408C724DC9A1E003626EE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7F077A4C7AE66155E2F162D7 /* Pods-GiftHunteriOSTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1173,7 +1048,6 @@
 		};
 		5B1408C924DC9A1E003626EE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2670864A32836F99D26B29CB /* Pods-GiftHunteriOS-GiftHunteriOSUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1194,7 +1068,6 @@
 		};
 		5B1408CA24DC9A1E003626EE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 92B45D319DA7FDCD635A1E4F /* Pods-GiftHunteriOS-GiftHunteriOSUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1253,6 +1126,58 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DA482DB527011CDD00DED61A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+		DA482DC02701209C00DED61A /* XCRemoteSwiftPackageReference "CodableFirebase" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alickbass/CodableFirebase.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DA482DB627011CDD00DED61A /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DA482DB527011CDD00DED61A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		DA482DB827011CDD00DED61A /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DA482DB527011CDD00DED61A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		DA482DBA27011CDD00DED61A /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DA482DB527011CDD00DED61A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		DA482DBC27011CDD00DED61A /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DA482DB527011CDD00DED61A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		DA482DBE27011CDD00DED61A /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DA482DB527011CDD00DED61A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		DA482DC12701209C00DED61A /* CodableFirebase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DA482DC02701209C00DED61A /* XCRemoteSwiftPackageReference "CodableFirebase" */;
+			productName = CodableFirebase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5B14089524DC9A1B003626EE /* Project object */;
 }

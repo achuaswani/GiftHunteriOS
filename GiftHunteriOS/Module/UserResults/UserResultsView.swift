@@ -84,8 +84,20 @@ struct UserResultsView: View {
 
 struct UserResultsView_Previews: PreviewProvider {
     static var previews: some View {
+        let dataService = FirebaseDataService()
+        dataService.profile = Profile.default
         let viewRouter = ViewRouter(currentPage: .userResultsView, nextPage: .resultView)
-        let viewModel = UserResultsViewModel(viewRouter: viewRouter, firebaseDataService: FirebaseDataService())
-        UserResultsView(viewModel: viewModel)
+        viewRouter.quiz = Quiz.default
+        let viewModel = UserResultsViewModel(viewRouter: viewRouter, firebaseDataService: dataService)
+        return Group {
+            UserResultsView(viewModel: viewModel)
+                .previewDevice("iPod touch (7th generation)")
+                .preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
+                .environmentObject(dataService)
+            UserResultsView(viewModel: viewModel)
+                .previewDevice("iPhone 12 Pro Max")
+                .environmentObject(dataService)
+            
+        }
     }
 }

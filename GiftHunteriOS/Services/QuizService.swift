@@ -170,6 +170,8 @@ class QuizService {
         return quicksort(less) + equal + quicksort(greater)
     }
     
+    // MARK: - Fetch score of user
+    
     func fetchScoreOfUser(userName: String, scoreBoardId: String, handler: @escaping (Int?) -> Void) {
         databaseScoreBoardReference
             .child(scoreBoardId)

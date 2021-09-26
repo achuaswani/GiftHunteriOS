@@ -63,6 +63,16 @@ struct QuestionsView: View {
 
 struct QuestionsView_Previews: PreviewProvider {
     static var previews: some View {
-        QuestionsView(viewModel: QuestionsViewModel(viewRouter: ViewRouter(currentPage: .questionView, nextPage: .resultView), firebaseDataService: FirebaseDataService()))
+        let viewRouter = ViewRouter(currentPage: .questionView, nextPage: .resultView)
+        viewRouter.quiz = Quiz.default
+        let dataService = FirebaseDataService()
+        dataService.profile = Profile.default
+        return Group {
+            QuestionsView(viewModel: QuestionsViewModel(viewRouter: viewRouter , firebaseDataService: dataService))
+                .previewDevice("iPod touch (7th generation)")
+                .preferredColorScheme(.dark)
+            QuestionsView(viewModel: QuestionsViewModel(viewRouter: viewRouter, firebaseDataService: dataService))
+                .previewDevice("iPhone 12 Pro Max")
+        }
     }
 }

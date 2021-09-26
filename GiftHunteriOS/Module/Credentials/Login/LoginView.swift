@@ -58,6 +58,12 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        Group {
+            LoginView()
+                .previewDevice("iPod touch (7th generation)")
+                .preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
+            LoginView()
+                .previewDevice("iPhone 12 Pro Max")
+        }
     }
 }

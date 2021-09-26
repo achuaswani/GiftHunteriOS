@@ -12,11 +12,11 @@ struct Quiz: Codable, Hashable {
     var scoreBoardId: String
     var hostId: String
     static let `default`  = Self(
-        quizId: "",
-        title: "",
-        quizDetails: "",
-        scoreBoardId: "",
-        hostId: ""
+        quizId: "Test",
+        title: "Test title",
+        quizDetails: "Test Details",
+        scoreBoardId: "12345",
+        hostId: "12345"
     )
     
     func getQuizDictionary() -> [String: String] {

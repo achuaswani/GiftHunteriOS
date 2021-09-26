@@ -37,6 +37,17 @@ struct HomeRouterView: View {
 
 struct HomeRouterView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeRouterView(viewRouter: ViewRouter(currentPage: .pinView, nextPage: .questionView))
+        let dataService = FirebaseDataService()
+        dataService.profile = Profile.default
+        return Group {
+            HomeRouterView(viewRouter: ViewRouter(currentPage: .pinView, nextPage: .questionView))
+            .environmentObject(dataService)
+            .previewDevice("iPod touch (7th generation)")
+            .preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
+            
+            HomeRouterView(viewRouter: ViewRouter(currentPage: .pinView, nextPage: .questionView))
+            .environmentObject(dataService)
+            .previewDevice("iPhone 12 Pro Max")
+        }
     }
 }

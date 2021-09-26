@@ -60,5 +60,19 @@ struct VerifyPINView_Previews: PreviewProvider {
                     firebaseDataService: FirebaseDataService()
                 )
         )
+        .previewDevice("iPod touch (7th generation)")
+        .preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
+        
+        VerifyPINView(
+            viewModel:
+                VerifyPINViewModel(
+                    viewRouter: ViewRouter(
+                        currentPage: .pinView,
+                        nextPage: .questionView
+                    ),
+                    firebaseDataService: FirebaseDataService()
+                )
+        )
+        .previewDevice("iPhone 12 Pro Max")
     }
 }
